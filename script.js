@@ -1,17 +1,21 @@
 function svLcl() {
   window.print();
+  console.log("user has initiated a save");
 }
 
 function fave(){
 currentvalue = document.getElementById('fvOnOff').value;
   if(currentvalue == "Off"){
       document.getElementById("fvOnOff").value="On";
-      //make image element source = gold star
-      //document . whatever = checked
+      // switches the image source from faved to unfaved
+      document.getElementById('faveImg').src  = 'onStar.jpg';
+      //update sql database that user has faved a recipe
   }
   else{
       document.getElementById("itaonoff").value="Off";
-      //make image element source = unstarred
+      // we need to edit the fave stars to be the same size and file format
+      document.getElementById('faveImg').src  = 'offStar.jpeg';
+      //update sql database that user has unfaved recipe
   }
 }
 
@@ -23,6 +27,7 @@ currentvalue = document.getElementById('fvOnOff').value;
 
 
 function init(){
-  window.Download.addEventListener('click', svLcl);
-  window.fveBtn.addEventListener('click', fave);
+  document.querySelector("#down").addEventListener('click', svLcl);
+  document.querySelector("#fave").addEventListener('click', fave);
 }
+window.addEventListener('load', init);
