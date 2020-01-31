@@ -1,4 +1,31 @@
+main {
+  display: grid;
+  grid-template-columns: 1fr 6fr 18fr;
+  grid-auto-rows: 1fr 19fr;
+}
+
 body {
-    background-color: aqua;
-    color: red;
+    background-color: white;
+    color: black;
+}
+
+.button {
+  max-width: 2em;
+  max-height: 2em;
+}
+
+.IconBox {
+  grid-column: 1;
+  grid-row: auto;
+  background-color: green;
+}
+.SearchBox {
+  grid-column: 2;
+
+}
+.mainBox {
+  grid-column: 3;
+  grid-row: 1;
+  grid-row: 2;
+  background-color: pink;
 }

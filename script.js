@@ -3,18 +3,27 @@ function svLcl() {
   console.log("user has initiated a save");
 }
 
+function faveCheck(){
+/*if user has added page to faveourites{
+    document.getElementById('fave').src  = 'onStar.jpg';
+  }
+  else{
+    document.getElementById('fave').src  = 'offStar.jpeg';
+  }*/
+}
+
 function fave(){
 currentvalue = document.getElementById('fvOnOff').value;
-  if(currentvalue == "Off"){
-      document.getElementById("fvOnOff").value="On";
+  if(currentvalue == "False")
+      document.getElementById("fvOnOff").value = "True";
       // switches the image source from faved to unfaved
-      document.getElementById('faveImg').src  = 'onStar.jpg';
+      document.getElementById('fave').src  = 'onStar.jpg';
       //update sql database that user has faved a recipe
   }
   else{
-      document.getElementById("itaonoff").value="Off";
+      document.getElementById("fvOnoff").value="False";
       // we need to edit the fave stars to be the same size and file format
-      document.getElementById('faveImg').src  = 'offStar.jpeg';
+      document.getElementById('fave').src  = 'offStar.jpeg';
       //update sql database that user has unfaved recipe
   }
 }
