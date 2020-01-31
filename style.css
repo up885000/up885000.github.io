@@ -1,7 +1,7 @@
 main {
   display: grid;
   grid-template-columns: 1fr 6fr 18fr;
-  grid-auto-rows: 1fr 19fr;
+  grid-auto-rows: 2fr 19fr;
 }
 
 body {
@@ -17,15 +17,18 @@ body {
 .IconBox {
   grid-column: 1;
   grid-row: auto;
-  background-color: green;
+  background-color: #36393e;
 }
 .SearchBox {
   grid-column: 2;
+  background-color: #4f545d;
 
 }
 .mainBox {
   grid-column: 3;
-  grid-row: 1;
-  grid-row: 2;
-  background-color: pink;
+  background-color: white;
+}
+
+#logo{
+
 }
