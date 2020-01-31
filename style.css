@@ -1,7 +1,9 @@
 main {
   display: grid;
   grid-template-columns: 1fr 6fr 18fr;
-  grid-auto-rows: 2fr 19fr;
+  margin: 0;
+  border: 0;
+  padding: 0;
 }
 
 body {
@@ -16,12 +18,13 @@ body {
 
 .IconBox {
   grid-column: 1;
-  grid-row: auto;
   background-color: #36393e;
+  display: block;
 }
 .SearchBox {
   grid-column: 2;
   background-color: #4f545d;
+  display: block;
 
 }
 .mainBox {
@@ -30,5 +33,8 @@ body {
 }
 
 #logo{
-
+position: absolute;
+bottom: 0;
+background-color: inherit;
+float: right;
 }
