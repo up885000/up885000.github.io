@@ -30,7 +30,9 @@ currentvalue = document.getElementById('fvOnOff').value;
 
 //if checked state = checked then add RandUserId to database of people who have faved item.
 
-
+function featuredTag(){
+  //either randomly generate number and use it to find tag id or randomly generate number and use it to take the a tag using the array index of tag list
+}
 
 
 
