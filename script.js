@@ -13,7 +13,7 @@ function faveCheck(){
 }
 let currentvalue = false;
 function fave(){
-x = document.getElementById('id');
+let x = document.getElementById('fave');
 if(x.src == "offstar.png"){
   currentvalue = false;
 }
@@ -33,7 +33,7 @@ else if(x.src == "onstar.png"){
       currentvalue = false;
       //document.getElementById("fvOnoff").value="False";
       // we need to edit the fave stars to be the same size and file format
-      document.getElementById('fave').src  = 'offStar.jpg';
+      document.getElementById('fave').src  = 'offStar.png';
       //update sql database that user has unfaved recipe
   }
 }
@@ -49,6 +49,6 @@ function featuredTag(){
 
 function init(){
   document.querySelector("#down").addEventListener('click', svLcl);
-  document.querySelector("#fave").addEventListener('click', fave);
+  document.getElementById("fave").addEventListener('click', fave);
 }
 window.addEventListener('load', init);
