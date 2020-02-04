@@ -11,26 +11,26 @@ function faveCheck(){
     document.getElementById('fave').src  = 'offStar.jpeg';
   }*/
 }
-let currentvalue = False;
+let currentvalue = false;
 function fave(){
 x = document.getElementById('id');
 if(x.src == "offstar.png"){
-  currentvalue = False;
+  currentvalue = false;
 }
 else if(x.src == "onstar.png"){
-  currentvalue = True;
+  currentvalue = true;
 }
 //currentvalue = document.getElementById('fvOnOff').value;
-  if(currentvalue == False){
-      currentvalue = True;
+  if(currentvalue == false){
+      currentvalue = true;
       //document.getElementById("fvOnOff").valu = "True";
       // switches the image source from faved to unfaved
       document.getElementById('fave').src  = 'onStar.jpg';
       //update sql database that user has faved a recipe
   }
   //Add local storage element here **
-  else if(currentvalue == True){
-      currentvalue = False;
+  else if(currentvalue == true){
+      currentvalue = false;
       //document.getElementById("fvOnoff").value="False";
       // we need to edit the fave stars to be the same size and file format
       document.getElementById('fave').src  = 'offStar.jpg';
