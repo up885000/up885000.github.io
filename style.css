@@ -1,40 +1,41 @@
 main {
-  display: grid;
-  grid-template-columns: 1fr 6fr 18fr;
-  margin: 0;
-  border: 0;
-  padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 6fr 18fr;
+    margin: 0;
+    border: 0;
+    padding: 0;
 }
 
 body {
-    background-color: white;
+    background-color: #36393e;
     color: black;
 }
 
 .button {
-  max-width: 2em;
-  max-height: 2em;
+    max-width: 2em;
+    max-height: 2em;
 }
 
 .IconBox {
-  grid-column: 1;
-  background-color: #36393e;
-  display: block;
+    grid-column: 1;
+    background-color: #36393e;
+    display: block;
 }
+
 .SearchBox {
-  grid-column: 2;
-  background-color: #4f545d;
-  display: block;
-
+    grid-column: 2;
+    background-color: #4f545d;
+    display: block;
 }
+
 .mainBox {
-  grid-column: 3;
-  background-color: white;
+    grid-column: 3;
+    background-color: white;
 }
 
-#logo{
-position: absolute;
-bottom: 0;
-background-color: inherit;
-float: right;
+#logo {
+    position: absolute;
+    bottom: 0;
+    background-color: inherit;
+    float: right;
 }
