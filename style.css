@@ -1,5 +1,5 @@
 html {
-    background-color: #36393e;
+    background-color: #4f545d;
 }
 
 main {
@@ -11,8 +11,8 @@ main {
 }
 
 body {
-    background-color: white;
-    color: black;
+    background-color: inherit;
+    color: white;
 }
 
 .button {
@@ -22,7 +22,7 @@ body {
 
 .IconBox {
     grid-column: 1;
-    background-color: #36393e;
+    background-color: #4f545d;
     display: block;
 }
 
