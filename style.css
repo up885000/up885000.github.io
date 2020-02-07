@@ -34,7 +34,7 @@ body {
 
 .mainBox {
     grid-column: 3;
-    background-color: white;
+    background-color: inherit;
 }
 
 #logo {
