@@ -1,3 +1,3 @@
-function test(ic,le){
-  return
+function test(ic, le) {
+    return
 }
