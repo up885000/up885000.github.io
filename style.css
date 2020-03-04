@@ -2,48 +2,47 @@ html {
     background-color: #4f545d;
 }
 
+body {
+    width: 100%;
+    text-align:center;
+    color: white;
+}
+
 main {
     display: grid;
-    grid-template-columns: 1fr 6fr 18fr;
+    grid-template-columns: 1fr 3fr 6fr;
     margin: 0;
     border: 0;
     padding: 0;
 }
 
-body {
-    width: 100%;
-    text-align:center;
-    background-color: inherit;
-    color: white;
-}
-
-header {
-  width: 100%;
-  height 25%;
-  padding: 0.5em;
-
-}
-
-header.img{
-  top: 5em;
-}
-
 nav {
-  height: 100%;
-  width: 5%;
-  position: fixed;
-  background-color: blue;
+  position: absolute;
+  max-width: 10%;
 }
 
-nav.button{
+nav div{
+  top: 0;
+}
+
+nav button{
+  bottom: 0;
   margin: 1em;
+
 }
 
+nav button:hover{
+  border-radius: 5px;
+}
+
+article {
+
+}
 
 .button {
     margin:0.5em;
-    max-width: 2em;
-    max-height: 2em;
+    width: 2em;
+    height: 2em;
 }
 
 .IconBox {
@@ -62,25 +61,31 @@ nav.button{
 
 #navbar {
   float:left;
-  width:5%;
   height:100%;
+  background-color: blue;
+  grid-area: 1 / 1;
 
 }
 
-#recipes{
+#context{
   display:inline-block;
   margin: 0 auto;
-  width:25%;
   height:100%;
   background-color: navy;
+  grid-area: 1 / 2;
 
 }
 
-#instructions{
+.instructions{
   float:right;
-  width:60%;
   height:100%;
-  blackground-color: teal;
+  background-color: teal;
+  grid-area: 1 / 3;
+}
+
+.instructions img {
+  max-width: 30%;
+  max-height: 30%;
 }
 
 #logo {
