@@ -19,6 +19,7 @@ main {
 nav {
   position: absolute;
   max-width: 10%;
+
 }
 
 nav div{
@@ -60,11 +61,10 @@ article {
 }
 
 #navbar {
-  float:left;
+  float: left;
   height:100%;
   background-color: blue;
   grid-area: 1 / 1;
-
 }
 
 #context{
