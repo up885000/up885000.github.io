@@ -1,35 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
-    <link rel="stylesheet" type="text/css" href="styleFlex.css">
-    <script type="text/javascript" src="script.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cooking Dumma</title>
-</head>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styleFlex.css">
+        <script type="text/javascript" src="script.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cooking Dumma</title>
+    </head>
 
-<body>
-    <main>
-        <nav id="navbar">
-            <button class=button> Search </button>
-            <input class="button" id="down" type="image" src="save.png">
-            <button class=button> Menu </button>
-        </nav>
+    <body>
+        <main>
+            <nav id="navbar">
+                <!-- Nav bar with buttons to options -->
+                <button class="button"> Search </button>
+                <input class="button" id="down" type="image" src="save.png">
+                <button class="button"> Menu </button>
+            </nav>
 
-        <section id="search">
-            <article id="searchBar">
+            <section id="search">
+                <!-- Search area with searchbar and thumbnails of recipes -->
                 <p> {Search Bar} </p>
-                <section id="options">
+                <section class="thumbnails">
+                    <!-- clickables thumbnails in the search area -->
+                    <input class="button" type="image" src="save.png">
+                    <input class="button" type="image" src="save.png">
+                    <input class="button" type="image" src="save.png">
+                    <input class="button" type="image" src="save.png">
+                    <input class="button" type="image" src="save.png">
+                    <input class="button" type="image" src="save.png">
                 </section>
                 <img id="logo" src="cookingDumma.png">
-        </section>
+            </section>
 
-        <section id="recipe">
-            <p>Recipe title {JS}</p>
-            <img id="image" src="penne.jpg">
-        </section>
-    </main>
-</body>
+            <section id="recipe">
+                <!-- Recipe area showing full recipe, reviews and images -->
+                <p>Recipe title {JS}</p>
+                <img id="image" src="penne.jpg">
+                <input class="button" id="fave" type="image" src="offStar.png">
+            </section>
+        </main>
+    </body>
 
 </html>

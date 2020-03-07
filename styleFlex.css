@@ -20,14 +20,26 @@ nav {
 }
 
 nav>.button {
+    /* clickables in navbar */
     margin: 1rem;
-    width: 2rem;
+    width: 3rem;
 }
 
 #search {
     /* search area / second column */
     background-color: #4f545d;
     width: 30%;
+}
+.thumbnails{
+    /* recipe thumbnails container */
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.thumbnails>input.button {
+    /* clickable thumbnails in search area */
+    width: 40%;
+    padding: 5%;
 }
 
 #recipe {
@@ -38,12 +50,17 @@ nav>.button {
 
 #image {
     /* Test set for images in recipe area */
-    height: 5rem;
+    width: 10rem;
+    float: left;
+}
+#fave{
+    /* favourite button in recipe area */
     float: right;
+    width: 3rem;
 }
 
 #logo {
-    /*this is the for the logo contained in the searchBar column */
+    /* logo in the search area */
     position: absolute;
     bottom: 0;
     float: right;
