@@ -1,0 +1,51 @@
+* {
+    /* Everything */
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+main {
+    /* whole page */
+    display: flex;
+    height: 100vh;
+}
+
+nav {
+    /*  navbar area / first column */
+    display: flex;
+    flex-flow: column;
+    background-color: #2f3136;
+    width: auto;
+}
+
+nav>.button {
+    margin: 1rem;
+    width: 2rem;
+}
+
+#search {
+    /* search area / second column */
+    background-color: #4f545d;
+    width: 30%;
+}
+
+#recipe {
+    /* recipe area / third column */
+    background-color: white;
+    width: 65%;
+}
+
+#image {
+    /* Test set for images in recipe area */
+    height: 5rem;
+    float: right;
+}
+
+#logo {
+    /*this is the for the logo contained in the searchBar column */
+    position: absolute;
+    bottom: 0;
+    float: right;
+    width: 12vw;
+}
