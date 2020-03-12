@@ -46,11 +46,23 @@ INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (20 , "Tortilla")
 INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (21 , "Mozarella");
 
 /* Firecracker prawns with stir-fried greens */
-INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (22 , "");
-INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (23 , "");
-INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (24 , "");
-INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (25 , "");
-INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (26 , "");
-INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (27 , "");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (22 , "Spring Oninons");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (23 , "Chillies");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (25 , "Oyster Sauce");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (26 , "Vinegar");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (27 , "Soy Sauce");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (22 , "Prawns");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (23 , "Olive Oil");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (24 , "Park Choi");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (25 , "Sesame Oil");
+
 
 /* Jollof Rice */
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (22 , "Passata");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (23 , "Puree");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (24 , "Scotch Bonnet Chillies");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (25 , "Onions");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (26 , "Vegetable Oil");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (27 , "Tomatoes");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (22 , "Chicken Stock");
+INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (24 , "Plantains");
