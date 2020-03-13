@@ -1,7 +1,7 @@
 /* Creates the category table, primary key on category_id */
 CREATE TABLE `category` (
   `category_id` serial,
-  `category_name` Type,
+  `category_name` varchar(30),
   PRIMARY KEY (`category_id`)
 );
 

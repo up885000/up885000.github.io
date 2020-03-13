@@ -1,6 +1,6 @@
 CREATE TABLE "category" (
   "category_id" serial,
-  "category_name" Type,
+  "category_name" varchar(30),
   PRIMARY KEY ("category_id")
 );
 
@@ -44,10 +44,9 @@ CREATE INDEX "FK" ON  "reviews" ("recipe_id");
 
 CREATE TABLE "recipe_category_line" (
   "recipe_id" int,
-  "category_id" int
+  "category_id" int,
+  PRIMARY KEY ("recipe_id", "category_id")
 );
-
-CREATE INDEX "PK/FK" ON  "recipe_category_line" ("recipe_id", "category_id");
 
 CREATE TABLE "measurements" (
   "measurement_id" serial,
