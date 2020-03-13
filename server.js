@@ -18,4 +18,4 @@ const config = {
 const connection = new Connection(config);
 connection.on('connect', function(err) {
   console.log("Connected");
-})
+});
