@@ -1,21 +1,13 @@
 'use strict';
 
-const Connection = require('tedious').Connection;
-const config = {
-  server: 'up885188.myvm.port.ac.uk',
-  authentication: {
-    type: 'default',
-    options: {
-      userName: 'up885188',
-      password: 'recipeapp'
-    }
-  },
-  options: {
-    encrypt: true,
-    database: 'recipeapp'
-  }
-};
-const connection = new Connection(config);
-connection.on('connect', function(err) {
-  console.log("Connected");
-});
+const {Client} = require('pg')
+const client = new Client({
+    user: "up885000",
+    password: "softwareServer",
+    host: "up885000@up885000.myvm.port.ac.uk",
+    port: 5432,
+    database: "recipeapp"
+})
+
+client.connect()
+.then(() => console.log("Connected successfuly"))
