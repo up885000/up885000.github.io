@@ -52,7 +52,7 @@ function featuredRecipe(){
     console.log( 'i is equal to ' + i);
     let tempNum = randomIdGen() 
     let fiTemp = fI + tempNum;
-    document.getElementById(fiTemp).src  = 'img'+ tempNum + '.jpg';
+    document.getElementById(fiTemp).src  = '/media/img'+ tempNum + '.jpg';
   }
     
   }
