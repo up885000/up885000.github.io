@@ -6,7 +6,7 @@ const client = new Client({
     password: "softwareServer",
     host: "up885000@up885000.myvm.port.ac.uk",
     port: 5432,
-    database: "recipeapp"
+    database: "RecipeApp"
 });
 
 client.connect();
