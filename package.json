@@ -1,0 +1,23 @@
+{
+  "name": "recipeapp",
+  "version": "1.0.0",
+  "description": "Software Engineering Theory and Practice CW",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/up885000/RecipeApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/up885000/RecipeApp/issues"
+  },
+  "homepage": "https://github.com/up885000/RecipeApp#readme",
+  "dependencies": {
+    "pg": "^7.18.2"
+  }
+}
