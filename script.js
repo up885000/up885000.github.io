@@ -40,10 +40,35 @@ function fave() {
 
 //if checked state = checked then add RandUserId to database of people who have faved item.
 
-function featuredTag() {
-    //either randomly generate number and use it to find tag id or randomly generate number and use it to take the a tag using the array index of tag list
-}
-
+function featuredRecipe(){
+    //take random PK id's and display 6 recipe images on html page. Connect their onclick source to the correct recipe (using the PK)
+    //let query = pgClient.query("");
+  /*take id from html and cycle through fi+ random generation
+    take image source and set source to img + random generation
+    unsure on how to asscoiate correct page with the image when clicked on */
+  
+  for (let i = 0; i < 6; i++){
+    //loop to itterate 6 times
+    console.log( 'i is equal to ' + i);
+    let tempNum = randomIdGen() 
+    let fiTemp = fI + tempNum;
+    document.getElementById(fiTemp).src  = 'img'+ tempNum + '.jpg';
+  }
+    
+  }
+  function randomIdGen(){
+    //generate "random" id
+      //array with numbers in it.
+      //randomly takes a number out of array based of Math.random()* array.length
+      //gives number out as answer
+      //deletes number from array
+      // if array.length = 0 add 1,2,3,4,5,6 to array.
+    const theNum = Math.floor(Math.random() * 6)
+    const Decision = tempOrdered[theNum];
+    return Decision;
+  }
+  
+  
 
 
 
