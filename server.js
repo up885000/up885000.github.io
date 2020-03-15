@@ -11,3 +11,10 @@ const client = new Client({
 
 client.connect();
 .then(() => console.log("Connected successfuly"));
+
+
+
+function displayRecipe(id){
+  const query = client.query("SELECT * FROM recipe where recipe_id = " + id);
+  document.getElementById("recipe").textContent = query;
+}
