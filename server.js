@@ -1,7 +1,7 @@
 'use strict';
 
-const {Client} = require('pg');
-const client = new Client({
+var {Client} = require('pg');
+var client = new Client({
     user: "up885000",
     password: "softwareServer",
     host: "up885000@up885000.myvm.port.ac.uk",
@@ -14,6 +14,6 @@ client.connect();
 
 
 function displayRecipe(id){
-  const query = client.query("SELECT * FROM recipe where recipe_id = " + id);
+  let query = client.query("SELECT * FROM recipe where recipe_id = " + id);
   document.getElementById("recipe").textContent = query;
 }
