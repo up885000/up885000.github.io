@@ -10,8 +10,7 @@ const client = new Client({
 });
 
 client.connect();
-.then(() => console.log("Connected successfuly"));
-
+//.then(() => console.log("Connected successfuly"));
 
 
 function displayRecipe(id){
