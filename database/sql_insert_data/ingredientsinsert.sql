@@ -1,18 +1,4 @@
-/* This file contains all the SQL code to insert data into the server */
-
-/* SQL for the category table */
-INSERT INTO category (category_id, category_name) VALUES (1 , 'African');
-INSERT INTO category (category_id, category_name) VALUES (2 , 'Rice');
-INSERT INTO category (category_id, category_name) VALUES (3 , 'Chinese');
-INSERT INTO category (category_id, category_name) VALUES (4 , 'Seafood');
-INSERT INTO category (category_id, category_name) VALUES (5 , 'Side');
-INSERT INTO category (category_id, category_name) VALUES (6 , 'British');
-INSERT INTO category (category_id, category_name) VALUES (7 , 'Dessert');
-INSERT INTO category (category_id, category_name) VALUES (8 , 'Vegetarian');
-INSERT INTO category (category_id, category_name) VALUES (9 , 'Chicken');
-INSERT INTO category (category_id, category_name) VALUES (10 , 'Mexican');
-
-/* SQL for the ingredients table */
+/* This file contains all the SQL code to insert data for the ingredients table into the server */
 
 /* Fish and Chips */
 INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (1 , 'Sunflower Oil');
@@ -66,14 +52,3 @@ INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (36 , 'Vegetable 
 INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (37 , 'Tomatoes');
 INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (38 , 'Chicken Stock');
 INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (39 , 'Plantains');
-
-/* SQL for the measurements table */
-
-INSERT INTO measurement (measurement_id , measurement_name) VALUES (1 , ' ');
-INSERT INTO measurement (measurement_id , measurement_name) VALUES (2 , 'ml');
-INSERT INTO measurement (measurement_id , measurement_name) VALUES (3 , 'fl oz');
-INSERT INTO measurement (measurement_id , measurement_name) VALUES (4 , 'tbsp');
-INSERT INTO measurement (measurement_id , measurement_name) VALUES (5 , 'g');
-INSERT INTO measurement (measurement_id , measurement_name) VALUES (6 , 'lb');
-INSERT INTO measurement (measurement_id , measurement_name) VALUES (7 , 'oz');
-INSERT INTO measurement (measurement_id , measurement_name) VALUES (8 , 'tsp');
