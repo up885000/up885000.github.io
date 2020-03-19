@@ -66,3 +66,14 @@ INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (36 , 'Vegetable 
 INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (37 , 'Tomatoes');
 INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (38 , 'Chicken Stock');
 INSERT INTO ingredient (ingredient_id, ingredient_name) VALUES (39 , 'Plantains');
+
+/* SQL for the measurements table */
+
+INSERT INTO measurement (measurement_id , measurement_name) VALUES (1 , ' ');
+INSERT INTO measurement (measurement_id , measurement_name) VALUES (2 , 'ml');
+INSERT INTO measurement (measurement_id , measurement_name) VALUES (3 , 'fl oz');
+INSERT INTO measurement (measurement_id , measurement_name) VALUES (4 , 'tbsp');
+INSERT INTO measurement (measurement_id , measurement_name) VALUES (5 , 'g');
+INSERT INTO measurement (measurement_id , measurement_name) VALUES (6 , 'lb');
+INSERT INTO measurement (measurement_id , measurement_name) VALUES (7 , 'oz');
+INSERT INTO measurement (measurement_id , measurement_name) VALUES (8 , 'tsp');
