@@ -11,6 +11,7 @@ CREATE TABLE `recipe_ingredients` (
   `ingredients_id` int,
   `measurement_id` int,
   `quantity` float,
+  `type` varchar(8),
   KEY `PK/FK` (`recipe_id`, `ingredients_id`),
   KEY `FK` (`measurement_id`)
 );

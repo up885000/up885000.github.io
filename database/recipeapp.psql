@@ -8,7 +8,8 @@ CREATE TABLE "recipe_ingredients" (
   "recipe_id" int,
   "ingredients_id" int,
   "measurement_id" int,
-  "quantity" float
+  "quantity" float,
+  "type" varchar(8)
 );
 
 CREATE INDEX "PK/FK" ON  "recipe_ingredients" ("recipe_id", "ingredients_id");
