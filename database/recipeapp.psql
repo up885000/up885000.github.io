@@ -12,7 +12,7 @@ CREATE TABLE "recipe_ingredients" (
   "measurement_id" int,
   "quantity" float,
   "type" varchar(8),
-  PRIMARY KEY ("recipe_id", "ingredients_id")
+  PRIMARY KEY ("recipe_id", "ingredients_id", "type")
 );
 
 CREATE INDEX "FK" ON  "recipe_ingredients" ("measurement_id");
