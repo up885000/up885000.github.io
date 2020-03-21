@@ -86,7 +86,7 @@ window.addEventListener('load', init);
 window.addEventListener('featuredRecipe', init);
 
 // Database Functions 
-const client = requirejs("./database");
+const client = req("./database");
 
 client.query('SELECT * from ingredients', (err, res) => {
   console.log(err, res);

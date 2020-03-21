@@ -8,6 +8,7 @@ const express = require('express');
 const http = require('http');
 const ws = require('ws');
 const ip = require("ip");
+const req = require("requirejs");
 //create express server
 const app = express();
 
