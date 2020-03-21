@@ -1,7 +1,5 @@
 'use strict';
 
-client.connect();
-
 client.query('SELECT * from ingredients', (err, res) => {
   console.log(err, res);
   client.end();
