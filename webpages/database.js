@@ -1,5 +1,5 @@
 'use strict';
-
+const {Client} = require('pg');
 const {client} = new Client({
   user: "up885000",
   password: "softwareServer",
