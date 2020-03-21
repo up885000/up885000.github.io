@@ -81,6 +81,7 @@ function init() {
   document.querySelector("#down").addEventListener('click', svLcl);
   document.getElementById("fave").addEventListener('click', fave);
 }
+
 window.addEventListener('load', init);
 window.addEventListener('featuredRecipe', init);
 
