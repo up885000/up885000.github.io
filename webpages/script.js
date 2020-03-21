@@ -69,12 +69,6 @@ function randomIdGen(){
   let removedItem = ranArray.splice(theNum, 1)
   console.log(removedItem);
   return Decision;
-  while(ranArray.length < 1) {
-    let newLength = ranArray.push('1','2','3','4','5','6')
-  }
-}
-function testQuery(){
-  let sqlInput = document.getElementById('testbox').textcontent;
 }
 
 function init() {
