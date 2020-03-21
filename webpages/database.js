@@ -9,7 +9,7 @@ const pool = new Pool({
   database: "recipeapp"
 });
 
-pool.query("Select * from recipe where recipe_id = 4",(err,res)=>{
+pool.query("Select recipe_name,recipe_description from recipe where recipe_id = 4",(err,res)=>{
   console.log(err,res)
   pool.end()
 })
