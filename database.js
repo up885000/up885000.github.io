@@ -2,30 +2,17 @@
 
 const { Pool, Client } = require('pg');
 
-const pool = new Pool({
-    user: "up885000",
-    password: "softwareServer",
-    host: "up885000@up885000.myvm.port.ac.uk",
-    port: 1234,
-    database: "recipeapp"
-});
-
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err,res);
-  pool.end();
-});
-
 const client = new Client({
     user: "up885000",
     password: "softwareServer",
-    host: "up885000@up885000.myvm.port.ac.uk",
-    port: 1234,
+    host: "localhost",
+    port: 5432,
     database: "recipeapp"
 });
 
 client.connect();
 
-client.query('SELECT NOW()', (err, res) => {
+client.query('SELECT * from ingredients', (err, res) => {
   console.log(err, res);
   client.end();
 });
