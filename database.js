@@ -6,7 +6,7 @@ const pool = new Pool({
     user: "up885000",
     password: "softwareServer",
     host: "up885000@up885000.myvm.port.ac.uk",
-    port: 8080,
+    port: 1234,
     database: "recipeapp"
 });
 
@@ -19,7 +19,7 @@ const client = new Client({
     user: "up885000",
     password: "softwareServer",
     host: "up885000@up885000.myvm.port.ac.uk",
-    port: 8080,
+    port: 1234,
     database: "recipeapp"
 });
 
