@@ -8,7 +8,7 @@ const express = require('express');
 const http = require('http');
 const ws = require('ws');
 const ip = require("ip");
-const req = require("requirejs");
+const client = require('./webpages/database')
 //create express server
 const app = express();
 
@@ -23,19 +23,3 @@ app.use(express.static(`${__dirname }/webpages`));
 server.listen(port, () => {
     console.log('Server started:', `http://${ip.address()}:${port}`)
 });
-
-//Database connections
-// const {
-//     Pool,
-//     Client
-// } = require('pg');
-
-// const client = new Client({
-//     user: "up885000",
-//     password: "softwareServer",
-//     host: "localhost",
-//     port: 5432,
-//     database: "recipeapp"
-// });
-
-// client.connect();
