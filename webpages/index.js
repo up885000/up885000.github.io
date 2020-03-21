@@ -35,7 +35,7 @@ function fave() {
 //Initialise js buttons
 function init() {
     document.querySelector("#down").addEventListener('click', svLcl);
-    document.getElementById("fave").addEventListener('click', fave());
+    document.getElementById("fave").addEventListener('click', fave);
 }
 
 window.addEventListener('load', init);
