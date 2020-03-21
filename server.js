@@ -22,3 +22,17 @@ app.use(express.static(`${__dirname }/webpages`));
 server.listen(port, () => {
     console.log('Server started:', `http://${ip.address()}:${port}`)
 });
+
+//Database connections
+const {
+    Pool,
+    Client
+  } = require('pg');
+  
+  const client = new Client({
+    user: "up885000",
+    password: "softwareServer",
+    host: "localhost",
+    port: 5432,
+    database: "recipeapp"
+  });
