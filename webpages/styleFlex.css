@@ -30,7 +30,8 @@ nav>.button {
     background-color: #4f545d;
     width: 30%;
 }
-.thumbnails{
+
+.thumbnails {
     /* recipe thumbnails container */
     display: flex;
     flex-flow: row wrap;
@@ -53,7 +54,8 @@ nav>.button {
     width: 10rem;
     float: left;
 }
-#fave{
+
+#fave {
     /* favourite button in recipe area */
     float: right;
     width: 3rem;

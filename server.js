@@ -11,8 +11,12 @@ const app = express();
 
 const server = http.createServer(app);
 
-const wss = new ws.Server({ server: server });
+const wss = new ws.Server({
+    server: server
+});
 
-app.use( express.static(`${__dirname }/webpages`));
+app.use(express.static(`${__dirname }/webpages`));
 
-server.listen(port, () => {console.log('Server started:', `http://${ip.address()}:${port}`)});
+server.listen(port, () => {
+    console.log('Server started:', `http://${ip.address()}:${port}`)
+});
