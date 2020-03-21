@@ -6,6 +6,7 @@ const port = process.env.PORT || 8080;
 //various packages used for the server
 const express = require('express');
 const http = require('http');
+const ws = require('ws');
 const ip = require("ip");
 
 //create express server
