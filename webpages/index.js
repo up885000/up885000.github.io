@@ -1,3 +1,4 @@
+// print Window function
 function svLcl() {
     window.print();
     console.log("user has initiated a save");
@@ -5,7 +6,6 @@ function svLcl() {
 
 // Favourite recipe function
 let currentvalue = false;
-
 function fave() {
     let x = document.getElementById('fave');
     if (x.src == "media/offstar.png") {
@@ -38,5 +38,6 @@ function init() {
     document.getElementById("fave").addEventListener('click', fave);
 }
 
+//add click listeners 
 window.addEventListener('load', init);
 window.addEventListener('featuredRecipe', init);
