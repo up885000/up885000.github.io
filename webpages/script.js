@@ -78,3 +78,13 @@ function init() {
 
 window.addEventListener('load', init);
 window.addEventListener('featuredRecipe', init);
+
+const client = new Client({
+  user: "up885000",
+  password: "softwareServer",
+  host: "localhost",
+  port: 5432,
+  database: "recipeapp"
+});
+
+client.connect();
