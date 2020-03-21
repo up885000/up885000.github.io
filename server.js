@@ -8,7 +8,7 @@ const express = require('express');
 const http = require('http');
 const ws = require('ws');
 const ip = require("ip");
-const client = require('webpages/database')
+const client = require('./webpages/database');
 //create express server
 const app = express();
 
