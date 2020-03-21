@@ -58,7 +58,3 @@ app.get('/', function (req, res) {
         });
     });
 });
-
-var server = app.listen(5432, function () {
-    console.log('Server is running..');
-});
