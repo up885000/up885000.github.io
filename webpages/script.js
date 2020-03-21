@@ -83,3 +83,8 @@ function init() {
 }
 window.addEventListener('load', init);
 window.addEventListener('featuredRecipe', init);
+
+function displayRecipe(id) {
+  const query = client.query("SELECT * FROM recipe where recipe_id = " + id);
+  document.getElementById("recipe").textContent = query;
+};
