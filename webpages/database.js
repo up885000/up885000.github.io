@@ -1,6 +1,6 @@
 'use strict';
 
-const client = new Client({
+const {client} = new Client({
   user: "up885000",
   password: "softwareServer",
   host: "localhost",
