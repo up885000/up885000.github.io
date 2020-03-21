@@ -73,6 +73,9 @@ function randomIdGen(){
     let newLength = ranArray.push('1','2','3','4','5','6')
   }
 }
+function testQuery(){
+  let sqlInput = document.getElementById('testbox').textcontent;
+}
 
 function init() {
   document.querySelector("#down").addEventListener('click', svLcl);
