@@ -1,8 +1,4 @@
 'use strict';
-const {
-  Pool,
-  Client
-} = require('pg');
 
 const client = new Client({
   user: "up885000",
