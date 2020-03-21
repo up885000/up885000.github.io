@@ -86,20 +86,6 @@ window.addEventListener('load', init);
 window.addEventListener('featuredRecipe', init);
 
 // Database Functions 
-const {
-  Pool,
-  Client
-} = require('pg');
-
-const client = new Client({
-  user: "up885000",
-  password: "softwareServer",
-  host: "localhost",
-  port: 5432,
-  database: "recipeapp"
-});
-
-client.connect();
 
 client.query('SELECT * from ingredients', (err, res) => {
   console.log(err, res);
