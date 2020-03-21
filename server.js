@@ -28,14 +28,3 @@ const {
     Pool,
     Client
 } = require('pg');
-
-const client = new Client({
-    user: "up885000",
-    password: "softwareServer",
-    host: "localhost",
-    port: 5432,
-    database: "recipeapp"
-});
-
-
-client.connect();
