@@ -1,4 +1,4 @@
-
+// Favourite recipe function 
 function fave() {
     let x = document.getElementById('fave');
     if (x.src == "media/offstar.png") {
@@ -23,3 +23,10 @@ function fave() {
         //update sql database that user has unfaved recipe
     }
   }
+
+
+  //Initialise js buttons
+function init() {
+  document.querySelector("#down").addEventListener('click', svLcl);
+  document.getElementById("fave").addEventListener('click', fave);
+}
