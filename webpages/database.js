@@ -1,6 +1,7 @@
 'use strict';
-const {Client} = require('pg');
-const client = new Client({
+const {Pool, Client} = require('pg')
+
+const pool = new Pool({
   user: "up885000",
   password: "softwareServer",
   host: "localhost",
@@ -8,20 +9,23 @@ const client = new Client({
   database: "recipeapp"
 });
 
-client.connect();
+pool.query("Select * from recipe where recipe_id = 4",(err,res)=>{
+  console.log(err,res)
+  pool.end()
+})
 
-client.query('SELECT * from ingredients', (err, res) => {
-  console.log(err, res);
-  client.end();
-});
+// client.connect();
 
-function init(){
-  displayRecipe(4);
-}
+// client.query('SELECT * from ingredients', (err, res) => {
+//   console.log(err, res);
+//   client.end();
+// });
 
-function displayRecipe(id) {
-  const query = client.query("SELECT * FROM recipe where recipe_id = " + id);
-  document.getElementById("recipe").textContent = query;
-};
+// function init(){
+//   displayRecipe(4);
+// }
 
-module.exports = client;
+// function displayRecipe(id) {
+//   const query = client.query("SELECT * FROM recipe where recipe_id = " + id);
+//   document.getElementById("recipe").textContent = query;
+// };
