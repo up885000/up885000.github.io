@@ -1,4 +1,6 @@
-// Favourite recipe function 
+// Favourite recipe function
+
+let currentvalue = false; 
 function fave() {
     let x = document.getElementById('fave');
     if (x.src == "media/offstar.png") {
