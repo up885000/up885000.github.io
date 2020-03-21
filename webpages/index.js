@@ -1,5 +1,9 @@
-// Favourite recipe function
+function svLcl() {
+    window.print();
+    console.log("user has initiated a save");
+  }
 
+// Favourite recipe function
 let currentvalue = false; 
 function fave() {
     let x = document.getElementById('fave');
