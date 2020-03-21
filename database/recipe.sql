@@ -5,13 +5,14 @@ CREATE TABLE `category` (
   PRIMARY KEY (`category_id`)
 );
 
-/* Creates the ingredients table, composite key on recipe_id + ingredient_id as each ingredients will have a different measurement for each recipe*/
+/* Creates the recipe_ingredients table, composite key on recipe_id + ingredient_id as each ingredients will have a different measurement for each recipe*/
 CREATE TABLE `recipe_ingredients` (
   `recipe_id` int,
   `ingredients_id` int,
   `measurement_id` int,
   `quantity` float,
-  KEY `PK/FK` (`recipe_id`, `ingredients_id`),
+  `type` varchar(8),
+  PRIMARY KEY (`recipe_id`, `ingredients_id`, `type`),
   KEY `FK` (`measurement_id`)
 );
 
@@ -31,6 +32,7 @@ CREATE TABLE `recipe` (
   `cooking_time` time,
   `difficulty` varchar(20),
   `recipe_serving` int,
+  `image_location` varchar(150),
   PRIMARY KEY (`recipe_id`)
 );
 
