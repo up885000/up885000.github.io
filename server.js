@@ -1,37 +1,17 @@
 'use strict';
 
-const { Pool, Client } = require('pg');
+const http = require('http');
+const fs = require('fs');
 
-const pool = new Pool({
-    user: "up885000",
-    password: "softwareServer",
-    host: "up885000@up885000.myvm.port.ac.uk",
-    port: 5432,
-    database: "recipeapp"
+const PORT=8080;
+
+fs.readFile('./index.html', function (err, html) {
+
+    if (err) throw err;
+
+    http.createServer(function(request, response) {
+        response.writeHeader(200, {"Content-Type": "text/html"});
+        response.write(html);
+        response.end();
+    }).listen(PORT);
 });
-
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err,res);
-  pool.end();
-});
-
-const client = new Client({
-    user: "up885000",
-    password: "softwareServer",
-    host: "up885000@up885000.myvm.port.ac.uk",
-    port: 5432,
-    database: "recipeapp"
-});
-
-client.connect();
-
-client.query('SELECT NOW()', (err, res) => {
-  console.log(err, res);
-  client.end();
-});
-
-
-function displayRecipe(id) {
-    const query = client.query("SELECT * FROM recipe where recipe_id = " + id);
-    document.getElementById("recipe").textContent = query;
-};
