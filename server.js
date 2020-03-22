@@ -114,3 +114,7 @@ async function addReview(req, res) {
         return false;
     } //return false so client can know Stock Type wasn't added
 }
+
+function init(){
+    document.getElementById("rev").addEventListener('click', addReview);
+}
