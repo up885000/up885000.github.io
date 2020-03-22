@@ -6,6 +6,7 @@ function svLcl() {
 
 // Favourite recipe function
 let currentvalue = false;
+
 function fave() {
     let x = document.getElementById('fave');
     if (x.src == "media/offstar.png") {
@@ -38,12 +39,12 @@ function init() {
     document.getElementById("fave").addEventListener('click', fave);
 
     document.getElementById("findRecipe").addEventListener('click', async() => {
-      let name =  document.getElementById("recipeName").value;
-      console.log(name);
-      let response = await fetch('/getRecipe?name='+name)
-      console.log(response);
-      let data = await response.json();
-      console.log(data);
+        let name = document.getElementById("recipeName").value;
+        console.log(name);
+        let response = await fetch('/getRecipe?name=' + name)
+        console.log(response);
+        let data = await response.json();
+        console.log(data);
     });
 }
 //add click listeners
