@@ -41,15 +41,14 @@ function findRecipe(){
          let data = await response.json();
          //data is the data outgoing from the sql database
          console.log(data);
-     });
-}
+     };
+
 
 //Initialise js buttons
 function init() {
     document.querySelector("#down").addEventListener('click', svLcl);
     document.getElementById("fave").addEventListener('click', fave);
-
-    document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe()
+    document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe()});
    
 }
 //add click listeners
