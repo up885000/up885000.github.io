@@ -90,7 +90,7 @@ async function getRecipe(req, res) {
     try {
         let name = req.query.name;
         console.log(name);
-        const data = await mysqlSelect('select * from recipe where recipe_name = ?', [name]);
+        const data = await mysqlSelect('select * from recipe where recipe_name like %?%', [name]);
         console.log(data);
         res.send(data);
     } catch (error) {
