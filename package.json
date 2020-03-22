@@ -4,7 +4,7 @@
   "description": "Software Engineering Theory and Practice CW",
   "main": "server.js",
   "scripts": {
-    "test": "jshint ./webpages/index.js",
+    "test": "jshint ./webpages/index.js server.js",
     "start": "node server.js"
   },
   "repository": {
@@ -27,5 +27,9 @@
     "pg": "^7.18.2",
     "require": "^2.4.20",
     "ws": "^7.2.3"
+  },
+  "jshintConfig": {
+    "esversion": 8,
+    "node": true
   }
 }
