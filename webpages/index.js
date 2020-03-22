@@ -7,6 +7,10 @@ function svLcl() {
 // Favourite recipe function
 let currentvalue = false;
 
+let faves = [];
+let favestring = null;
+
+
 function fave() {
     let x = document.getElementById('fave');
     if (x.src == "media/offstar.png") {
@@ -17,14 +21,35 @@ function fave() {
     //currentvalue = document.getElementById('fvOnOff').value;
     if (currentvalue == false) {
         currentvalue = true;
-        //document.getElementById("fvOnOff").valu = "True";
+        //this is saveing
         // switches the image source from faved to unfaved
         document.getElementById('fave').src = 'media/onStar.png';
-        //update sql database that user has faved a recipe
+        //////////////////////////////////////////
+        let fileName = prompt("File Name: ", "");
+        if (fileName == null || fileName == "" || fileName.includes(" ") || fileName.length > 20) {
+          alert("Error: Invalid FileName");
+        }
+        else {
+          faves.push(fileName);
+          const savefile = document.getElementById('recipe').innerHTML;
+          window.localStorage.setItem(fileName, savefile);
+          faves.push(window.localStorage.getItem('savelist'));
+          if(faves.length >= 2){
+            favestring = saves.join(', ');
+          }
+          else{
+            favestring = faves;
+          }
+        window.localStorage.setItem('savelist', favestring);
+      }
+      ////////////////////////////////////////
     }
     //Add local storage element here **
     else if (currentvalue == true) {
         currentvalue = false;
+        //this is un-saveing
+        window.localStorage.removeItem(fileName);
+
         //document.getElementById("fvOnoff").value="False";
         // we need to edit the fave stars to be the same size and file format
         document.getElementById('fave').src = 'media/offStar.png';
@@ -32,11 +57,22 @@ function fave() {
     }
 }
 
+function load(){
+  let fileName = prompt("FileName: ", "");
+  if (fileName == null || fileName == "" || fileName == " ") {
+    alert("Error: Invalid FileName");
+  }
+  else {
+    const savefile = window.localStorage.getItem(fileName);
+    document.getElementById('recipe').innerHTML = savefile;
+  }
+}
 
 //Initialise js buttons
 function init() {
     document.querySelector("#down").addEventListener('click', svLcl);
     document.getElementById("fave").addEventListener('click', fave);
+    document.getElementById("load").addEventListener('click', load);
 
     document.getElementById("findRecipe").addEventListener('click', async() => {
         let name = document.getElementById("recipeName").value;
