@@ -39,11 +39,13 @@ function init() {
     document.getElementById("fave").addEventListener('click', fave);
 
     document.getElementById("findRecipe").addEventListener('click', async() => {
+        //async function to search for recipies needs to be given a proper function
         let name = document.getElementById("recipeName").value;
         console.log(name);
         let response = await fetch('/getRecipe?name=' + name)
         console.log(response);
         let data = await response.json();
+        //data is the data outgoing from the sql database
         console.log(data);
     });
 }
