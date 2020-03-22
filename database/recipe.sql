@@ -1,3 +1,6 @@
+CREATE database recipeapp;
+use recipeapp;
+
 /* Creates the category table, primary key on category_id */
 CREATE TABLE `category` (
   `category_id` serial,

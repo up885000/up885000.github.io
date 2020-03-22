@@ -20,8 +20,27 @@
 
             <section id="search">
                 <!-- Search area with searchbar and thumbnails of recipes -->
-                <input class="searchBar" type="search">
-                <input class="searchBar" type="submit">
+                <input class="searchBar" type="search" id="recipeName" name="recipeName">
+                <input class="searchBar" type="submit" name="findRecipe" id="findRecipe">
+
+                <!-- Action sends to /addReview - Needs to be changed to stop load of new page -->
+                <!-- google this add event listener to not send to new page  -->
+                <form name="reviewForm" id="reviewForm" action="/addReview" method="POST">
+
+                  <!-- make hidden input and populate on load from db  -->
+                  <label for="recipe_id">recipe_id</label>
+                  <input type="text" id="recipe_id" name="recipe_id">
+
+                  <label for="rating">rating</label>
+                  <input class="searchBar" type="text" id="rating" name="rating">
+
+                  <label for="review">review</label>
+                  <textarea class="searchBar"  id="review" name="review"></textarea>
+
+
+                  <input class="searchBar" type="submit" name="addReview" id="addReview">
+
+                </form>
                 <section class="thumbnails">
                     <!-- clickables thumbnails in the search area -->
                     <img class="featuredImage" id="fI1">
