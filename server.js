@@ -83,7 +83,7 @@ async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries an
 
 app.get('/', function(req, res) {});
 
-app.get('/getRecipe', getRecipe);
+app.get('/getRecipe', getRecipeInfo);
 app.post('/addReview', addReview);
 
 async function getRecipeInfo(req, res) {
