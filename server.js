@@ -86,7 +86,7 @@ app.get('/', function(req, res) {});
 app.get('/getRecipe', getRecipe);
 app.post('/addReview', addReview);
 
-async function getRecipe(req, res) {
+async function getRecipeInfo(req, res) {
     try {
         let name = req.query.name;
         console.log(name);
