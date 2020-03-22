@@ -41,7 +41,7 @@ function init() {
     document.getElementById("findRecipe").addEventListener('click', async() => {
         let name = document.getElementById("recipeName").value;
         console.log(name);
-        let response = await fetch('/getRecipeInfo?name=' + name)
+        let response = await fetch('/getRecipe?name='+name);
         console.log(response);
         let data = await response.json();
         console.log(data);
