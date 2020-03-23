@@ -8,7 +8,7 @@ body,
 
 .wholepage {
     display: grid;
-    grid-template-columns: 0.5fr repeat(6, 1fr);
+    grid-template-columns: 0.5fr repeat(10, 1fr);
     grid-template-rows: repeat(8, 1fr);
 }
 
@@ -54,7 +54,7 @@ nav {
 #search {
     /* search area */
     background-color: #4f545d;
-    grid-column: 2/-5;
+    grid-column: 2/4;
     grid-row: 1/-1;
     display: grid;
     grid-gap: 1%;
@@ -64,7 +64,8 @@ nav {
 
 #logo {
     grid-row: 9;
-    width: 14vw;
+    grid-column: 1/-1;
+    width: 90%;
     margin: auto;
 }
 
@@ -77,8 +78,7 @@ nav {
 #reviewForm {
     grid-column: 1/-1;
     grid-row: 2;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin:auto;
 }
 
 #fI1 {
