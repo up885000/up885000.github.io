@@ -1,7 +1,7 @@
 # RecipeApp
 Software Engineering Theory and Practice CW
 
-soft Deadline was 1st March!
+Soft Deadline was 1st March!
 
 Deadline for this project is 27th March!
 
