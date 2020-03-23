@@ -124,14 +124,23 @@ function revBtn(){
 
 //Initialise js buttons
 function init() {
-    document.querySelector("#down").addEventListener('click', svLcl);
+  if (document.getElementById("down")){
+    document.getElementById("down").addEventListener('click', svLcl);
+  }
+  if (document.getElementById("fave")){
     document.getElementById("fave").addEventListener('click', fave);
+  }
+  if (document.getElementById("load")){
     document.getElementById("load").addEventListener('click', load);
-
+  }
+  if (document.getElementById("findRecipe")){  
     document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe();});
+  }
+  if (document.getElementById("rev")){
     document.getElementById("rev").addEventListener('click', revBtn);
-
+  }
 }
+
 //add click listeners
 window.addEventListener('load', init);
 window.addEventListener('featuredRecipe', init);
