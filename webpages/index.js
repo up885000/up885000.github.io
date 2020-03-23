@@ -57,6 +57,17 @@ function fave() {
     }
 }
 
+function load(){
+  let fileName = prompt("FileName: ", "");
+  if (fileName == null || fileName == "" || fileName == " ") {
+    alert("Error: Invalid FileName");
+  }
+  else {
+    const savefile = window.localStorage.getItem(fileName);
+    document.getElementById('recipe').innerHTML = savefile;
+  }
+}
+
 async function findRecipe(){
          //async function to search for recipies needs to be given a proper function
          let name = document.getElementById("recipeName").value;
