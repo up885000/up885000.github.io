@@ -125,20 +125,20 @@ function revBtn(){
 //Initialise js buttons
 function init() {
   if (document.getElementById("down")){
-    document.getElementById("down").addEventListener('click', svLcl)
-  };
+    document.getElementById("down").addEventListener('click', svLcl);
+  }
   if (document.getElementById("fave")){
-    document.getElementById("fave").addEventListener('click', fave)
-  };
+    document.getElementById("fave").addEventListener('click', fave);
+  }
   if (document.getElementById("load")){
-    document.getElementById("load").addEventListener('click', load)
-  };
+    document.getElementById("load").addEventListener('click', load);
+  }
   if (document.getElementById("findRecipe")){  
-    document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe();})
-  };
+    document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe();});
+  }
   if (document.getElementById("rev")){
-    document.getElementById("rev").addEventListener('click', revBtn)
-  };
+    document.getElementById("rev").addEventListener('click', revBtn);
+  }
 }
 
 //add click listeners
