@@ -116,3 +116,13 @@ nav {
     margin: auto;
     width: 90%;
 }
+
+#recipe {
+    grid-column: 4/-1;
+    grid-row: 1/-1;
+}
+
+#load {
+    grid-column: 4;
+    grid-row: 1;
+}
