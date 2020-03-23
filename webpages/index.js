@@ -110,7 +110,7 @@ function init() {
     document.getElementById("fave").addEventListener('click', fave);
     document.getElementById("load").addEventListener('click', load);
 
-    document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe()});
+    document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe();});
     document.getElementById("rev").addEventListener('click', revBtn);
 
 }
