@@ -84,7 +84,7 @@ function init() {
     document.querySelector("#down").addEventListener('click', svLcl);
     document.getElementById("fave").addEventListener('click', fave);
 
-    document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe()});
+    document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe();});
     document.getElementById("rev").addEventListener('click', revBtn);
 
 }
