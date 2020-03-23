@@ -1,3 +1,8 @@
+/** 
+ * @file Manages all of the fontend, clientside javascript interactions.
+ * @author UP891226, UP885000, UP885188, UP905446
+ */
+
 // print Window function
 function svLcl() {
     window.print();
