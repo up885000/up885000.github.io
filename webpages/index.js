@@ -43,12 +43,47 @@ function findRecipe(){
          console.log(data);
      };
 
+     function revBtn(){
+
+        //adds recipe_id for the addReview() function to use
+        const new_recID = document.createElement('input');
+        new_recID.setAttribute('id', 'recipe_id');
+        new_recID.setAttribute('type', 'text');
+        new_recID.setAttribute('name', 'recipe_id');
+        search.appendChild(new_recID);
+    
+        //adds rating for the addReview() function to use
+        const new_rating = document.createElement('input');
+        new_rating.setAttribute('id', 'rating');
+        new_rating.setAttribute('type', 'text');
+        new_rating.setAttribute('name', 'rating');
+        search.appendChild(new_rating);
+    
+        //adds review for the addReview() function to use
+        const new_review = document.createElement('input');
+        new_review.setAttribute('id', 'review');
+        new_review.setAttribute('type', 'text');
+        new_review.setAttribute('name', 'review');
+        search.appendChild(new_review);
+    
+        //adds submit button for the addReview() forms to use
+        const new_submit = document.createElement('input');
+        new_submit.setAttribute('id', 'addReview');
+        new_submit.setAttribute('type', 'submit');
+        new_submit.setAttribute('name', 'addReview');
+        search.appendChild(new_submit);
+        
+        //gets the function addReview from the server.js file and runs it
+        $.getscript("../server.js",addReview(req, res))
+    }
+
 
 //Initialise js buttons
 function init() {
     document.querySelector("#down").addEventListener('click', svLcl);
     document.getElementById("fave").addEventListener('click', fave);
     document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe()});
+    document.getElementById("rev").addEventListener('click', revBtn);
    
 }
 //add click listeners
