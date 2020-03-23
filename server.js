@@ -1,3 +1,8 @@
+/** 
+ * @file Manages all of the backend database connections and queries.
+ * @author UP891226, UP885000, UP885188, UP905446
+ */
+
 'use strict';
 
 //selects port to run the server on
