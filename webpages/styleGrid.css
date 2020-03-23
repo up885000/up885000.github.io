@@ -8,15 +8,15 @@ body,
 
 .wholepage {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: "nav search search A4 A5 A6 A7" "nav search search B4 B5 B6 B7" "nav search search C4 C5 C6 C7" "nav search search D4 D5 D6 D7" "nav search search E4 E5 E6 E7" "nav search search F4 F5 F6 F7" "nav search search G4 G5 G6 G7";
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 0.5fr repeat(6, 1fr);
 }
 
 nav {
     /*  navbar area */
     background-color: #2f3136;
-    grid-area: nav;
+    grid-column: 1;
+    grid-row: 1/-1;
 }
 
 .button {
@@ -28,5 +28,13 @@ nav {
 #search {
     /* search area */
     background-color: #4f545d;
-    grid-area: search;
+    grid-column: 2/-5;
+    grid-row: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    grid-template-rows: 0.5fr repeat(6, 1fr);
+}
+
+#logo {
+    grid-row: 7;
 }
