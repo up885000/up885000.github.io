@@ -39,6 +39,12 @@ nav {
     width: 80%;
 }
 
+#load {
+    grid-row: 4;
+    margin: auto;
+    width: 80%;
+}
+
 .button {
     /* clickables in navbar */
     margin: 1rem;
@@ -120,9 +126,4 @@ nav {
 #recipe {
     grid-column: 4/-1;
     grid-row: 1/-1;
-}
-
-#load {
-    grid-column: 4;
-    grid-row: 1;
 }
