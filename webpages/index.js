@@ -74,15 +74,17 @@ function load(){
 }
 
 async function findRecipe(){
-         //async function to search for recipies needs to be given a proper function
-         let name = document.getElementById("recipeName").value;
-         console.log(name);
-         let response = await fetch('/getRecipe?name=' + name);
-         console.log(response);
-         let data = await response.json();
-         //data is the data outgoing from the sql database
-         console.log(data);
-     }
+      //async function to search for recipies needs to be given a proper function
+      let name = document.getElementById("recipeName").value;
+      console.log(name);
+      let response = await fetch('/getRecipe?name=' + name);
+      console.log(response);
+      let data = await response.json();
+      //data is the data outgoing from the sql database
+      console.log(data);
+      let r_name = data[0].recipe_name; //example of parsing json
+      document.getElementById('recipe').innerHTML = r_name;
+  }
 
 function revBtn(){
 
