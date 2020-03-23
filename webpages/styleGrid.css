@@ -37,4 +37,17 @@ nav {
 
 #logo {
     grid-row: 7;
+    width: 14vw;
+    margin: auto;
+}
+
+.searchBar {
+    grid-column: 1/-1;
+    grid-row: 1;
+    margin: auto;
+}
+
+.reviewForm {
+    grid-column: 1/-1;
+    grid-row: 2;
 }
