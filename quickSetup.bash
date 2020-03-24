@@ -11,3 +11,5 @@ npm install
 cat ./database/createdb.sql | mysql --user=root --password=root
 
 npm test
+
+node server.js
