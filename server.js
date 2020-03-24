@@ -32,6 +32,7 @@ const wss = new ws.Server({
 });
 
 //set which directory to read from
+app.use(express.static(__dirname + '/'));
 app.use(express.static(`${__dirname }/webpages`));
 
 //set the website url
