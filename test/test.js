@@ -16,7 +16,7 @@ QUnit.module('SQL Query');
 
 QUnit.test('findRecipe Exists 🥕', function(assert){
     assert.ok(findRecipe, 'findRecipe found ✅');
-})
+});
 
 QUnit.test('findRecipe is a function 🥞', function(assert){
   assert.ok(typeof findRecipe === 'function', 'findRecipe is a function ✅');
@@ -33,7 +33,7 @@ QUnit.module('SQL Insert');
 
 QUnit.test('addReview Exists 🦐', function(assert){
     assert.ok(revBtn, 'addReview found ✅');
-})
+});
 
 QUnit.test('addReview is a function 🦑', function(assert){
   assert.ok(typeof revBtn === 'function', 'addReview is a function ✅');
