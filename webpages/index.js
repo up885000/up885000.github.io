@@ -157,6 +157,11 @@ function init() {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
     document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(); });
+    document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(); });
+    document.getElementById("fI3").addEventListener('click', async() => { selectRecipe(); });
+    document.getElementById("fI4").addEventListener('click', async() => { selectRecipe(); });
+    document.getElementById("fI5").addEventListener('click', async() => { selectRecipe(); });
+    document.getElementById("fI6").addEventListener('click', async() => { selectRecipe(); });
 }
 
 //add click listeners
