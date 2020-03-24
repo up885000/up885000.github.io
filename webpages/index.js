@@ -92,8 +92,14 @@ async function selectRecipe() {
     let data = await response.json();
     //data is the data outgoing from the sql database
     console.log(data);
-    // let r_name = data[0].recipe_name; //example of parsing json
-    // document.getElementById('recipeTitle').innerHTML = r_name;
+    document.getElementById('recipeTitle').innerHTML = data[0].recipe_name;
+    document.getElementById('recipeImg').innerHTML = data[0].image_location; //===============
+    document.getElementById('method').innerHTML = data[0].recipe_description; // =============
+    // document.getElementById('ingredients').innerHTML = data[0].recipe_name;
+    document.getElementById('prepTime').innerHTML = data[0].preparation_time;
+    document.getElementById('cookingTime').innerHTML = data[0].cooking_time;
+    document.getElementById('difficulty').innerHTML = data[0].difficulty;
+    document.getElementById('serving').innerHTML = data[0].recipe_serving;
 }
 
 function revBtn() {
