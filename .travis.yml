@@ -2,4 +2,7 @@ language: node_js
 node_js:
  - "node"
 
+services:
+ - mysql
+
 script: bash quickSetup.bash

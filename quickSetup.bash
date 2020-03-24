@@ -10,4 +10,6 @@ npm install
 
 cat ./database/createdb.sql | mysql --user=root --password=root
 
-echo 'DB create sucessfully'
+npm test
+
+npm start
