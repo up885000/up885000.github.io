@@ -32,6 +32,7 @@ const wss = new ws.Server({
 });
 
 //set which directory to read from
+app.use(express.static(__dirname + '/'));
 app.use(express.static(`${__dirname }/webpages`));
 
 //set the website url
@@ -137,6 +138,7 @@ async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries an
 app.get('/', function(req, res) {});
 
 app.get('/getRecipe', getRecipeInfo);
+app.get('/getRecipeId', getRecipe);
 app.post('/addReview', addReview);
 
 /**
@@ -158,6 +160,19 @@ async function getRecipeInfo(req, res) {
         console.log("API Error: ", error);
         res.send("Server Error");
         return("Server Error");
+    }
+}
+
+async function getRecipe(req, res) {
+    try {
+        let name = req.query.name;
+        console.log(name);
+        const data = await mysqlSelect('select * from recipe where recipe_id = ?', [name]);
+        console.log(data);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
     }
 }
 
