@@ -111,6 +111,7 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_recID.setAttribute('id', 'recipe_id');
         new_recID.setAttribute('type', 'text');
         new_recID.setAttribute('name', 'recipe_id');
+        new_recID.setAttribute('class', 'reviewForm');
         search.appendChild(new_recID);
 
         //adds rating for the addReview() function to use
@@ -118,6 +119,7 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_rating.setAttribute('id', 'rating');
         new_rating.setAttribute('type', 'text');
         new_rating.setAttribute('name', 'rating');
+        new_rating.setAttribute('class', 'reviewForm');
         search.appendChild(new_rating);
 
         //adds review for the addReview() function to use
@@ -125,6 +127,7 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_review.setAttribute('id', 'review');
         new_review.setAttribute('type', 'text');
         new_review.setAttribute('name', 'review');
+        new_review.setAttribute('class', 'reviewForm');
         search.appendChild(new_review);
 
         //adds submit button for the addReview() forms to use
@@ -132,6 +135,7 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_submit.setAttribute('id', 'addReview');
         new_submit.setAttribute('type', 'submit');
         new_submit.setAttribute('name', 'addReview');
+        new_submit.setAttribute('class', 'reviewForm');
         search.appendChild(new_submit);
 
         timesFiredReview = timesFiredReview + 1;

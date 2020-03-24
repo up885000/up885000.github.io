@@ -49,6 +49,12 @@
         width: 80%;
     }
     
+    #showSaves {
+        grid-row: 5;
+        margin: auto;
+        width: 80%;
+    }
+    
     .button {
         /* clickables in navbar */
         margin: 1rem;
