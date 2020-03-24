@@ -126,4 +126,34 @@ nav {
 #recipe {
     grid-column: 4/-1;
     grid-row: 1/-1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr repeat(4,1fr);
+}
+
+.recipeImg {
+    grid-column:1;
+    grid-row:1/4;
+    margin: auto;
+    max-height: 40%;
+}
+
+.recipeTitle {
+    grid-column:2;
+    grid-row:1;
+}
+
+.method {
+    grid-column:2;
+    grid-row:2/5;
+}
+
+.info {
+    grid-column:2;
+    grid-row:4/6;
+}
+
+.ingredients {
+    grid-column:1;
+    grid-row:4/6;
 }
