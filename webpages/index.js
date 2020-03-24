@@ -144,8 +144,8 @@ function init() {
 //add click listeners
 
 if (typeof window !== 'undefined') {
-  document.addEventListener('load', init);
-  document.addEventListener('featuredRecipe', init);
+  window.addEventListener('load', init);
+  window.addEventListener('featuredRecipe', init);
 }
 
 //export functions
