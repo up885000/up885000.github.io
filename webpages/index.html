@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="shortcut icon" href="media/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="styleGrid.css">
+    <script type="text/javascript" src="index.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Dumma</title>
+</head>
+
+<body>
+
+    <main class="wholepage">
+
+        <nav id="navbar">
+            <!-- Nav bar with buttons to options -->
+            <input class="button" id="down" type="image" src="media/print.png">
+            <input class="button" id="rev" type="image" src="media/review.png">
+            <input class="button" id="fave" type="image" src="media/offStar.png">
+            <input class="button" id="load" type="image" src="media/Penne.jpg">
+            <input class="button" id="showsaves" type="image" src="media/Penne.jpg">
+        </nav>
+
+        <section id="search">
+            <!-- Search area with searchbar and thumbnails of recipes -->
+            <section class="searchBar">
+                <input type="search" id="recipeName" name="recipeName">
+                <input type="submit" name="findRecipe" id="findRecipe">
+            </section>
+            <!-- Action sends to /addReview - Needs to be changed to stop load of new page -->
+            <!-- google this add event listener to not send to new page  -->
+            <form id="reviewForm"></form>
+            <img class="6" id="fI1" type="image" src="/database/images/chicken_burrito.jpg">
+            <img class="4" id="fI2" type="image" src="/database/images/battenburg_cake.jpg">
+            <img class="1" id="fI3" type="image" src="/database/images/jollof_rice.jpg">
+            <img class="5" id="fI4" type="image" src="/database/images/jam_roly_poly.jpg">
+            <img class="3" id="fI5" type="image" src="/database/images/fish_chips.jpg">
+            <img class="2" id="fI6" type="image" src="/database/images/firecracker_prawns.jpg">
+            <img id="logo" src="media/cookingDumma.png">
+        </section>
+
+        <section id="recipe">
+            <img id="recipeImg" type="image" src="media/Penne.jpg">
+            <div id="recipeTitle">FOOD</div>
+            <div id="method">HOW</div>
+            <div id="ingredients">INGREDIENTS</div>
+            <div id="info">
+                <div id="prepTime">SOON</div>
+                <div id="cookingTime">TOO LONG</div>
+                <div id="difficulty">EASYYYYY</div>
+                <div id="serving">EVERYONE</div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+
+</html>
