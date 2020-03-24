@@ -55,13 +55,13 @@ let savefiles = [];
 
 function showSaves() {
     for (var i = 0, len = localStorage.length; i < len; ++i) {
-        savefiles.push(localStorage.getItem(localStorage.key(i)));
+        savefiles.push(localStorage.key(i));
     }
     window.alert(savefiles);
     saveFiles = [];
 }
 
-/*
+
 function load() {
     let fileName = prompt("FileName: ", "");
     if (fileName == null || fileName == "" || fileName == " ") {
@@ -71,7 +71,7 @@ function load() {
         document.getElementById('recipe').innerHTML = savefile;
     }
 }
-*/
+
 
 async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
