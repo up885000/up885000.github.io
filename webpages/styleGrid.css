@@ -134,7 +134,7 @@ nav {
 .recipeImg {
     grid-column:1;
     grid-row:1/4;
-    margin: auto;
+    margin: 10%;
     max-height: 40%;
 }
 
