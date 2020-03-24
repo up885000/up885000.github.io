@@ -171,3 +171,9 @@ async function addReview(req, res) {
         return false;
     } //return false so client can know review wasn't added
 }
+
+//export functions
+
+if (typeof module !== 'undefined' && module.exports) {
+    exports.getRecipeInfo = getRecipeInfo;
+}
