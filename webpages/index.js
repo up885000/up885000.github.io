@@ -15,9 +15,15 @@ let currentvalue = false;
 let favestring = null;
 
 function fave() {
+<<<<<<< HEAD
     let title = document.getElementById('recipeTitle').innerHTML
     let favebutton = document.getElementById('fave');
     if (favebutton.src == "media/offstar.png") {
+=======
+    let title = document.getElementById('recipeTitle').innerHTML;
+    let x = document.getElementById('fave');
+    if (x.src == "media/offstar.png") {
+>>>>>>> f1b6bf12ad89e2308380b36448418ece1793ba06
         currentvalue = false;
     } else if (favebutton.src == "media/onstar.png") {
         currentvalue = true;
@@ -92,6 +98,7 @@ async function selectRecipe(name) {
     document.getElementById('difficulty').innerHTML = "Difficulty: " + data[0].difficulty;
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
 }
+<<<<<<< HEAD
 
 function revBtn() {
     //adds recipe_id for the addReview() function to use
@@ -125,7 +132,61 @@ function revBtn() {
 
     //gets the function addReview from the server.js file and runs it
     $.getscript("../server.js", addReview(req, res));
+=======
+let timesFiredReview = 0;
+function revBtn(new_rating, new_recID, new_review, new_submit){
+  // setting up vaildation
+  if(timesFiredReview < 1) {
+      //adds recipe_id for the addReview() function to use
+      const new_recID = document.createElement('input');
+      new_recID.setAttribute('id', 'recipe_id');
+      new_recID.setAttribute('type', 'text');
+      new_recID.setAttribute('name', 'recipe_id');
+      search.appendChild(new_recID);
+  
+      //adds rating for the addReview() function to use
+      const new_rating = document.createElement('input');
+      new_rating.setAttribute('id', 'rating');
+      new_rating.setAttribute('type', 'text');
+      new_rating.setAttribute('name', 'rating');
+      search.appendChild(new_rating);
+  
+      //adds review for the addReview() function to use
+      const new_review = document.createElement('input');
+      new_review.setAttribute('id', 'review');
+      new_review.setAttribute('type', 'text');
+      new_review.setAttribute('name', 'review');
+      search.appendChild(new_review);
+  
+      //adds submit button for the addReview() forms to use
+      const new_submit = document.createElement('input');
+      new_submit.setAttribute('id', 'addReview');
+      new_submit.setAttribute('type', 'submit');
+      new_submit.setAttribute('name', 'addReview');
+      search.appendChild(new_submit);
+     
+      timesFiredReview = timesFiredReview + 1;
+  
+  }
+  else{
+    console.log("error you already have a review form in progress");
+  }
+>>>>>>> f1b6bf12ad89e2308380b36448418ece1793ba06
 }
+  
+async function submitForm(){
+       
+      //gets the function addReview from the server.js file and runs it
+      console.log("initiating recipe review");
+      let response = await fetch('/addReview?recipe_id=' + new_recID + "&rating=" + new_rating + "&review=" + new_review);
+      console.log("you have successfully reviewed this recipe");
+      search.removeChild(new_recID);
+      search.removeChild(new_rating);
+      search.removeChild(new_review);
+      search.removeChild(new_submit);
+      timesFiredReview = timesFiredReview - 1;
+    }
+  
 
 
 //Initialise js buttons
@@ -146,7 +207,13 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
+<<<<<<< HEAD
     document.getElementById("showsaves").addEventListener('click', showSaves);
+=======
+    if (document.getElementById("submit")) {
+      document.getElementById("submit").addEventListener('click', submitForm);
+  }    
+>>>>>>> f1b6bf12ad89e2308380b36448418ece1793ba06
     document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(document.getElementById("fI1").className); });
     document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(document.getElementById("fI2").className); });
     document.getElementById("fI3").addEventListener('click', async() => { selectRecipe(document.getElementById("fI3").className); });
