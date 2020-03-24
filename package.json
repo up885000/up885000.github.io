@@ -4,6 +4,7 @@
   "description": "Software Engineering Theory and Practice CW",
   "main": "server.js",
   "scripts": {
+    "prestart": "./quickSetup.bash",
     "test": "jshint ./webpages/index.js server.js && qunit",
     "start": "node server.js"
   },

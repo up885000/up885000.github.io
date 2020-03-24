@@ -4,8 +4,10 @@
 
 #!/bin/bash
 
+set -v
+
 npm install
 
 cat ./database/createdb.sql | mysql --user=root --password=root
 
-npm start
+npm test

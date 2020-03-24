@@ -39,6 +39,17 @@ server.listen(port, () => {
     console.log('Server started:', `http://${ip.address()}:${port}`);
 });
 
+
+/**
+ * Function will close the currently open server.ancestors
+ * Only called during testing as leaving the server open would cause a build to fail.
+ *
+ */
+function stopServer(){
+    server.close();
+}
+
+
 const config = {
     "host": "localhost",
     "user": "webapp",
@@ -91,6 +102,7 @@ async function mysqlSelect(queryStr, queryVars) { //Runs MySQL Select Queries an
         const sqlConnection = await mysqlConnection(); //get the connection
         const newQuery = sqlConnection.format(queryStr, queryVars); //format the query to avoid SQL Injection
         let [results, fields] = await sqlConnection.execute(newQuery); //run query
+        sqlConnection.end();
         return results; //return results
     } catch (error) {
         console.log("SQL Failure: ", error); //catch SQL errors and print to console
@@ -114,6 +126,7 @@ async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries an
         const sqlConnection = await mysqlConnection(); //get the connection
         const newQuery = sqlConnection.format(queryStr, queryVars); //format the query to avoid SQL Injection
         await sqlConnection.query(newQuery); //run query
+        sqlConnection.end();
         return true; //return true as any errors would drop to the catch statement below
     } catch (error) {
         console.log("SQL Failure: ", error); //catch SQL errors and print to console
@@ -144,6 +157,7 @@ async function getRecipeInfo(req, res) {
     } catch (error) {
         console.log("API Error: ", error);
         res.send("Server Error");
+        return("Server Error");
     }
 }
 
@@ -170,4 +184,11 @@ async function addReview(req, res) {
     } else {
         return false;
     } //return false so client can know review wasn't added
+}
+
+//export functions
+
+if (typeof module !== 'undefined' && module.exports) {
+    exports.mysqlSelect = mysqlSelect;
+    exports.stopServer = stopServer;
 }
