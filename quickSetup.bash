@@ -7,5 +7,3 @@
 npm install
 
 cat ./database/createdb.sql | mysql --user=root --password=root
-
-npm start
