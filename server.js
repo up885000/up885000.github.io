@@ -6,7 +6,7 @@
 'use strict';
 
 //selects port to run the server on
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 
 //various packages used for the server
 const express = require('express');
