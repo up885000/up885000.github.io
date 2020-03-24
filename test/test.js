@@ -8,6 +8,7 @@ if (typeof(require) !== 'undefined') {
   findRecipe = require('../webpages/index.js').findRecipe;
   revBtn = require('../webpages/index.js').revBtn;
   mysqlSelect = require('../server.js').mysqlSelect;
+  stopServer = require('../server.js').stopServer;
 }
 
 //const testlib = require('../webpages/index.js');
@@ -28,6 +29,7 @@ QUnit.test('RecipeApp database is queryable 🥗', async function(assert){
   let expected = 'Chicken burritos';
   let response = await mysqlSelect(query, vars);
   let parsed = response[0].recipe_name;
+  stopServer();
 
   assert.equal(parsed, expected, 'findRecipe returns correct value ✅');
 });
