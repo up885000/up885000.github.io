@@ -142,5 +142,15 @@ function init() {
 }
 
 //add click listeners
-window.addEventListener('load', init);
-window.addEventListener('featuredRecipe', init);
+
+if (typeof window !== 'undefined') {
+  document.addEventListener('load', init);
+  document.addEventListener('featuredRecipe', init);
+}
+
+//export functions
+
+if (typeof module !== 'undefined' && module.exports) {
+  exports.revBtn = revBtn; 
+  exports.findRecipe = findRecipe;
+}

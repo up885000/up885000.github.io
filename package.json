@@ -4,7 +4,7 @@
   "description": "Software Engineering Theory and Practice CW",
   "main": "server.js",
   "scripts": {
-    "test": "jshint ./webpages/index.js server.js",
+    "test": "jshint ./webpages/index.js server.js && qunit",
     "start": "node server.js"
   },
   "repository": {
