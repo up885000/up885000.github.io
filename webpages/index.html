@@ -3,7 +3,7 @@
 
 <head>
     <link rel="shortcut icon" href="media/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="styleFlex.css">
+    <link rel="stylesheet" type="text/css" href="styleGrid.css">
     <script type="text/javascript" src="index.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,39 +11,50 @@
 </head>
 
 <body>
-    <main>
+
+    <main class="wholepage">
+
         <nav id="navbar">
             <!-- Nav bar with buttons to options -->
             <input class="button" id="down" type="image" src="media/print.png">
             <input class="button" id="rev" type="image" src="media/review.png">
+            <input class="button" id="fave" type="image" src="media/offStar.png">
+            <input class="button" id="load" type="image" src="media/Penne.jpg">
         </nav>
 
         <section id="search">
             <!-- Search area with searchbar and thumbnails of recipes -->
-            <input class="searchBar" type="search" id="recipeName" name="recipeName">
-            <input class="searchBar" type="submit" name="findRecipe" id="findRecipe">
-
+            <section class="searchBar">
+                <input type="search" id="recipeName" name="recipeName">
+                <input type="submit" name="findRecipe" id="findRecipe">
+            </section>
             <!-- Action sends to /addReview - Needs to be changed to stop load of new page -->
             <!-- google this add event listener to not send to new page  -->
-
-            </form>
-            <section class="thumbnails">
-                <!-- clickables thumbnails in the search area -->
-                <img class="featuredImage" id="fI1">
-                <img class="featuredImage" id="fI2">
-                <img class="featuredImage" id="fI3">
-                <img class="featuredImage" id="fI4">
-                <img class="featuredImage" id="fI5">
-                <img class="featuredImage" id="fI6">
-            </section>
+            <form id="reviewForm"></form>
+            <img class="featuredImage" id="fI1" src="media/print.png">
+            <img class="featuredImage" id="fI2" src="media/print.png">
+            <img class="featuredImage" id="fI3" src="media/print.png">
+            <img class="featuredImage" id="fI4" src="media/print.png">
+            <img class="featuredImage" id="fI5" src="media/print.png">
+            <img class="featuredImage" id="fI6" src="media/print.png">
             <img id="logo" src="media/cookingDumma.png">
         </section>
-        <input class="button" id="fave" type="image" src="media/offStar.png">
-        <input class="button" id="load" src="media/Penne.jpg">Load</button>
-        <section id="recipe">
 
+        <section id="recipe">
+            <img class="recipeImg" type="image" src="media/Penne.jpg"> 
+            <div class="recipeTitle">FOOD</div>
+            <div class="method">HOW</div>
+            <div class="ingredients">STUFF</div>
+            <div class="info">
+                <div class="prepTime">SOON</div>
+                <div class="cookingTime">TOO LONG</div>
+                <div class="rating">5/5</div>
+                <div class="serving">EVERYONE</div>
+            </div>
         </section>
+
     </main>
+
 </body>
 
 </html>
