@@ -150,9 +150,9 @@ async function getRecipeInfo(req, res) {
 
 async function getRecipe(req, res) {
     try {
-        let id = req.query.id;
+        let name = req.query.name;
         console.log(id);
-        const data = await mysqlSelect('select * from recipe where recipe_id = ?', [id]);
+        const data = await mysqlSelect('select * from recipe where recipe_id = ?', [name]);
         console.log(data);
         res.send(data);
     } catch (error) {
