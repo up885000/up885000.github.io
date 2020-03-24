@@ -61,6 +61,12 @@ function fave() {
     }
 }
 
+function showSaves() {
+    for (var key in localStorage) {
+        console.log(key);
+    }
+}
+
 function load() {
     let fileName = prompt("FileName: ", "");
     if (fileName == null || fileName == "" || fileName == " ") {
