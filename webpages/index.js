@@ -40,7 +40,7 @@ function fave() {
             window.localStorage.setItem(fileName, savefile);
             faves.push(window.localStorage.getItem('savelist'));
             if (faves.length >= 2) {
-                favestring = saves.join(', ');
+                favestring = faves.join(', ');
             } else {
                 favestring = faves;
             }
