@@ -83,6 +83,19 @@ async function findRecipe() {
     document.getElementById('recipeTitle').innerHTML = r_name;
 }
 
+async function selectRecipe() {
+    //async function to search for recipies needs to be given a proper function
+    let recipeId = document.getElementById("fI1").id;
+    console.log(recipeId);
+    let response = await fetch('/getRecipeId?recipeId=' + recipeId);
+    console.log(response);
+    let data = await response.json();
+    //data is the data outgoing from the sql database
+    console.log(data);
+    // let r_name = data[0].recipe_name; //example of parsing json
+    // document.getElementById('recipeTitle').innerHTML = r_name;
+}
+
 function revBtn() {
 
 
@@ -137,6 +150,7 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
+    document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(); })
 }
 
 //add click listeners

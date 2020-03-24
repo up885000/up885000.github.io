@@ -124,6 +124,7 @@ async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries an
 app.get('/', function(req, res) {});
 
 app.get('/getRecipe', getRecipeInfo);
+app.get('/getRecipeId', getRecipe);
 app.post('/addReview', addReview);
 
 /**
@@ -139,6 +140,19 @@ async function getRecipeInfo(req, res) {
         let name = req.query.name;
         console.log(name);
         const data = await mysqlSelect('select recipe_id,recipe_name,image_location from recipe where lower(recipe_name) like ?', ["%" + name + "%"]);
+        console.log(data);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
+    }
+}
+
+async function getRecipe(req, res) {
+    try {
+        let id = req.query.id;
+        console.log(id);
+        const data = await mysqlSelect('select * from recipe where recipe_id = ?', [id]);
         console.log(data);
         res.send(data);
     } catch (error) {
