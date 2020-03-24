@@ -83,9 +83,9 @@ async function findRecipe() {
     document.getElementById('recipeTitle').innerHTML = r_name;
 }
 
-async function selectRecipe() {
+async function selectRecipe(name) {
     //async function to search for recipies needs to be given a proper function
-    let name = document.getElementById("fI1").className;
+    // let name = document.getElementById("fI1").className;
     console.log(name);
     let response = await fetch('/getRecipeId?name=' + name);
     console.log(response);
@@ -156,12 +156,12 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
-    document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(); });
-    document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(); });
-    document.getElementById("fI3").addEventListener('click', async() => { selectRecipe(); });
-    document.getElementById("fI4").addEventListener('click', async() => { selectRecipe(); });
-    document.getElementById("fI5").addEventListener('click', async() => { selectRecipe(); });
-    document.getElementById("fI6").addEventListener('click', async() => { selectRecipe(); });
+    document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(document.getElementById("fI1").className); });
+    document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(document.getElementById("fI2").className); });
+    document.getElementById("fI3").addEventListener('click', async() => { selectRecipe(document.getElementById("fI3").className); });
+    document.getElementById("fI4").addEventListener('click', async() => { selectRecipe(document.getElementById("fI4").className); });
+    document.getElementById("fI5").addEventListener('click', async() => { selectRecipe(document.getElementById("fI5").className); });
+    document.getElementById("fI6").addEventListener('click', async() => { selectRecipe(document.getElementById("fI6").className); });
 }
 
 //add click listeners
