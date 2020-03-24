@@ -17,7 +17,7 @@ mysql
 
 ### Installing
 
-Recipe app comes pre-packaged with a quick setup shell script, this script will automaticall start whenever "npm start" is run.
+Recipe app comes pre-packaged with a quick setup shell script, this script will automatically start whenever "npm start" is run.
 Some steps may need to be taken for this to happen though.
 
 ```bash
@@ -36,7 +36,7 @@ Testing can be found [here.](https://up885000.github.io/test/test.html) However,
 [![Build Status](https://travis-ci.com/up885000/up885000.github.io.svg?branch=master)](https://travis-ci.com/up885000/up885000.github.io)
 
 
-Change review form to replace searchbar
+Change review form to replace search bar
 
 review needs prompt text
 
