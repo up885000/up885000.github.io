@@ -61,10 +61,13 @@ function fave() {
     }
 }
 
+let savefiles = [];
+
 function showSaves() {
     for (var key in localStorage) {
-        console.log(key);
+        savefiles.push(key);
     }
+    window.alert(savefiles);
 }
 
 function load() {
