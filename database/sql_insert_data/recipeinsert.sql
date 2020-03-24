@@ -26,7 +26,7 @@ Method
 
 INSERT INTO recipe (recipe_id, recipe_name, recipe_description, preparation_time
 , cooking_time, difficulty, recipe_serving, image_location)
-VALUES (2 , 'Firecracker Prawns with stir-fride greens', 'Packed with protein, flavour, colour and punch, this low-calorie, quick dinner will become a weekly favourite.
+VALUES (2 , 'Firecracker Prawns with stir-fried greens', 'Packed with protein, flavour, colour and punch, this low-calorie, quick dinner will become a weekly favourite.
 
 Method
 
