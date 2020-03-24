@@ -12,9 +12,7 @@ function svLcl() {
 // Favourite recipe function
 let currentvalue = false;
 
-let faves = [];
 let favestring = null;
-
 
 function fave() {
     let title = document.getElementById('recipeTitle').innerHTML
@@ -35,16 +33,9 @@ function fave() {
         if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
         } else {
-            faves.push(fileName);
             const savefile = document.getElementById('recipeTitle').innerHTML;
             window.localStorage.setItem(fileName, savefile);
             faves.push(window.localStorage.getItem('savelist'));
-            if (faves.length >= 2) {
-                favestring = faves.join(', ');
-            } else {
-                favestring = faves;
-            }
-            window.localStorage.setItem('savelist', favestring);
         }
         ////////////////////////////////////////
     }
