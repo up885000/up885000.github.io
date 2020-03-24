@@ -80,7 +80,7 @@ async function findRecipe() {
     //data is the data outgoing from the sql database
     console.log(data);
     let r_name = data[0].recipe_name; //example of parsing json
-    document.getElementById('recipe').innerHTML = r_name;
+    document.getElementById('recipeTitle').innerHTML = r_name;
 }
 
 function revBtn() {

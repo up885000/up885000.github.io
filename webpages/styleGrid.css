@@ -78,7 +78,7 @@ nav {
 #reviewForm {
     grid-column: 1/-1;
     grid-row: 2;
-    margin:auto;
+    margin: auto;
 }
 
 #fI1 {
@@ -128,32 +128,32 @@ nav {
     grid-row: 1/-1;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.5fr repeat(4,1fr);
+    grid-template-rows: 0.5fr repeat(4, 1fr);
 }
 
-.recipeImg {
-    grid-column:1;
-    grid-row:1/4;
+#recipeImg {
+    grid-column: 1;
+    grid-row: 1/4;
     margin: 10%;
     max-height: 40%;
 }
 
-.recipeTitle {
-    grid-column:2;
-    grid-row:1;
+#recipeTitle {
+    grid-column: 2;
+    grid-row: 1;
 }
 
-.method {
-    grid-column:2;
-    grid-row:2/5;
+#method {
+    grid-column: 2;
+    grid-row: 2/5;
 }
 
-.info {
-    grid-column:2;
-    grid-row:4/6;
+#info {
+    grid-column: 2;
+    grid-row: 4/6;
 }
 
-.ingredients {
-    grid-column:1;
-    grid-row:4/6;
+#ingredients {
+    grid-column: 1;
+    grid-row: 4/6;
 }
