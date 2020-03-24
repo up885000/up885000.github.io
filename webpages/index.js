@@ -64,8 +64,8 @@ function fave() {
 let savefiles = [];
 
 function showSaves() {
-    for (var key in localStorage) {
-        savefiles.push(key);
+    for (var i = 0, len = localStorage.length; i < len; ++i) {
+        savefiles.push(localStorage.getItem(localStorage.key(i)));
     }
     window.alert(savefiles);
 }
