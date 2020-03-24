@@ -27,7 +27,6 @@ function fave() {
         //this is saveing
         // switches the image source from faved to unfaved
         document.getElementById('fave').src = 'media/onStar.png';
-        //////////////////////////////////////////
         let fileName = title;
         if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
@@ -35,7 +34,6 @@ function fave() {
             const savefile = document.getElementById('recipe').innerHTML;
             window.localStorage.setItem(fileName, savefile);
         }
-        ////////////////////////////////////////
     }
     //Add local storage element here **
     else if (currentvalue == true) {
@@ -43,7 +41,6 @@ function fave() {
         //this is un-saveing
         window.localStorage.removeItem(fileName);
 
-        //document.getElementById("fvOnoff").value="False";
         // we need to edit the fave stars to be the same size and file format
         document.getElementById('fave').src = 'media/offStar.png';
         //update sql database that user has unfaved recipe
@@ -88,7 +85,6 @@ async function findRecipe() {
 
 async function selectRecipe(name) {
     //async function to search for recipies needs to be given a proper function
-    // let name = document.getElementById("fI1").className;
     console.log(name);
     let response = await fetch('/getRecipeId?name=' + name);
     console.log(response);
@@ -170,7 +166,9 @@ function init() {
         document.getElementById("load").addEventListener('click', load);
     }
     if (document.getElementById("findRecipe")) {
-        document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe(); });
+        document.getElementById("findRecipe").addEventListener('click', async() => {
+            findRecipe();
+        });
     }
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
@@ -179,12 +177,24 @@ function init() {
         document.getElementById("submit").addEventListener('click', submitForm);
     }
     // document.getElementById("showsaves").addEventListener('click', showSaves);
-    document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(document.getElementById("fI1").className); });
-    document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(document.getElementById("fI2").className); });
-    document.getElementById("fI3").addEventListener('click', async() => { selectRecipe(document.getElementById("fI3").className); });
-    document.getElementById("fI4").addEventListener('click', async() => { selectRecipe(document.getElementById("fI4").className); });
-    document.getElementById("fI5").addEventListener('click', async() => { selectRecipe(document.getElementById("fI5").className); });
-    document.getElementById("fI6").addEventListener('click', async() => { selectRecipe(document.getElementById("fI6").className); });
+    document.getElementById("fI1").addEventListener('click', async() => {
+        selectRecipe(document.getElementById("fI1").className);
+    });
+    document.getElementById("fI2").addEventListener('click', async() => {
+        selectRecipe(document.getElementById("fI2").className);
+    });
+    document.getElementById("fI3").addEventListener('click', async() => {
+        selectRecipe(document.getElementById("fI3").className);
+    });
+    document.getElementById("fI4").addEventListener('click', async() => {
+        selectRecipe(document.getElementById("fI4").className);
+    });
+    document.getElementById("fI5").addEventListener('click', async() => {
+        selectRecipe(document.getElementById("fI5").className);
+    });
+    document.getElementById("fI6").addEventListener('click', async() => {
+        selectRecipe(document.getElementById("fI6").className);
+    });
 }
 
 //add click listeners
