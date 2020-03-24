@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Manages all of the fontend, clientside javascript interactions.
  * @author UP891226, UP885000, UP885188, UP905446
  */
@@ -9,50 +9,44 @@ function svLcl() {
     console.log("user has initiated a save");
 }
 
-// Favourite recipe function
+// Favourite recipe function saves to localStorage
 let currentvalue = false;
 
 let favestring = null;
 
 function fave() {
     let title = document.getElementById('recipeTitle').innerHTML
-    let x = document.getElementById('fave');
-    if (x.src == "media/offstar.png") {
+    let favebutton = document.getElementById('fave');
+    if (favebutton.src == "media/offstar.png") {
         currentvalue = false;
-    } else if (x.src == "media/onstar.png") {
+    } else if (favebutton.src == "media/onstar.png") {
         currentvalue = true;
     }
-    //currentvalue = document.getElementById('fvOnOff').value;
     if (currentvalue == false) {
         currentvalue = true;
         //this is saveing
-        // switches the image source from faved to unfaved
+        // switches the image source
         document.getElementById('fave').src = 'media/onStar.png';
-        //////////////////////////////////////////
         let fileName = title;
+        //Validation statment
         if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
         } else {
             const savefile = document.getElementById('recipe').innerHTML;
             window.localStorage.setItem(fileName, savefile);
         }
-        ////////////////////////////////////////
     }
-    //Add local storage element here **
     else if (currentvalue == true) {
         currentvalue = false;
         //this is un-saveing
         window.localStorage.removeItem(fileName);
-
-        //document.getElementById("fvOnoff").value="False";
-        // we need to edit the fave stars to be the same size and file format
+        //switches image source
         document.getElementById('fave').src = 'media/offStar.png';
-        //update sql database that user has unfaved recipe
     }
 }
 
+//showSaves() function displays all of the localstorage keys saved for the websites in an alert.
 let savefiles = [];
-
 function showSaves() {
     for (var i = 0, len = localStorage.length; i < len; ++i) {
         savefiles.push(localStorage.key(i));
@@ -61,7 +55,7 @@ function showSaves() {
     saveFiles = [];
 }
 
-
+//allows a recipe to be loaded from localStorage (used in unison with the showSaves() function)
 function load() {
     let fileName = prompt("FileName: ", "");
     if (fileName == null || fileName == "" || fileName == " ") {
@@ -77,25 +71,18 @@ function load() {
 async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
     let name = document.getElementById("recipeName").value;
-    console.log(name);
     let response = await fetch('/getRecipe?name=' + name);
-    console.log(response);
     let data = await response.json();
     //data is the data outgoing from the sql database
-    console.log(data);
     let r_name = data[0].recipe_name; //example of parsing json
     document.getElementById('recipeTitle').innerHTML = r_name;
 }
 
 async function selectRecipe(name) {
     //async function to search for recipies needs to be given a proper function
-    // let name = document.getElementById("fI1").className;
-    console.log(name);
     let response = await fetch('/getRecipeId?name=' + name);
-    console.log(response);
     let data = await response.json();
     //data is the data outgoing from the sql database
-    console.log(data);
     document.getElementById('recipeTitle').innerHTML = data[0].recipe_name;
     document.getElementById('recipeImg').src = ".." + data[0].image_location; //===============
     document.getElementById('method').innerHTML = data[0].recipe_description;
@@ -107,8 +94,6 @@ async function selectRecipe(name) {
 }
 
 function revBtn() {
-
-
     //adds recipe_id for the addReview() function to use
     const new_recID = document.createElement('input');
     new_recID.setAttribute('id', 'recipe_id');
@@ -144,6 +129,7 @@ function revBtn() {
 
 
 //Initialise js buttons
+//Add click Event Listeners
 function init() {
     if (document.getElementById("down")) {
         document.getElementById("down").addEventListener('click', svLcl);
@@ -160,6 +146,7 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
+    document.getElementById("showsaves").addEventListener('click', showSaves);
     document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(document.getElementById("fI1").className); });
     document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(document.getElementById("fI2").className); });
     document.getElementById("fI3").addEventListener('click', async() => { selectRecipe(document.getElementById("fI3").className); });
@@ -169,14 +156,12 @@ function init() {
 }
 
 //add click listeners
-
 if (typeof window !== 'undefined') {
     window.addEventListener('load', init);
     window.addEventListener('featuredRecipe', init);
 }
 
 //export functions
-
 if (typeof module !== 'undefined' && module.exports) {
     exports.revBtn = revBtn;
     exports.findRecipe = findRecipe;
