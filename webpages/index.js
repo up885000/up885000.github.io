@@ -69,6 +69,7 @@ function load() {
     } else {
         const savefile = window.localStorage.getItem(fileName);
         document.getElementById('recipe').innerHTML = savefile;
+        document.getElementById('fave').src = 'media/onStar.png';
     }
 }
 
