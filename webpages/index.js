@@ -15,54 +15,21 @@ let currentvalue = false;
 let favestring = null;
 
 function fave() {
-
-    let title = document.getElementById('recipeTitle').innerHTML
+    let title = document.getElementById('recipeTitle').innerHTML;
     let favebutton = document.getElementById('fave');
     if (favebutton.src == "media/offstar.png") {
-        let title = document.getElementById('recipeTitle').innerHTML;
-        let x = document.getElementById('fave');
-        if (x.src == "media/offstar.png") {
-            currentvalue = false;
-        } else if (favebutton.src == "media/onstar.png") {
-            currentvalue = true;
-        }
-        if (currentvalue == false) {
-            currentvalue = true;
-            //this is saveing
-            // switches the image source
-            document.getElementById('fave').src = 'media/onStar.png';
-            let fileName = title;
-            //Validation statment
-            if (fileName == null || fileName == "") {
-                alert("Error: Invalid FileName");
-            } else {
-                const savefile = document.getElementById('recipe').innerHTML;
-                window.localStorage.setItem(fileName, savefile);
-            }
-        } else if (currentvalue == true) {
-            currentvalue = false;
-            //this is un-saveing
-            window.localStorage.removeItem(fileName);
-            //switches image source
-            document.getElementById('fave').src = 'media/offStar.png';
-        }
+        currentvalue = false;
+    } else if (favebutton.src == "media/onstar.png") {
+        currentvalue = true;
     }
-
-    //showSaves() function displays all of the localstorage keys saved for the websites in an alert.
-    let savefiles = [];
-
-    function showSaves() {
-        for (var i = 0, len = localStorage.length; i < len; ++i) {
-            savefiles.push(localStorage.key(i));
-        }
-        window.alert(savefiles);
-        saveFiles = [];
-    }
-
-    //allows a recipe to be loaded from localStorage (used in unison with the showSaves() function)
-    function load() {
-        let fileName = prompt("FileName: ", "");
-        if (fileName == null || fileName == "" || fileName == " ") {
+    if (currentvalue == false) {
+        currentvalue = true;
+        //this is saveing
+        // switches the image source from faved to unfaved
+        document.getElementById('fave').src = 'media/onStar.png';
+        //////////////////////////////////////////
+        let fileName = title;
+        if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
         } else {
             const savefile = window.localStorage.getItem(fileName);
@@ -149,8 +116,6 @@ function fave() {
         timesFiredReview = timesFiredReview - 1;
     }
 
-
-
     //Initialise js buttons
     //Add click Event Listeners
     function init() {
@@ -174,6 +139,58 @@ function fave() {
         if (document.getElementById("submit")) {
             document.getElementById("submit").addEventListener('click', submitForm);
         }
+        let timesFiredReview = 0;
+
+        function revBtn(new_rating, new_recID, new_review, new_submit) {
+            // setting up vaildation
+            if (timesFiredReview < 1) {
+                //adds recipe_id for the addReview() function to use
+                const new_recID = document.createElement('input');
+                new_recID.setAttribute('id', 'recipe_id');
+                new_recID.setAttribute('type', 'text');
+                new_recID.setAttribute('name', 'recipe_id');
+                search.appendChild(new_recID);
+
+                //adds rating for the addReview() function to use
+                const new_rating = document.createElement('input');
+                new_rating.setAttribute('id', 'rating');
+                new_rating.setAttribute('type', 'text');
+                new_rating.setAttribute('name', 'rating');
+                search.appendChild(new_rating);
+
+                //adds review for the addReview() function to use
+                const new_review = document.createElement('input');
+                new_review.setAttribute('id', 'review');
+                new_review.setAttribute('type', 'text');
+                new_review.setAttribute('name', 'review');
+                search.appendChild(new_review);
+
+                //adds submit button for the addReview() forms to use
+                const new_submit = document.createElement('input');
+                new_submit.setAttribute('id', 'addReview');
+                new_submit.setAttribute('type', 'submit');
+                new_submit.setAttribute('name', 'addReview');
+                search.appendChild(new_submit);
+
+                timesFiredReview = timesFiredReview + 1;
+
+            } else {
+                console.log("error you already have a review form in progress");
+            }
+        }
+
+        async function submitForm() {
+
+            //gets the function addReview from the server.js file and runs it
+            console.log("initiating recipe review");
+            let response = await fetch('/addReview?recipe_id=' + new_recID + "&rating=" + new_rating + "&review=" + new_review);
+            console.log("you have successfully reviewed this recipe");
+            search.removeChild(new_recID);
+            search.removeChild(new_rating);
+            search.removeChild(new_review);
+            search.removeChild(new_submit);
+            timesFiredReview = timesFiredReview - 1;
+        }
 
         document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(document.getElementById("fI1").className); });
         document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(document.getElementById("fI2").className); });
@@ -182,6 +199,25 @@ function fave() {
         document.getElementById("fI5").addEventListener('click', async() => { selectRecipe(document.getElementById("fI5").className); });
         document.getElementById("fI6").addEventListener('click', async() => { selectRecipe(document.getElementById("fI6").className); });
     }
+    if (document.getElementById("findRecipe")) {
+        document.getElementById("findRecipe").addEventListener('click', async() => { findRecipe(); });
+    }
+    if (document.getElementById("rev")) {
+        document.getElementById("rev").addEventListener('click', revBtn);
+    }
+    if (document.getElementById("submit")) {
+        document.getElementById("submit").addEventListener('click', submitForm);
+    }
+    // document.getElementById("showsaves").addEventListener('click', showSaves);
+    document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(document.getElementById("fI1").className); });
+    document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(document.getElementById("fI2").className); });
+    document.getElementById("fI3").addEventListener('click', async() => { selectRecipe(document.getElementById("fI3").className); });
+    document.getElementById("fI4").addEventListener('click', async() => { selectRecipe(document.getElementById("fI4").className); });
+    document.getElementById("fI5").addEventListener('click', async() => { selectRecipe(document.getElementById("fI5").className); });
+    document.getElementById("fI6").addEventListener('click', async() => { selectRecipe(document.getElementById("fI6").className); });
+
+
+    //add click listeners
 
     //add click listeners
     if (typeof window !== 'undefined') {
