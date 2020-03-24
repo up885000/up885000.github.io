@@ -12,9 +12,7 @@ function svLcl() {
 // Favourite recipe function
 let currentvalue = false;
 
-let faves = [];
 let favestring = null;
-
 
 function fave() {
     let title = document.getElementById('recipeTitle').innerHTML;
@@ -35,16 +33,8 @@ function fave() {
         if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
         } else {
-            faves.push(fileName);
             const savefile = document.getElementById('recipe').innerHTML;
             window.localStorage.setItem(fileName, savefile);
-            faves.push(window.localStorage.getItem('savelist'));
-            if (faves.length >= 2) {
-                favestring = faves.join(', ');
-            } else {
-                favestring = faves;
-            }
-            window.localStorage.setItem('savelist', favestring);
         }
         ////////////////////////////////////////
     }
@@ -64,11 +54,13 @@ function fave() {
 let savefiles = [];
 
 function showSaves() {
-    for (var key in localStorage) {
-        savefiles.push(key);
+    for (var i = 0, len = localStorage.length; i < len; ++i) {
+        savefiles.push(localStorage.key(i));
     }
     window.alert(savefiles);
+    saveFiles = [];
 }
+
 
 function load() {
     let fileName = prompt("FileName: ", "");
@@ -77,8 +69,10 @@ function load() {
     } else {
         const savefile = window.localStorage.getItem(fileName);
         document.getElementById('recipe').innerHTML = savefile;
+        document.getElementById('fave').src = 'media/onStar.png';
     }
 }
+
 
 async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
