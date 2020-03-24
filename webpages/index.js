@@ -93,7 +93,7 @@ async function selectRecipe() {
     //data is the data outgoing from the sql database
     console.log(data);
     document.getElementById('recipeTitle').innerHTML = data[0].recipe_name;
-    document.getElementById('recipeImg').src = data[0].image_location; //===============
+    document.getElementById('recipeImg').src = ".." + data[0].image_location; //===============
     document.getElementById('method').innerHTML = data[0].recipe_description;
     // document.getElementById('ingredients').innerHTML = data[0].recipe_name;
     document.getElementById('prepTime').innerHTML = "Preperation Time: " + data[0].preparation_time;
