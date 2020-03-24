@@ -136,7 +136,7 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_submit.setAttribute('type', 'submit');
         new_submit.setAttribute('name', 'addReview');
         new_submit.setAttribute('class', 'reviewForm');
-        search.appendChild(new_submit);
+        reviewForm.appendChild(new_submit);
 
         timesFiredReview = timesFiredReview + 1;
 
