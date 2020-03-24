@@ -156,7 +156,7 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
-    document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(); })
+    document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(); });
 }
 
 //add click listeners
