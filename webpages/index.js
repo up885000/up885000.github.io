@@ -33,9 +33,8 @@ function fave() {
         if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
         } else {
-            const savefile = document.getElementById('recipeTitle').innerHTML;
+            const savefile = document.getElementById('recipe').innerHTML;
             window.localStorage.setItem(fileName, savefile);
-            faves.push(window.localStorage.getItem('savelist'));
         }
         ////////////////////////////////////////
     }
