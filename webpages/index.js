@@ -112,7 +112,7 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_recID.setAttribute('type', 'text');
         new_recID.setAttribute('name', 'recipe_id');
         new_recID.setAttribute('class', 'reviewForm');
-        search.appendChild(new_recID);
+        reviewForm.appendChild(new_recID);
 
         //adds rating for the addReview() function to use
         const new_rating = document.createElement('input');
@@ -120,7 +120,7 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_rating.setAttribute('type', 'text');
         new_rating.setAttribute('name', 'rating');
         new_rating.setAttribute('class', 'reviewForm');
-        search.appendChild(new_rating);
+        reviewForm.appendChild(new_rating);
 
         //adds review for the addReview() function to use
         const new_review = document.createElement('input');
@@ -128,7 +128,7 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_review.setAttribute('type', 'text');
         new_review.setAttribute('name', 'review');
         new_review.setAttribute('class', 'reviewForm');
-        search.appendChild(new_review);
+        reviewForm.appendChild(new_review);
 
         //adds submit button for the addReview() forms to use
         const new_submit = document.createElement('input');
