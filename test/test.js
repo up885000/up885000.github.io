@@ -7,7 +7,7 @@ if (typeof(require) !== 'undefined') {
   // It's important to define it with the very same name in order to have both browser and CLI runs working with the same test code
   findRecipe = require('../webpages/index.js').findRecipe;
   revBtn = require('../webpages/index.js').revBtn;
-  getRecipeInfo = require('../server.js').getRecipeInfo;
+  mysqlSelect = require('../server.js').mysqlSelect;
 }
 
 //const testlib = require('../webpages/index.js');
@@ -22,11 +22,14 @@ QUnit.test('findRecipe is a function 🥞', function(assert){
   assert.ok(typeof findRecipe === 'function', 'findRecipe is a function ✅');
 });
 
-QUnit.test('getRecipeInfo returns correct value 🥗', function(assert){
-  let testRes = {query: { name: 'chicken' }};
+QUnit.test('RecipeApp database is queryable 🥗', async function(assert){
+  let query = 'select recipe_id,recipe_name,image_location from recipe where lower(recipe_name) like ?';
+  let vars = ["%" + "chicken" + "%"];
   let expected = 'Chicken burritos';
+  let response = await mysqlSelect(query, vars);
+  let parsed = response[0].recipe_name;
 
-  assert.equal(getRecipeInfo(testRes), expected, 'findRecipe returns correct value ✅');
+  assert.equal(parsed, expected, 'findRecipe returns correct value ✅');
 });
 
 QUnit.module('SQL Insert');
