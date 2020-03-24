@@ -34,6 +34,7 @@ INSERT INTO ingredients (ingredients_id, ingredients_name) VALUES (21 , 'Mozarel
 /* Firecracker prawns with stir-fried greens */
 INSERT INTO ingredients (ingredients_id, ingredients_name) VALUES (22 , 'Spring Oninons');
 INSERT INTO ingredients (ingredients_id, ingredients_name) VALUES (23 , 'Chillies');
+INSERT INTO ingredients (ingredients_id, ingredients_name) VALUES (24 , 'Garlic');
 INSERT INTO ingredients (ingredients_id, ingredients_name) VALUES (25 , 'Oyster Sauce');
 INSERT INTO ingredients (ingredients_id, ingredients_name) VALUES (26 , 'Vinegar');
 INSERT INTO ingredients (ingredients_id, ingredients_name) VALUES (27 , 'Soy Sauce');
