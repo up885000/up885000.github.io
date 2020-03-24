@@ -32,7 +32,7 @@ function fave() {
         document.getElementById('fave').src = 'media/onStar.png';
         //////////////////////////////////////////
         let fileName = title;
-        if (fileName == null || fileName == "" || fileName.includes(" ") || fileName.length > 20) {
+        if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
         } else {
             faves.push(fileName);
