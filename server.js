@@ -141,9 +141,11 @@ async function getRecipeInfo(req, res) {
         const data = await mysqlSelect('select recipe_id,recipe_name,image_location from recipe where lower(recipe_name) like ?', ["%" + name + "%"]);
         console.log(data);
         res.send(data);
+        return data;
     } catch (error) {
         console.log("API Error: ", error);
         res.send("Server Error");
+        return("Server Error");
     }
 }
 
@@ -170,4 +172,10 @@ async function addReview(req, res) {
     } else {
         return false;
     } //return false so client can know review wasn't added
+}
+
+//export functions
+
+if (typeof module !== 'undefined' && module.exports) {
+    exports.getRecipeInfo = getRecipeInfo;
 }

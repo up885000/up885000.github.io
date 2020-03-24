@@ -7,6 +7,7 @@ if (typeof(require) !== 'undefined') {
   // It's important to define it with the very same name in order to have both browser and CLI runs working with the same test code
   findRecipe = require('../webpages/index.js').findRecipe;
   revBtn = require('../webpages/index.js').revBtn;
+  getRecipeInfo = require('../server.js').getRecipeInfo;
 }
 
 //const testlib = require('../webpages/index.js');
@@ -21,11 +22,11 @@ QUnit.test('findRecipe is a function 🥞', function(assert){
   assert.ok(typeof findRecipe === 'function', 'findRecipe is a function ✅');
 });
 
-QUnit.test('findRecipe returns correct value 🥗', function(assert){
-  let testName = 'Chicken';
+QUnit.test('getRecipeInfo returns correct value 🥗', function(assert){
+  let testRes = {query: { name: 'chicken' }};
   let expected = 'Chicken burritos';
 
-  assert.equal(findRecipe(testName), expected, 'findRecipe returns correct value ✅');
+  assert.equal(getRecipeInfo(testRes), expected, 'findRecipe returns correct value ✅');
 });
 
 QUnit.module('SQL Insert');
