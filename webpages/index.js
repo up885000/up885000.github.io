@@ -70,7 +70,7 @@ function load() {
     }
 }
 
-async function findRecipe(name) {
+async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
     console.log(name);
     let response = await fetch('/getRecipe?name=' + name);
@@ -80,7 +80,6 @@ async function findRecipe(name) {
     console.log(data);
     let r_name = data[0].recipe_name; //example of parsing json
     document.getElementById('recipeTitle').innerHTML = r_name;
-    return r_name;
 }
 
 function revBtn() {
