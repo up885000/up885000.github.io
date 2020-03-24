@@ -16,13 +16,12 @@ let favestring = null;
 
 function fave() {
     let title = document.getElementById('recipeTitle').innerHTML;
-    let x = document.getElementById('fave');
-    if (x.src == "media/offstar.png") {
+    let favebutton = document.getElementById('fave');
+    if (favebutton.src == "media/offstar.png") {
         currentvalue = false;
-    } else if (x.src == "media/onstar.png") {
+    } else if (favebutton.src == "media/onstar.png") {
         currentvalue = true;
     }
-    //currentvalue = document.getElementById('fvOnOff').value;
     if (currentvalue == false) {
         currentvalue = true;
         //this is saveing
@@ -179,6 +178,7 @@ function init() {
     if (document.getElementById("submit")) {
         document.getElementById("submit").addEventListener('click', submitForm);
     }
+    document.getElementById("showsaves").addEventListener('click', showSaves);
     document.getElementById("fI1").addEventListener('click', async() => { selectRecipe(document.getElementById("fI1").className); });
     document.getElementById("fI2").addEventListener('click', async() => { selectRecipe(document.getElementById("fI2").className); });
     document.getElementById("fI3").addEventListener('click', async() => { selectRecipe(document.getElementById("fI3").className); });
