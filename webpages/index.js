@@ -17,6 +17,7 @@ let favestring = null;
 
 
 function fave() {
+    let title = document.getElementById('recipeTitle').innerHTML
     let x = document.getElementById('fave');
     if (x.src == "media/offstar.png") {
         currentvalue = false;
@@ -30,7 +31,7 @@ function fave() {
         // switches the image source from faved to unfaved
         document.getElementById('fave').src = 'media/onStar.png';
         //////////////////////////////////////////
-        let fileName = prompt("File Name: ", "");
+        let fileName = title;
         if (fileName == null || fileName == "" || fileName.includes(" ") || fileName.length > 20) {
             alert("Error: Invalid FileName");
         } else {
