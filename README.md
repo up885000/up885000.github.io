@@ -27,7 +27,7 @@ chmod +x quickSetup.bash
 npm start
 ```
 
-Now the sever should be running locally with database built.
+Now the server should be running locally with database built.
 
 Documentation can be found [here.](https://up885000.github.io/out/index.html)
 
