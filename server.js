@@ -100,7 +100,7 @@ async function newMysqlConnection() { //Creates a MySQL Database connection
  */
 async function mysqlSelect(queryStr, queryVars) { //Runs MySQL Select Queries and returns results
     try {
-        const sqlConnection = await mysqlConnection(); //get the connection
+        const sqlConnection = await newMysqlConnection(); //get the connection
         const newQuery = sqlConnection.format(queryStr, queryVars); //format the query to avoid SQL Injection
         let [results, fields] = await sqlConnection.execute(newQuery); //run query
         sqlConnection.end();
@@ -124,7 +124,7 @@ async function mysqlSelect(queryStr, queryVars) { //Runs MySQL Select Queries an
  */
 async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries and returns whether the query was successful
     try {
-        const sqlConnection = await mysqlConnection(); //get the connection
+        const sqlConnection = await newMysqlConnection(); //get the connection
         const newQuery = sqlConnection.format(queryStr, queryVars); //format the query to avoid SQL Injection
         await sqlConnection.query(newQuery); //run query
         sqlConnection.end();
