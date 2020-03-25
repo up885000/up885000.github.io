@@ -18,7 +18,7 @@ QUnit.module('Database 🥕');
 
 QUnit.test('Recipe table exists', async function(assert){
   let query = 'select recipe_id from recipe where lower(recipe_name) like ?';
-  let vars = ["%" + "jollof" + "%"];
+  let vars = ["%" + "Jollof" + "%"];
   let expected = '1';
   let response = await mysqlSelect(query, vars);
   let parsed = response[0].recipe_id;
@@ -40,7 +40,7 @@ QUnit.test('Category table exists', async function(assert){
 });
 
 QUnit.test('Ingredients table exists', async function(assert){
-  let query = 'select ingredient_id from ingredients where lower(ingredients_name) like ?';
+  let query = 'select ingredients_id from ingredients where lower(ingredients_name) like ?';
   let vars = ["%" + "Sunflower Oil" + "%"];
   let expected = '1';
   let response = await mysqlSelect(query, vars);
@@ -51,7 +51,7 @@ QUnit.test('Ingredients table exists', async function(assert){
 });
 
 QUnit.test('Reviews table exists', async function(assert){
-  let query = 'select reviews_id from reviews where lower(reviews_name) like ?';
+  let query = 'select reviews_id from reviews where lower(review) like ?';
   let vars = ["%" + "This recipe was very good. I made this for 8, and we all thoroughly enjoyed it." + "%"];
   let expected = '1';
   let response = await mysqlSelect(query, vars);
@@ -63,7 +63,7 @@ QUnit.test('Reviews table exists', async function(assert){
 
 QUnit.test('recipe_category_line table exists', async function(assert){
   let query = 'select recipe_id from recipe_category_line where lower(category_id) like ?';
-  let vars = ["%" + "African" + "%"];
+  let vars = ["%" + "1" + "%"];
   let expected = '1';
   let response = await mysqlSelect(query, vars);
   let parsed = response[0].category_id;
@@ -74,7 +74,7 @@ QUnit.test('recipe_category_line table exists', async function(assert){
 
 QUnit.test('recipe_ingredients table exists', async function(assert){
   let query = 'select recipe_id from recipe_ingredients where lower(ingredient_id) like ?';
-  let vars = ["%" + "Sunflower Oil" + "%"];
+  let vars = ["%" + "1" + "%"];
   let expected = '1';
   let response = await mysqlSelect(query, vars);
   let parsed = response[0].ingredient_id;
