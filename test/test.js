@@ -1,4 +1,4 @@
-/* 
+/*
 This file contains unit test that will run via the npm test command,
 They are written using the QUnit testing framework.
 */
@@ -19,7 +19,7 @@ QUnit.module('Database 🥕');
 
 QUnit.test('Recipe table exists', async function(assert){
   let query = 'select recipe_id from recipe where lower(recipe_name) like ?';
-  let vars = ["%" + "jollof" + "%"];
+  let vars = ["%" + "Jollof" + "%"];
   let expected = '1';
   let response = await mysqlSelect(query, vars);
   let parsed = response[0].recipe_id;
@@ -27,6 +27,74 @@ QUnit.test('Recipe table exists', async function(assert){
 
   assert.equal(parsed, expected, 'Recipe table exists ✅');
 });
+
+
+QUnit.test('Category table exists', async function(assert){
+  let query = 'select category_id from category where lower(category_name) like ?';
+  let vars = ["%" + "African" + "%"];
+  let expected = '1';
+  let response = await mysqlSelect(query, vars);
+  let parsed = response[0].category_id;
+  stopServer();
+
+  assert.equal(parsed, expected, 'Category table exists ✅');
+});
+
+QUnit.test('Ingredients table exists', async function(assert){
+  let query = 'select ingredients_id from ingredients where lower(ingredients_name) like ?';
+  let vars = ["%" + "Sunflower Oil" + "%"];
+  let expected = '1';
+  let response = await mysqlSelect(query, vars);
+  let parsed = response[0].ingredients_id;
+  stopServer();
+
+  assert.equal(parsed, expected, 'Ingredients table exists ✅');
+});
+
+QUnit.test('Reviews table exists', async function(assert){
+  let query = 'select reviews_id from reviews where lower(review) like ?';
+  let vars = ["%" + "This recipe was very good. I made this for 8, and we all thoroughly enjoyed it." + "%"];
+  let expected = '1';
+  let response = await mysqlSelect(query, vars);
+  let parsed = response[0].reviews_id;
+  stopServer();
+
+  assert.equal(parsed, expected, 'Reviews table exists ✅');
+});
+
+QUnit.test('recipe_category_line table exists', async function(assert){
+  let query = 'select recipe_id from recipe_category_line where lower(recipe_id) like ?';
+  let vars = ["%" + "1" + "%"];
+  let expected = '1';
+  let response = await mysqlSelect(query, vars);
+  let parsed = response[0].recipe_id;
+  stopServer();
+
+  assert.equal(parsed, expected, 'Recipe Category Line table exists ✅');
+});
+
+QUnit.test('recipe_ingredients table exists', async function(assert){
+  let query = 'select quantity from recipe_ingredients where (recipe_id, ingredients_id, type) = (?, ?, ?)';
+  let vars = ["1", "32", "metric"];
+  let expected = "400";
+  let response = await mysqlSelect(query, vars);
+  let parsed = response[0].quantity;
+  stopServer();
+
+  assert.equal(parsed, expected, 'Recipe Ingredients table exists :white_check_mark:');
+});
+
+QUnit.test('Measurements table exists', async function(assert){
+  let query = 'select measurement_id from measurements where lower(measurement_name) like ?';
+  let vars = ["%" + "ml" + "%"];
+  let expected = '2';
+  let response = await mysqlSelect(query, vars);
+  let parsed = response[0].measurement_id;
+  stopServer();
+
+  assert.equal(parsed, expected, 'Measurements table exists ✅');
+});
+
 
 QUnit.module('SQL Query 🥞');
 
