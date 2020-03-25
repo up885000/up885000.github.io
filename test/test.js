@@ -20,7 +20,7 @@ QUnit.test('Recipe table exists 📅', async function(assert){
   let vars = ["%" + "jollof" + "%"];
   let expected = '1';
   let response = await mysqlSelect(query, vars);
-  let parsed = response[0].recipe_name;
+  let parsed = response[0].recipe_id;
   stopServer();
 
   assert.equal(parsed, expected, 'Recipe table exists ✅');
