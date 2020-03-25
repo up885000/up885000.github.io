@@ -159,7 +159,6 @@ async function getRecipeInfo(req, res) {
     } catch (error) {
         console.log("API Error: ", error);
         res.send("Server Error");
-        return("Server Error");
     }
 }
 
@@ -206,4 +205,5 @@ async function addReview(req, res) {
 if (typeof module !== 'undefined' && module.exports) {
     exports.mysqlSelect = mysqlSelect;
     exports.stopServer = stopServer;
+    exports.mysqlInsert = mysqlInsert;
 }
