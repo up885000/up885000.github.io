@@ -31,7 +31,7 @@ Now the sever should be running locally with database built.
 
 Documentation can be found [here.](https://up885000.github.io/out/index.html)
 
-Testing can be found [here.](https://up885000.github.io/test/test.html) However, some tests may require node to be running and so will show as a false-negative.
+Testing can be found [here.](https://up885000.github.io/test/test.html) However, tests that require node to be running and so will show as false-negatives. To view the status of these tests please check the build log [here.](https://travis-ci.com/github/up885000/up885000.github.io)
 
 [![Build Status](https://travis-ci.com/up885000/up885000.github.io.svg?branch=master)](https://travis-ci.com/up885000/up885000.github.io)
 
