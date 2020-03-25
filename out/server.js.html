@@ -28,7 +28,7 @@
         <article>
             <pre class="prettyprint source linenums"><code>/** 
  * @file Manages all of the backend database connections and queries.
- * @author UP891226, UP885000, UP885188, UP905446
+ * @author UP891226, UP885000, UP885188, UP905446, UP813077
  */
 
 'use strict';
@@ -60,12 +60,24 @@ const wss = new ws.Server({
 });
 
 //set which directory to read from
+app.use(express.static(__dirname + '/'));
 app.use(express.static(`${__dirname }/webpages`));
 
 //set the website url
 server.listen(port, () => {
     console.log('Server started:', `http://${ip.address()}:${port}`);
 });
+
+
+/**
+ * Function will close the currently open server.ancestors
+ * Only called during testing as leaving the server open would cause a build to fail.
+ *
+ */
+function stopServer(){
+    server.close();
+}
+
 
 const config = {
     "host": "localhost",
@@ -116,9 +128,10 @@ async function newMysqlConnection() { //Creates a MySQL Database connection
  */
 async function mysqlSelect(queryStr, queryVars) { //Runs MySQL Select Queries and returns results
     try {
-        const sqlConnection = await mysqlConnection(); //get the connection
+        const sqlConnection = await newMysqlConnection(); //get the connection
         const newQuery = sqlConnection.format(queryStr, queryVars); //format the query to avoid SQL Injection
         let [results, fields] = await sqlConnection.execute(newQuery); //run query
+        sqlConnection.end();
         return results; //return results
     } catch (error) {
         console.log("SQL Failure: ", error); //catch SQL errors and print to console
@@ -135,13 +148,14 @@ async function mysqlSelect(queryStr, queryVars) { //Runs MySQL Select Queries an
  *
  * @param {String} queryStr A string containing an SQL query.
  * @param {String[]} queryVars An array of values to be inserted into the SQL query.
- * @returns {boolean} True/False depending on success of the function.
+ * @returns {Boolean} True/False depending on success of the function.
  */
 async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries and returns whether the query was successful
     try {
-        const sqlConnection = await mysqlConnection(); //get the connection
+        const sqlConnection = await newMysqlConnection(); //get the connection
         const newQuery = sqlConnection.format(queryStr, queryVars); //format the query to avoid SQL Injection
         await sqlConnection.query(newQuery); //run query
+        sqlConnection.end();
         return true; //return true as any errors would drop to the catch statement below
     } catch (error) {
         console.log("SQL Failure: ", error); //catch SQL errors and print to console
@@ -152,10 +166,11 @@ async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries an
 app.get('/', function(req, res) {});
 
 app.get('/getRecipe', getRecipeInfo);
+app.get('/getRecipeId', getRecipe);
 app.post('/addReview', addReview);
 
 /**
- * This function will attempt to retrieve recipe information from the database.
+ * This function will attempt to retrieve the recipe id, name, and image location from the database.
  * If the query is successful it will return the requested data to the client.
  * If the query is unsuccessful it will log an error server side and return an error message to the client.
  * 
@@ -176,13 +191,34 @@ async function getRecipeInfo(req, res) {
 }
 
 /**
+ * This function will attempt to retrieve all information about a recipe from the database when provided witha recipe id.
+ * If the query is successful it will return the requested data to the client.
+ * If the query is unsuccessful it will log an error server side and return an error message to the client.
+ * 
+ * @param {Request} req The request from the client, this contains the necessary variables.
+ * @param {Response} res The response from the server, this contains a true/false response.
+ */
+async function getRecipe(req, res) {
+    try {
+        let name = req.query.name;
+        console.log(name);
+        const data = await mysqlSelect('select * from recipe where recipe_id = ?', [name]);
+        console.log(data);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
+    }
+}
+
+/**
  * This function will attempt to insert a review into the database.
  * If the query is successful it will log a success message and return true to the client.
  * If the query is unsuccessful it will return false to the client.
  * 
  * @param {Request} req The request from the client, this contains the necessary variables.
  * @param {Response} res The response from the server, this contains a true/false response.
- * @returns {boolean} True/False depending on success of the function.
+ * @returns {Boolean} True/False depending on success of the function.
  */
 async function addReview(req, res) {
     let recipe_id = req.body.recipe_id;
@@ -198,6 +234,14 @@ async function addReview(req, res) {
     } else {
         return false;
     } //return false so client can know review wasn't added
+}
+
+//export functions
+
+if (typeof module !== 'undefined' &amp;&amp; module.exports) {
+    exports.mysqlSelect = mysqlSelect;
+    exports.stopServer = stopServer;
+    exports.mysqlInsert = mysqlInsert;
 }</code></pre>
         </article>
     </section>
@@ -208,13 +252,13 @@ async function addReview(req, res) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#getRecipeInfo">getRecipeInfo</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeInfo">getRecipeInfo</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Mar 23 2020 13:45:56 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Mar 25 2020 20:45:32 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>

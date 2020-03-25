@@ -1,6 +1,6 @@
 /** 
  * @file Manages all of the backend database connections and queries.
- * @author UP891226, UP885000, UP885188, UP905446
+ * @author UP891226, UP885000, UP885188, UP905446, UP813077
  */
 
 'use strict';
@@ -120,7 +120,7 @@ async function mysqlSelect(queryStr, queryVars) { //Runs MySQL Select Queries an
  *
  * @param {String} queryStr A string containing an SQL query.
  * @param {String[]} queryVars An array of values to be inserted into the SQL query.
- * @returns {boolean} True/False depending on success of the function.
+ * @returns {Boolean} True/False depending on success of the function.
  */
 async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries and returns whether the query was successful
     try {
@@ -142,7 +142,7 @@ app.get('/getRecipeId', getRecipe);
 app.post('/addReview', addReview);
 
 /**
- * This function will attempt to retrieve recipe information from the database.
+ * This function will attempt to retrieve the recipe id, name, and image location from the database.
  * If the query is successful it will return the requested data to the client.
  * If the query is unsuccessful it will log an error server side and return an error message to the client.
  * 
@@ -162,6 +162,14 @@ async function getRecipeInfo(req, res) {
     }
 }
 
+/**
+ * This function will attempt to retrieve all information about a recipe from the database when provided witha recipe id.
+ * If the query is successful it will return the requested data to the client.
+ * If the query is unsuccessful it will log an error server side and return an error message to the client.
+ * 
+ * @param {Request} req The request from the client, this contains the necessary variables.
+ * @param {Response} res The response from the server, this contains a true/false response.
+ */
 async function getRecipe(req, res) {
     try {
         let name = req.query.name;
@@ -182,7 +190,7 @@ async function getRecipe(req, res) {
  * 
  * @param {Request} req The request from the client, this contains the necessary variables.
  * @param {Response} res The response from the server, this contains a true/false response.
- * @returns {boolean} True/False depending on success of the function.
+ * @returns {Boolean} True/False depending on success of the function.
  */
 async function addReview(req, res) {
     let recipe_id = req.body.recipe_id;

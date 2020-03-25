@@ -1,6 +1,6 @@
 /** 
  * @file Manages all of the fontend, clientside javascript interactions.
- * @author UP891226, UP885000, UP885188, UP905446
+ * @author UP891226, UP885000, UP885188, UP905446, UP813077
  */
 
 // print Window function
@@ -70,8 +70,14 @@ function load() {
 }
 
 
+/**
+ * This function will query the database for information about a selected recipe and then display it to the user.
+ * 
+ * Function is largely depreceated and replaced by selectRecipe().
+ */
 async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
+    let name = document.getElementById("recipeName").value;
     console.log(name);
     let response = await fetch('/getRecipe?name=' + name);
     console.log(response);
@@ -82,6 +88,11 @@ async function findRecipe() {
     document.getElementById('recipeTitle').innerHTML = r_name;
 }
 
+/**
+ * This function will query the database for information about a selected recipe and then display it to the user.
+ *
+ * @param {String} name The name of the recipe being searched for.
+ */
 async function selectRecipe(name) {
     //async function to search for recipies needs to be given a proper function
     console.log(name);
@@ -102,6 +113,14 @@ async function selectRecipe(name) {
 
 let timesFiredReview = 0;
 
+/**
+ * This function creates the neccessary form to enter review information.
+ *
+ * @param {Number} new_rating A numerical rating for the recipe ranging from 1-5.
+ * @param {Number} new_recID A numerical ID attached to the recipe.
+ * @param {String} new_review A text review for the recipe.
+ * @param {Button} new_submit A sumbit button.
+ */
 function revBtn(new_rating, new_recID, new_review, new_submit) {
     // setting up vaildation
     if (timesFiredReview < 1) {
@@ -144,6 +163,10 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
     }
 }
 
+/**
+ * This function is responsible for submitting a review. It uses the "/addReview" endpoint to do this.
+ * 
+ */
 async function submitForm() {
 
     //gets the function addReview from the server.js file and runs it
@@ -157,7 +180,11 @@ async function submitForm() {
     timesFiredReview = timesFiredReview - 1;
 }
 
-//Initialise js buttons
+
+/**
+ * Initialises Javascript buttons, this function is called immideatly when the page loads.
+ *
+ */
 function init() {
     if (document.getElementById("down")) {
         document.getElementById("down").addEventListener('click', svLcl);
