@@ -28,14 +28,6 @@ QUnit.test('Recipe table exists', async function(assert){
   assert.equal(parsed, expected, 'Recipe table exists ✅');
 });
 
-/*
-
-
-ADD TESTS FOR REST OF TABLES HERE
-
-
-*/
-
 QUnit.module('SQL Query 🥞');
 
 QUnit.test('findRecipe Exists', function(assert){
