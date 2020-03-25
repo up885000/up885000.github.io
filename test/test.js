@@ -74,7 +74,7 @@ QUnit.test('recipe_category_line table exists', async function(assert){
 
 QUnit.test('recipe_ingredients table exists', async function(assert){
   let query = 'select quantity from recipe_ingredients where (recipe_id, ingredients_id, type) = (?)';
-  let vars = ["%" + "1, 32, "metric" + "%"];
+  let vars = [1, 32, "metric"];
   let expected = '400';
   let response = await mysqlSelect(query, vars);
   let parsed = response[0].quantity;
