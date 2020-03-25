@@ -13,6 +13,19 @@ if (typeof(require) !== 'undefined') {
 
 //const testlib = require('../webpages/index.js');
 
+QUnit.module('Database');
+
+QUnit.test('Recipe table exists 📅', async function(assert){
+  let query = 'select recipe_id from recipe where lower(recipe_name) like ?';
+  let vars = ["%" + "jollof" + "%"];
+  let expected = '1';
+  let response = await mysqlSelect(query, vars);
+  let parsed = response[0].recipe_name;
+  stopServer();
+
+  assert.equal(parsed, expected, 'Recipe table exists ✅');
+});
+
 QUnit.module('SQL Query');
 
 QUnit.test('findRecipe Exists 🥕', function(assert){
