@@ -10,9 +10,10 @@ if (typeof(require) !== 'undefined') {
   mysqlSelect = require('../server.js').mysqlSelect;
   stopServer = require('../server.js').stopServer;
   mysqlInsert = require('../server.js').mysqlInsert;
+  fave = require('../webpages/index.js').fave;
+  submitForm = require('../webpages/index.js').submitForm;
+  selectRecipe = require('../webpages/index.js').selectRecipe;
 }
-
-//const testlib = require('../webpages/index.js');
 
 QUnit.module('Database 🥕');
 
@@ -87,4 +88,30 @@ QUnit.test('RecipeApp records are updateable', async function(assert){
   stopServer();
 
   assert.equal(response, true, 'Test review successfully removed ✅');
+});
+
+QUnit.module('Frontend 💻');
+
+QUnit.test('favouriteRecipe exists', function(assert){
+  assert.ok(fave, 'favouriteRecipe found ✅');
+});
+
+QUnit.test('favouriteRecipe is a function', function(assert){
+assert.ok(typeof fave === 'function', 'favouriteRecipe is a function ✅');
+});
+
+QUnit.test('submitForm exists', function(assert){
+  assert.ok(submitForm, 'submitForm found ✅');
+});
+
+QUnit.test('submitForm is a function', function(assert){
+assert.ok(typeof submitForm === 'function', 'submitForm is a function ✅');
+});
+
+QUnit.test('selectRecipe exists', function(assert){
+  assert.ok(selectRecipe, 'selectRecipe found ✅');
+});
+
+QUnit.test('selectRecipe is a function', function(assert){
+assert.ok(typeof selectRecipe === 'function', 'selectRecipe is a function ✅');
 });

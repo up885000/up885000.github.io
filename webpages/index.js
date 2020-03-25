@@ -212,4 +212,7 @@ if (typeof window !== 'undefined') {
 if (typeof module !== 'undefined' && module.exports) {
     exports.revBtn = revBtn;
     exports.findRecipe = findRecipe;
+    exports.fave = fave;
+    exports.submitForm = submitForm;
+    exports.selectRecipe = selectRecipe;
 }
