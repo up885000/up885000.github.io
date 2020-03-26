@@ -178,7 +178,6 @@ function imageRandomizer(){
     //query server to add all images into array
     let cycles = 0;
     while(cycles < 6){
-        const genNum = Math.floor(Math.random() * Math.floor(6));
         let currentImage = document.getElementById('fI' + cycles);
         currentImage.src = data[cycle].image_location;
         currentImage.setAttribute('class', data[cycle].recipe_ID);
