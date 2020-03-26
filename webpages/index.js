@@ -191,6 +191,7 @@ async function imageRandomizer() {
     let data = await response.json();
 
     updateButtons(data);
+    selectRecipe(document.getElementById("fI1").className);
 }
 
 /**
@@ -239,7 +240,6 @@ function init() {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
     if (document.getElementById("addReview")) {
-        alert("I shouldn't be here");
         document.getElementById("addReview").addEventListener('click', submitForm);
     }
     document.getElementById("showsaves").addEventListener('click', showSaves);
@@ -261,7 +261,6 @@ function init() {
     document.getElementById("fI6").addEventListener('click', async() => {
         selectRecipe(document.getElementById("fI6").className);
     });
-    selectRecipe(document.getElementById("fI1").className);
 }
 
 //add click listeners
