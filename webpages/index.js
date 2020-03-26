@@ -2,6 +2,7 @@
  * @file Manages all of the fontend, clientside javascript interactions.
  * @author UP891226, UP885000, UP885188, UP905446, UP813077
  */
+'use strict';
 
 // print Window function
 function svLcl() {
@@ -96,8 +97,8 @@ async function findRecipe() {
  * @param property
  * @returns {Function}
  */
-function sortByProperty (property) {
-    return function (x, y) {
+function sortByProperty(property) {
+    return function(x, y) {
         return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
     };
 }
