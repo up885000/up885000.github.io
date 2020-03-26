@@ -137,9 +137,10 @@ async function mysqlInsert(queryStr, queryVars) { //Runs MySQL Insert Queries an
 
 app.get('/', function(req, res) {});
 
-app.get('/getRecipe', getRecipeInfo);
-app.get('/getRecipeId', getRecipe);
+app.get('/getRecipe', getRecipe);
+app.get('/getRecipeId', getRecipeId);
 app.post('/addReview', addReview);
+app.post('/getRandomImages', getRandomImages);
 
 /**
  * This function will attempt to retrieve the recipe id, name, and image location from the database.
@@ -149,7 +150,7 @@ app.post('/addReview', addReview);
  * @param {Request} req The request from the client, this contains the necessary variables.
  * @param {Response} res The response from the server, this contains a true/false response.
  */
-async function getRecipeInfo(req, res) {
+async function getRecipe(req, res) {
     try {
         let name = req.query.name;
         console.log(name);
@@ -162,19 +163,30 @@ async function getRecipeInfo(req, res) {
     }
 }
 
+async function getRandomImages(req, res) {
+    try {
+        const data = await mysqlSelect('SELECT recipe_id, image_location FROM recipe ORDER BY RAND() LIMIT 0,6', []);
+        console.log(data);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
+    }
+}
+
 /**
- * This function will attempt to retrieve all information about a recipe from the database when provided witha recipe id.
+ * This function will attempt to retrieve all information about a recipe from the database when provided with a recipe id.
  * If the query is successful it will return the requested data to the client.
  * If the query is unsuccessful it will log an error server side and return an error message to the client.
  * 
  * @param {Request} req The request from the client, this contains the necessary variables.
  * @param {Response} res The response from the server, this contains a true/false response.
  */
-async function getRecipe(req, res) {
+async function getRecipeId(req, res) {
     try {
-        let name = req.query.name;
-        console.log(name);
-        const data = await mysqlSelect('select * from recipe where recipe_id = ?', [name]);
+        let id = req.query.name;
+        console.log(id);
+        const data = await mysqlSelect('select * from recipe where recipe_id = ?', [id]);
         console.log(data);
         res.send(data);
     } catch (error) {

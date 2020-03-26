@@ -93,10 +93,10 @@ async function findRecipe() {
  *
  * @param {String} name The name of the recipe being searched for.
  */
-async function selectRecipe(name) {
+async function selectRecipe(id) {
     //async function to search for recipies needs to be given a proper function
-    console.log(name);
-    let response = await fetch('/getRecipeId?name=' + name);
+    console.log(id);
+    let response = await fetch('/getRecipeId?name=' + id);
     console.log(response);
     let data = await response.json();
     //data is the data outgoing from the sql database
