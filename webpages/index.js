@@ -107,11 +107,14 @@ async function selectRecipe(id) {
     document.getElementById('difficulty').innerHTML = "Difficulty: " + data[0].difficulty;
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
     document.getElementById('rev').className = name;
-    let response = await fetch('/getIngredientsId?id=' + id);
-    console.log(response);
-    let data = await response.json();
-    console.log(data);
-    document.getElementById('ingredients').innerHTML = data;
+    response = await fetch('/getIngredientsId?id=' + id);
+    data = await response.json();
+    var i;
+    let ingredients = "";
+    for (i = 0; i < data.length; i++) {
+        ingredients += data[i].ingredients_name + " " + data[i].quantity + " " + data[i].measurement_name + "\n";
+    }
+    document.getElementById('ingredients').innerHTML = ingredients;
 }
 
 let timesFiredReview = 0;
