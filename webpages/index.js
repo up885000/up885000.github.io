@@ -162,7 +162,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
             if (event.keyCode == 13) {
                 document.getElementById('addReview').click();
             }
-        })
+        });
 
     } else {
         console.log("error you already have a review form in progress");
@@ -247,7 +247,7 @@ function init() {
             if (event.keyCode == 13) {
                 document.getElementById("findRecipe").click();
             }
-        })
+        });
     }
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
