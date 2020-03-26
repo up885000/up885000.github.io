@@ -170,4 +170,5 @@
     #ingredients {
         grid-column: 1;
         grid-row: 4/6;
+        margin: auto;
     }

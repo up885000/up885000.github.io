@@ -112,7 +112,9 @@ async function selectRecipe(id) {
     var i;
     let ingredients = "";
     for (i = 0; i < data.length; i++) {
-        ingredients += data[i].ingredients_name + " " + data[i].quantity + " " + data[i].measurement_name + "\n";
+        ingredients += "<li>" + data[i].ingredients_name + " " +
+            data[i].quantity + " " +
+            data[i].measurement_name + " < /li>";
     }
     document.getElementById('ingredients').innerHTML = ingredients;
 }
