@@ -109,6 +109,7 @@ async function selectRecipe(name) {
     document.getElementById('cookingTime').innerHTML = "Cooking Time: " + data[0].cooking_time;
     document.getElementById('difficulty').innerHTML = "Difficulty: " + data[0].difficulty;
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
+    document.getElementById('fave').className = name;
 }
 
 let timesFiredReview = 0;
@@ -121,16 +122,9 @@ let timesFiredReview = 0;
  * @param {String} new_review A text review for the recipe.
  * @param {Button} new_submit A sumbit button.
  */
-function revBtn(new_rating, new_recID, new_review, new_submit) {
+function revBtn(new_rating, name, new_review, new_submit) {
     // setting up vaildation
     if (timesFiredReview < 1) {
-        //adds recipe_id for the addReview() function to use
-        const new_recID = document.createElement('input');
-        new_recID.setAttribute('id', 'recipe_id');
-        new_recID.setAttribute('type', 'text');
-        new_recID.setAttribute('name', 'recipe_id');
-        new_recID.setAttribute('class', 'reviewForm');
-        reviewForm.appendChild(new_recID);
 
         //adds rating for the addReview() function to use
         const new_rating = document.createElement('input');
@@ -171,9 +165,10 @@ async function submitForm() {
 
     //gets the function addReview from the server.js file and runs it
     console.log("initiating recipe review");
-    let response = await fetch('/addReview?recipe_id=' + new_recID + "&rating=" + new_rating + "&review=" + new_review);
+    let recipe_id = document.getElementById('fave').className;
+    let response = await fetch('/addReview?recipe_id=' + name + "&rating=" + new_rating + "&review=" + new_review);
     console.log("you have successfully reviewed this recipe");
-    search.removeChild(new_recID);
+
     search.removeChild(new_rating);
     search.removeChild(new_review);
     search.removeChild(new_submit);
