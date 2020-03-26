@@ -132,9 +132,9 @@ async function selectRecipe(id) {
     document.getElementById('cookingTime').innerHTML = "Cooking Time: " + data[0].cooking_time;
     document.getElementById('difficulty').innerHTML = "Difficulty: " + data[0].difficulty;
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
-    document.getElementById('rev').className = name;
     response = await fetch('/getIngredientsId?id=' + id);
 
+    selected_recipe = data[0].recipe_id;
     faveCheck(data[0].recipe_name); //checks if favourite star should be on
 
     data = await response.json();
@@ -149,6 +149,7 @@ async function selectRecipe(id) {
 }
 
 let timesFiredReview = 0;
+let selected_recipe = null;
 
 /**
  * This function creates the neccessary form to enter review information.
@@ -205,7 +206,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
 async function submitForm() {
     //gets the function addReview from the server.js file and runs it
     console.log("initiating recipe review");
-    let recipe_id = document.getElementById('rev').className;
+    let recipe_id = selected_recipe; //From selectRecipe()
     let rating = document.getElementById('rating').value;
     let review = document.getElementById('review').value;
     let response = fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + rating + "&review=" + review);

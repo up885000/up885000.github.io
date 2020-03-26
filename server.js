@@ -141,7 +141,7 @@ app.get('/getRecipe', getRecipe);
 app.get('/getRecipeId', getRecipeId);
 app.get('/getIngredientsId', getIngredientsId);
 app.get('/getRandomImages', getRandomImages);
-app.post('/addReview', addReview);
+app.get('/addReview', addReview);
 
 /**
  * This function will attempt to retrieve the recipe id, name, and image location from the database.
@@ -224,9 +224,7 @@ async function addReview(req, res) {
     let rating = req.query.rating;
     let review = req.query.review;
     console.log(recipe_id + rating + review);
-    const Query = await mysqlInsert(
-        'INSERT INTO reviews (recipe_id, rating, review) VALUES (?,?,?)', [recipe_id, rating, review]
-    );
+    const Query = await mysqlInsert('INSERT INTO reviews (recipe_id, rating, review) VALUES (?,?,?)', [recipe_id, rating, review]);
     if (Query) { //If Query was successfull (if not then error has already been printed to console)
         console.log('Added review for: ', recipe_id);
         return true; //return true so that client can know review was added successfully
