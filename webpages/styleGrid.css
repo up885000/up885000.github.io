@@ -55,7 +55,7 @@
         width: 80%;
     }
     
-    .button {
+    nav>input {
         /* clickables in navbar */
         margin: 1rem;
         width: 3rem;
