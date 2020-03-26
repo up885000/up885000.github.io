@@ -20,7 +20,7 @@
             <input class="recipeId" id="rev" type="image" src="media/review.png">
             <input class="button" id="fave" type="image" src="media/offStar.png">
             <input class="button" id="load" type="image" src="media/save.png">
-            <input class="button" id="showsaves" type="image" src="media/Penne.jpg">
+            <input class="button" id="showsaves" type="image" src="media/recipies.png">
         </nav>
 
         <section id="search">
@@ -28,26 +28,37 @@
             <section class="searchBar">
                 <input type="search" id="recipeName" name="recipeName">
                 <input type="button" name="findRecipe" id="findRecipe" value="Submit">
+                <!-- dropdown menu -->
+                <select name="Sort By" id="sortBy">
+                    <option value="">--Sort by--</option>
+                    <option value="alphaSort">Alphabetical</option>
+                    <option value="prepTimeSort">Prep time</option>
+                    <option value="cookTimeSort">Cooking time</option>
+                </select>
+                <select name="Category" id="category">
+                    <option value="">--Categories--</option>
+                    <option value="Alphabetical">Alphabetical</option>
+                    <option value="African">African</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Side">Side</option>
+                    <option value="British">British</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Mexican">Mexican</option>
+                </select>
             </section>
-            <!-- dropdown menu -->
-            <select name="Sort By" id="sortBy">
-                <option value="">--Please choose an option--</option>
-                <option value="recipe_name">Alphabetical</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
             <!-- Action sends to /addReview - Needs to be changed to stop load of new page -->
             <!-- google this add event listener to not send to new page  -->
             <form id="reviewForm"></form>
-            <img class="6" id="fI1" type="image" src="">
-            <img class="4" id="fI2" type="image" src="">
-            <img class="1" id="fI3" type="image" src="">
-            <img class="5" id="fI4" type="image" src="">
-            <img class="3" id="fI5" type="image" src="">
-            <img class="2" id="fI6" type="image" src="">
+            <img class="6" id="fI1" src="">
+            <img class="4" id="fI2" src="">
+            <img class="1" id="fI3" src="">
+            <img class="5" id="fI4" src="">
+            <img class="3" id="fI5" src="">
+            <img class="2" id="fI6" src="">
             <img id="logo" src="media/cookingDumma.png">
         </section>
 
