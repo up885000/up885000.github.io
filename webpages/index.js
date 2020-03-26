@@ -82,10 +82,7 @@ async function findRecipe() {
     let response = await fetch('/getRecipe?name=' + name);
     console.log(response);
     let data = await response.json();
-    //data is the data outgoing from the sql database
-    console.log(data);
-    let r_name = data[0].recipe_name; //example of parsing json
-    document.getElementById('recipeTitle').innerHTML = r_name;
+    updateButtons(data);
 }
 
 /**
@@ -176,23 +173,32 @@ async function submitForm() {
 
 /**
  * Randomly selects 6 recipes to display when the page loads and then maps these images and associated recipe_id's to the html buttons.
- *
+ *  
  */
 async function imageRandomizer(){
     //query server to add all images into array
     let response = await fetch('/getRandomImages');
     let data = await response.json();
 
+    updateButtons(data);
+}
+
+function updateButtons(data){
     let cycles = 0;
     while(cycles < 6){
         let currentImage = document.getElementById('fI' + (cycles + 1));
-        currentImage.src = data[cycles].image_location;
-        currentImage.setAttribute('class', data[cycles].recipe_id);
-        cycles = cycles + 1;
+        if (data[cycles]){
+            currentImage.src = data[cycles].image_location;
+            currentImage.setAttribute('class', data[cycles].recipe_id);
+            cycles = cycles + 1;
+        }
+        else {
+            currentImage.src = '';
+            currentImage.setAttribute('class', '0');
+            cycles = cycles + 1;
+        }
     }
 }
-
-
 
 
 /**
