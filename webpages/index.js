@@ -110,10 +110,10 @@ function sortByProperty(property) {
  */
 function favecheck(){
   let fileName = document.getElementById('recipeTitle').innerHTML;
-  if(document.getElementById('fave').src = 'media/offStar.png' && localStorage.getItem(fileName)){
+  if(document.getElementById('fave').src == 'media/offStar.png' && localStorage.getItem(fileName)){
     document.getElementById('fave').src = 'media/onStar.png';
   }
-  else if(document.getElementById('fave').src = 'media/onStar.png' && localStorage.getItem(fileName) === null){
+  else if(document.getElementById('fave').src == 'media/onStar.png' && localStorage.getItem(fileName) === null){
     document.getElementById('fave').src = 'media/offStar.png';
   }
 }
