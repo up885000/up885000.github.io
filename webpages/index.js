@@ -107,16 +107,20 @@ function sortByProperty(property) {
 
 /**
  * This function helps track which recipes have been favourited.
+ * 
+ * @param {String} fileName The name of the recipe currently open.
  */
-function favecheck(){
-  let fileName = document.getElementById('recipeTitle').innerHTML;
-  if(document.getElementById('fave').src == 'media/offStar.png' && localStorage.getItem(fileName)){
-    document.getElementById('fave').src = 'media/onStar.png';
+function favecheck(fileName){
+    let fileCheck = localStorage.getItem(fileName);
+
+    if(fileCheck !== null){
+      document.getElementById('fave').src = 'media/onStar.png';
+    }
+    else if(fileCheck === null){
+      document.getElementById('fave').src = 'media/offStar.png';
+    }
+    console.log('favecheck()', fileName);
   }
-  else if(document.getElementById('fave').src == 'media/onStar.png' && localStorage.getItem(fileName) === null){
-    document.getElementById('fave').src = 'media/offStar.png';
-  }
-}
 
 /**
  * This function will query the database for information about a selected recipe and then display it to the user.
@@ -140,6 +144,9 @@ async function selectRecipe(id) {
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
     document.getElementById('rev').className = name;
     response = await fetch('/getIngredientsId?id=' + id);
+
+    favecheck(data[0].recipe_name); //checks if favourite star should be on
+
     data = await response.json();
     var i;
     let ingredients = "";
@@ -149,7 +156,6 @@ async function selectRecipe(id) {
             data[i].measurement_name;
     }
     document.getElementById('ingredients').innerHTML = ingredients;
-    favecheck();
 }
 
 let timesFiredReview = 0;
