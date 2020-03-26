@@ -149,7 +149,6 @@ function revBtn(new_rating, name, new_review, new_submit) {
 
         timesFiredReview = timesFiredReview + 1;
 
-        document.getElementById("submit").addEventListener('click', submitForm);
 
     } else {
         console.log("error you already have a review form in progress");
@@ -164,8 +163,9 @@ async function submitForm() {
 
     //gets the function addReview from the server.js file and runs it
     console.log("initiating recipe review");
-    let recipe_id = document.getElementById('fave').className;
+    let recipe_id = document.getElementById('fave').className
     let response = await fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + new_rating + "&review=" + new_review);
+    console.log(response)
     console.log("you have successfully reviewed this recipe");
     search.removeChild(new_rating);
     search.removeChild(new_review);
@@ -196,9 +196,9 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
-    // if (document.getElementById("submit")) {
-    //     document.getElementById("submit").addEventListener('click', submitForm);
-    // }
+    if (document.getElementById("submit")) {
+        document.getElementById("submit").addEventListener('click', submitForm);
+    }
     document.getElementById("showsaves").addEventListener('click', showSaves);
     document.getElementById("fI1").addEventListener('click', async() => {
         selectRecipe(document.getElementById("fI1").className);
