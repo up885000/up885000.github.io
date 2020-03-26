@@ -143,8 +143,9 @@ function revBtn(new_rating, name, new_review, new_submit) {
         //adds submit button for the addReview() forms to use
         const new_submit = document.createElement('input');
         new_submit.setAttribute('id', 'addReview');
-        new_submit.setAttribute('type', 'submit');
+        new_submit.setAttribute('type', 'button');
         new_submit.setAttribute('name', 'addReview');
+        new_submit.setAttribute('value', 'Submit');
         reviewForm.appendChild(new_submit);
 
         timesFiredReview = timesFiredReview + 1;
@@ -160,7 +161,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
  * 
  */
 async function submitForm() {
-
+    e.preventDefault();
     //gets the function addReview from the server.js file and runs it
     console.log("initiating recipe review");
     let recipe_id = document.getElementById('rev').className;
