@@ -1,4 +1,4 @@
-/** 
+/**
  * @file Manages all of the fontend, clientside javascript interactions.
  * @author UP891226, UP885000, UP885188, UP905446, UP813077
  */
@@ -19,7 +19,7 @@ function fave() {
     let favebutton = document.getElementById('fave');
     if (favebutton.src == "media/offstar.png") {
         currentvalue = false;
-    } 
+    }
     else if (favebutton.src == "media/onstar.png") {
         currentvalue = true;
     }
@@ -75,7 +75,7 @@ function load() {
 /**
  * This function will query the database for information about a selected recipe and then display it to the user.
  * It is displayed by updating the recipe list/buttons on the screen.
- * 
+ *
  * @param {String} name Pulls the recipe being search for from the HTML element recipeName.
  */
 async function findRecipe() {
@@ -103,6 +103,19 @@ function sortByProperty(property) {
     return function(x, y) {
         return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
     };
+}
+
+/**
+ * This function helps track which recipes have been favourited.
+ */
+function favecheck(){
+  let fileName = document.getElementById('recipeTitle').innerHTML;
+  if(document.getElementById('fave').src = 'media/offStar.png' && localStorage.getItem(fileName));{
+    document.getElementById('fave').src = 'media/onStar.png';
+  }
+  else if(document.getElementById('fave').src = 'media/onStar.png' && localStorage.getItem(fileName) === null){
+    document.getElementById('fave').src = 'media/offStar.png';
+  }
 }
 
 /**
@@ -136,6 +149,7 @@ async function selectRecipe(id) {
             data[i].measurement_name;
     }
     document.getElementById('ingredients').innerHTML = ingredients;
+    favecheck();
 }
 
 let timesFiredReview = 0;
@@ -190,7 +204,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
 
 /**
  * This function is responsible for submitting a review. It uses the "/addReview" endpoint to do this.
- * 
+ *
  */
 async function submitForm() {
     //gets the function addReview from the server.js file and runs it
@@ -208,7 +222,7 @@ async function submitForm() {
 
 /**
  * Randomly selects 6 recipes to display when the page loads and then maps these images and associated recipe_id's to the html buttons.
- *  
+ *
  */
 async function imageRandomizer() {
     //query server to add all images into array
