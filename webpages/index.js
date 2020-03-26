@@ -2,7 +2,6 @@
  * @file Manages all of the fontend, clientside javascript interactions.
  * @author UP891226, UP885000, UP885188, UP905446, UP813077
  */
-'use strict';
 
 // print Window function
 function svLcl() {
