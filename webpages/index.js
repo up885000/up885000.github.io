@@ -221,6 +221,7 @@ function updateButtons(data) {
  */
 function init() {
     imageRandomizer();
+    selectRecipe(document.getElementById("fI1").className);
     if (document.getElementById("down")) {
         document.getElementById("down").addEventListener('click', svLcl);
     }
