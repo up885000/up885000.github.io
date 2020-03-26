@@ -166,11 +166,11 @@ async function submitForm() {
     let recipe_id = document.getElementById('rev').className;
     let rating = document.getElementById('rating').value;
     let review = document.getElementById('review').value;
-    let response = await fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + rating + "&review=" + review);
+    let response = fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + rating + "&review=" + review);
     alert("you have successfully reviewed this recipe");
-    search.removeChild(document.getElementById('rating'));
-    search.removeChild(document.getElementById('review'));
-    search.removeChild(document.getElementById('addReview'));
+    reviewform.removeChild(document.getElementById('rating'));
+    reviewform.removeChild(document.getElementById('review'));
+    reviewform.removeChild(document.getElementById('addReview'));
     timesFiredReview = timesFiredReview - 1;
 }
 
