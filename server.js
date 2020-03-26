@@ -155,7 +155,7 @@ async function getRecipe(req, res) {
     try {
         let name = req.query.name;
         console.log(name);
-        const data = await mysqlSelect('select recipe_id,recipe_name,image_location from recipe where lower(recipe_name) like ?', ["%" + name + "%"]);
+        const data = await mysqlSelect('select recipe_id, recipe_name, image_location, preparation_time, cooking_time from recipe where lower(recipe_name) like ?', ["%" + name + "%"]);
         console.log(data);
         res.send(data);
     } catch (error) {
