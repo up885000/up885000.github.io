@@ -168,9 +168,9 @@ async function submitForm() {
     let review = document.getElementById('review').value;
     let response = await fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + rating + "&review=" + review);
     alert("you have successfully reviewed this recipe");
-    search.removeChild(new_rating);
-    search.removeChild(new_review);
-    search.removeChild(new_submit);
+    search.removeChild(document.getElementById('rating'));
+    search.removeChild(document.getElementById('review'));
+    search.removeChild(document.getElementById('addReview'));
     timesFiredReview = timesFiredReview - 1;
 }
 
