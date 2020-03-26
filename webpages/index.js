@@ -168,6 +168,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
         new_rating.setAttribute('id', 'rating');
         new_rating.setAttribute('type', 'text');
         new_rating.setAttribute('name', 'rating');
+        new_rating.setAttribute('placeholder', 'Rating');
         reviewForm.appendChild(new_rating);
 
         //adds review for the addReview() function to use
@@ -175,6 +176,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
         new_review.setAttribute('id', 'review');
         new_review.setAttribute('type', 'text');
         new_review.setAttribute('name', 'review');
+        new_review.setAttribute('placeholder', 'Review');
         reviewForm.appendChild(new_review);
 
         //adds submit button for the addReview() forms to use
@@ -205,12 +207,11 @@ function revBtn(new_rating, name, new_review, new_submit) {
  */
 async function submitForm() {
     //gets the function addReview from the server.js file and runs it
-    console.log("initiating recipe review");
     let recipe_id = selected_recipe; //From selectRecipe()
     let rating = document.getElementById('rating').value;
     let review = document.getElementById('review').value;
     let response = fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + rating + "&review=" + review);
-    alert("you have successfully reviewed this recipe");
+    alert("Review has been submitted successfully.");
     reviewForm.removeChild(document.getElementById('rating'));
     reviewForm.removeChild(document.getElementById('review'));
     reviewForm.removeChild(document.getElementById('addReview'));
