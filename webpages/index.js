@@ -272,7 +272,7 @@ function init() {
     if (document.getElementById("addReview")) {
         document.getElementById("addReview").addEventListener('click', submitForm);
     }
-    document.getElementById("showsaves").addEventListener('click', showSaves);
+    document.getElementById("showSaves").addEventListener('click', showSaves);
     document.getElementById("fI1").addEventListener('click', async() => {
         selectRecipe(document.getElementById("fI1").className);
     });
