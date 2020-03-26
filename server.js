@@ -193,9 +193,9 @@ async function getRecipe(req, res) {
  * @returns {Boolean} True/False depending on success of the function.
  */
 async function addReview(req, res) {
-    let recipe_id = req.body.recipe_id;
-    let rating = req.body.rating;
-    let review = req.body.review;
+    let recipe_id = req.query.recipe_id;
+    let rating = req.query.rating;
+    let review = req.query.review;
     console.log(recipe_id + rating + review);
     const Query = await mysqlInsert(
         'INSERT INTO reviews (recipe_id, rating, review) VALUES (?,?,?)', [recipe_id, rating, review]
