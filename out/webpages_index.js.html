@@ -26,7 +26,7 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** 
+            <pre class="prettyprint source linenums"><code>/**
  * @file Manages all of the fontend, clientside javascript interactions.
  * @author UP891226, UP885000, UP885188, UP905446, UP813077
  */
@@ -37,25 +37,20 @@ function svLcl() {
     console.log("user has initiated a save");
 }
 
-// Favourite recipe function
-let currentvalue = false;
-
-let favestring = null;
-
+/**
+ * This function manages saving and removing recipes in local storage.
+ * 
+ * @param {String} fileName The name of the currently open recipe.
+ */
 function fave() {
-    let title = document.getElementById('recipeTitle').innerHTML;
-    let favebutton = document.getElementById('fave');
-    if (favebutton.src == "media/offstar.png") {
-        currentvalue = false;
-    } else if (favebutton.src == "media/onstar.png") {
-        currentvalue = true;
+    let fileName = document.getElementById('recipeTitle').innerHTML;
+    let fileCheck = localStorage.getItem(fileName);
+
+    if(fileCheck !== null){ //Remove files from storage
+        window.localStorage.removeItem(fileName);
     }
-    if (currentvalue == false) {
-        currentvalue = true;
-        //this is saveing
-        // switches the image source from faved to unfaved
-        document.getElementById('fave').src = 'media/onStar.png';
-        let fileName = title;
+
+    if (fileCheck === null) { //Adds file to storage and validates name.
         if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
         } else {
@@ -63,16 +58,8 @@ function fave() {
             window.localStorage.setItem(fileName, savefile);
         }
     }
-    //Add local storage element here **
-    else if (currentvalue == true) {
-        currentvalue = false;
-        //this is un-saveing
-        window.localStorage.removeItem(fileName);
 
-        // we need to edit the fave stars to be the same size and file format
-        document.getElementById('fave').src = 'media/offStar.png';
-        //update sql database that user has unfaved recipe
-    }
+    faveCheck(fileName);
 }
 
 let savefiles = [];
@@ -82,18 +69,24 @@ function showSaves() {
         savefiles.push(localStorage.key(i));
     }
     window.alert(savefiles);
-    saveFiles = [];
+    savefiles = [];
 }
 
 
+/**
+ * This function manages loading saved recipes from local storage.
+ *
+ * @param {String} fileName The name of the recipe attempting to be opened.
+ */ 
 function load() {
-    let fileName = prompt("FileName: ", "");
-    if (fileName == null || fileName == "" || fileName == " ") {
-        alert("Error: Invalid FileName");
-    } else {
-        const savefile = window.localStorage.getItem(fileName);
-        document.getElementById('recipe').innerHTML = savefile;
-        document.getElementById('fave').src = 'media/onStar.png';
+    let fileName = prompt("fileName: ", "");
+    if (localStorage.getItem(fileName) !== null){
+      const savefile = window.localStorage.getItem(fileName);
+      document.getElementById('recipe').innerHTML = savefile;
+      document.getElementById('fave').src = 'media/onStar.png';
+    }
+    else {
+      window.alert("Error: Invalid fileName");
     }
 }
 
@@ -101,18 +94,51 @@ function load() {
 /**
  * This function will query the database for information about a selected recipe and then display it to the user.
  * It is displayed by updating the recipe list/buttons on the screen.
- * 
+ *
  * @param {String} name Pulls the recipe being search for from the HTML element recipeName.
  */
 async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
     let name = document.getElementById("recipeName").value;
+    let sortMethod = document.getElementById('sortBy').value;
+    let category = document.getElementById('category').value;
+    console.log(sortMethod);
     console.log(name);
-    let response = await fetch('/getRecipe?name=' + name);
+    let response = await fetch('/getRecipe?name=' + name + '&amp;category=' + category);
     console.log(response);
     let data = await response.json();
+    data.sort(sortByProperty(sortMethod));
+    console.log(data);
     updateButtons(data);
 }
+
+/**
+ * Generic array sorting
+ *
+ * @param property
+ * @returns {Function}
+ */
+function sortByProperty(property) {
+    return function(x, y) {
+        return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+    };
+}
+
+/**
+ * This function helps track which recipes have been favourited.
+ * 
+ * @param {String} fileName The name of the recipe currently open.
+ */
+function faveCheck(fileName){
+    let fileCheck = localStorage.getItem(fileName);
+
+    if(fileCheck !== null){
+      document.getElementById('fave').src = 'media/onStar.png';
+    }
+    else if(fileCheck === null){
+      document.getElementById('fave').src = 'media/offStar.png';
+    }
+  }
 
 /**
  * This function will query the database for information about a selected recipe and then display it to the user.
@@ -128,14 +154,26 @@ async function selectRecipe(id) {
     //data is the data outgoing from the sql database
     console.log(data);
     document.getElementById('recipeTitle').innerHTML = data[0].recipe_name;
-    document.getElementById('recipeImg').src = ".." + data[0].image_location; //===============
+    document.getElementById('recipeImg').src = ".." + data[0].image_location;
     document.getElementById('method').innerHTML = data[0].recipe_description;
-    // document.getElementById('ingredients').innerHTML = data[0].recipe_name;
     document.getElementById('prepTime').innerHTML = "Preperation Time: " + data[0].preparation_time;
     document.getElementById('cookingTime').innerHTML = "Cooking Time: " + data[0].cooking_time;
     document.getElementById('difficulty').innerHTML = "Difficulty: " + data[0].difficulty;
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
     document.getElementById('rev').className = name;
+    response = await fetch('/getIngredientsId?id=' + id);
+
+    faveCheck(data[0].recipe_name); //checks if favourite star should be on
+
+    data = await response.json();
+    var i;
+    let ingredients = "";
+    for (i = 0; i &lt; data.length; i++) {
+        ingredients += "&lt;li>" + data[i].ingredients_name + " " +
+            data[i].quantity + " " +
+            data[i].measurement_name;
+    }
+    document.getElementById('ingredients').innerHTML = ingredients;
 }
 
 let timesFiredReview = 0;
@@ -175,8 +213,14 @@ function revBtn(new_rating, name, new_review, new_submit) {
         reviewForm.appendChild(new_submit);
 
         timesFiredReview = timesFiredReview + 1;
-
         document.getElementById('addReview').addEventListener('click', submitForm);
+
+        document.getElementById("review").addEventListener("keyup", function(event) {
+            if (event.keyCode == 13) {
+                document.getElementById('addReview').click();
+            }
+        });
+
     } else {
         console.log("error you already have a review form in progress");
     }
@@ -184,7 +228,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
 
 /**
  * This function is responsible for submitting a review. It uses the "/addReview" endpoint to do this.
- * 
+ *
  */
 async function submitForm() {
     //gets the function addReview from the server.js file and runs it
@@ -202,14 +246,15 @@ async function submitForm() {
 
 /**
  * Randomly selects 6 recipes to display when the page loads and then maps these images and associated recipe_id's to the html buttons.
- *  
+ *
  */
-async function imageRandomizer(){
+async function imageRandomizer() {
     //query server to add all images into array
     let response = await fetch('/getRandomImages');
     let data = await response.json();
 
     updateButtons(data);
+    selectRecipe(document.getElementById("fI1").className);
 }
 
 /**
@@ -217,17 +262,16 @@ async function imageRandomizer(){
  *
  * @param {JSON[]} data The array of json given by formatting a fetch api request.
  */
-function updateButtons(data){
+function updateButtons(data) {
     let cycles = 0;
-    while(cycles &lt; 6){
+    while (cycles &lt; 6) {
         let currentImage = document.getElementById('fI' + (cycles + 1));
-        if (data[cycles]){
+        if (data[cycles]) {
             currentImage.src = data[cycles].image_location;
             currentImage.setAttribute('class', data[cycles].recipe_id);
             cycles = cycles + 1;
-        }
-        else {
-            currentImage.src = '';
+        } else {
+            currentImage.src = './webpages/media/blank.png';
             currentImage.setAttribute('class', '0');
             cycles = cycles + 1;
         }
@@ -255,14 +299,20 @@ function init() {
             findRecipe();
         });
     }
+    if (document.getElementById("recipeName")) {
+        document.getElementById("recipeName").addEventListener("keyup", function(event) {
+            if (event.keyCode == 13) {
+                document.getElementById("findRecipe").click();
+            }
+        });
+    }
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
     if (document.getElementById("addReview")) {
-        alert("I shouldn't be here");
         document.getElementById("addReview").addEventListener('click', submitForm);
     }
-    document.getElementById("showsaves").addEventListener('click', showSaves);
+    document.getElementById("showSaves").addEventListener('click', showSaves);
     document.getElementById("fI1").addEventListener('click', async() => {
         selectRecipe(document.getElementById("fI1").className);
     });
@@ -309,13 +359,13 @@ if (typeof module !== 'undefined' &amp;&amp; module.exports) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#fave">fave</a></li><li><a href="global.html#faveCheck">faveCheck</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#sortByProperty">sortByProperty</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Mar 26 2020 12:49:33 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Mar 26 2020 20:33:13 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>

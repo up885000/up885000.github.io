@@ -9,26 +9,20 @@ function svLcl() {
     console.log("user has initiated a save");
 }
 
-// Favourite recipe function
-let currentvalue = false;
-
-let favestring = null;
-
+/**
+ * This function manages saving and removing recipes in local storage.
+ * 
+ * @param {String} fileName The name of the currently open recipe.
+ */
 function fave() {
-    let title = document.getElementById('recipeTitle').innerHTML;
-    let favebutton = document.getElementById('fave');
-    if (favebutton.src == "media/offstar.png") {
-        currentvalue = false;
+    let fileName = document.getElementById('recipeTitle').innerHTML;
+    let fileCheck = localStorage.getItem(fileName);
+
+    if(fileCheck !== null){ //Remove files from storage
+        window.localStorage.removeItem(fileName);
     }
-    else if (favebutton.src == "media/onstar.png") {
-        currentvalue = true;
-    }
-    if (currentvalue == false) {
-        currentvalue = true;
-        //this is saveing
-        // switches the image source from faved to unfaved
-        document.getElementById('fave').src = 'media/onStar.png';
-        let fileName = title;
+
+    if (fileCheck === null) { //Adds file to storage and validates name.
         if (fileName == null || fileName == "") {
             alert("Error: Invalid FileName");
         } else {
@@ -36,16 +30,8 @@ function fave() {
             window.localStorage.setItem(fileName, savefile);
         }
     }
-    //Add local storage element here **
-    else if (currentvalue == true) {
-        currentvalue = false;
-        //this is un-saveing
-        window.localStorage.removeItem(title);
 
-        // we need to edit the fave stars to be the same size and file format
-        document.getElementById('fave').src = 'media/offStar.png';
-        //update sql database that user has unfaved recipe
-    }
+    faveCheck(fileName);
 }
 
 let savefiles = [];
@@ -59,6 +45,11 @@ function showSaves() {
 }
 
 
+/**
+ * This function manages loading saved recipes from local storage.
+ *
+ * @param {String} fileName The name of the recipe attempting to be opened.
+ */ 
 function load() {
     let fileName = prompt("fileName: ", "");
     if (localStorage.getItem(fileName) !== null){
@@ -110,7 +101,7 @@ function sortByProperty(property) {
  * 
  * @param {String} fileName The name of the recipe currently open.
  */
-function favecheck(fileName){
+function faveCheck(fileName){
     let fileCheck = localStorage.getItem(fileName);
 
     if(fileCheck !== null){
@@ -119,7 +110,6 @@ function favecheck(fileName){
     else if(fileCheck === null){
       document.getElementById('fave').src = 'media/offStar.png';
     }
-    console.log('favecheck()', fileName);
   }
 
 /**
@@ -145,7 +135,7 @@ async function selectRecipe(id) {
     document.getElementById('rev').className = name;
     response = await fetch('/getIngredientsId?id=' + id);
 
-    favecheck(data[0].recipe_name); //checks if favourite star should be on
+    faveCheck(data[0].recipe_name); //checks if favourite star should be on
 
     data = await response.json();
     var i;
