@@ -28,17 +28,28 @@
             <section class="searchBar">
                 <input type="search" id="recipeName" name="recipeName">
                 <input type="button" name="findRecipe" id="findRecipe" value="Submit">
+                <!-- dropdown menu -->
+                <select name="Sort By" id="sortBy">
+                    <option value="">--Sort by--</option>
+                    <option value="alphaSort">Alphabetical</option>
+                    <option value="prepTimeSort">Prep time</option>
+                    <option value="cookTimeSort">Cooking time</option>
+                </select>
+                <select name="Category" id="category">
+                    <option value="">--Categories--</option>
+                    <option value="Alphabetical">Alphabetical</option>
+                    <option value="African">African</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Seafood">Seafood</option>
+                    <option value="Side">Side</option>
+                    <option value="British">British</option>
+                    <option value="Dessert">Dessert</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Chicken">Chicken</option>
+                    <option value="Mexican">Mexican</option>
+                </select>
             </section>
-            <!-- dropdown menu -->
-            <select name="Sort By" id="sortBy">
-                <option value="">--Please choose an option--</option>
-                <option value="alphabetical">Alphabetical</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-            </select>
             <!-- Action sends to /addReview - Needs to be changed to stop load of new page -->
             <!-- google this add event listener to not send to new page  -->
             <form id="reviewForm"></form>
