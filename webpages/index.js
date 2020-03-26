@@ -72,8 +72,9 @@ function load() {
 
 /**
  * This function will query the database for information about a selected recipe and then display it to the user.
+ * It is displayed by updating the recipe list/buttons on the screen.
  * 
- * Function is largely depreceated and replaced by selectRecipe().
+ * @param {String} name Pulls the recipe being search for from the HTML element recipeName.
  */
 async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
@@ -183,6 +184,11 @@ async function imageRandomizer(){
     updateButtons(data);
 }
 
+/**
+ * This function will update the buttons show on screen so that they match the recipes being searched for.
+ *
+ * @param {JSON[]} data The array of json given by formatting a fetch api request.
+ */
 function updateButtons(data){
     let cycles = 0;
     while(cycles < 6){

@@ -100,8 +100,9 @@ function load() {
 
 /**
  * This function will query the database for information about a selected recipe and then display it to the user.
+ * It is displayed by updating the recipe list/buttons on the screen.
  * 
- * Function is largely depreceated and replaced by selectRecipe().
+ * @param {String} name Pulls the recipe being search for from the HTML element recipeName.
  */
 async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
@@ -110,10 +111,7 @@ async function findRecipe() {
     let response = await fetch('/getRecipe?name=' + name);
     console.log(response);
     let data = await response.json();
-    //data is the data outgoing from the sql database
-    console.log(data);
-    let r_name = data[0].recipe_name; //example of parsing json
-    document.getElementById('recipeTitle').innerHTML = r_name;
+    updateButtons(data);
 }
 
 /**
@@ -121,10 +119,10 @@ async function findRecipe() {
  *
  * @param {String} name The name of the recipe being searched for.
  */
-async function selectRecipe(name) {
+async function selectRecipe(id) {
     //async function to search for recipies needs to be given a proper function
-    console.log(name);
-    let response = await fetch('/getRecipeId?name=' + name);
+    console.log(id);
+    let response = await fetch('/getRecipeId?id=' + id);
     console.log(response);
     let data = await response.json();
     //data is the data outgoing from the sql database
@@ -137,6 +135,7 @@ async function selectRecipe(name) {
     document.getElementById('cookingTime').innerHTML = "Cooking Time: " + data[0].cooking_time;
     document.getElementById('difficulty').innerHTML = "Difficulty: " + data[0].difficulty;
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
+    document.getElementById('rev').className = name;
 }
 
 let timesFiredReview = 0;
@@ -149,23 +148,15 @@ let timesFiredReview = 0;
  * @param {String} new_review A text review for the recipe.
  * @param {Button} new_submit A sumbit button.
  */
-function revBtn(new_rating, new_recID, new_review, new_submit) {
+function revBtn(new_rating, name, new_review, new_submit) {
     // setting up vaildation
     if (timesFiredReview &lt; 1) {
-        //adds recipe_id for the addReview() function to use
-        const new_recID = document.createElement('input');
-        new_recID.setAttribute('id', 'recipe_id');
-        new_recID.setAttribute('type', 'text');
-        new_recID.setAttribute('name', 'recipe_id');
-        new_recID.setAttribute('class', 'reviewForm');
-        reviewForm.appendChild(new_recID);
 
         //adds rating for the addReview() function to use
         const new_rating = document.createElement('input');
         new_rating.setAttribute('id', 'rating');
         new_rating.setAttribute('type', 'text');
         new_rating.setAttribute('name', 'rating');
-        new_rating.setAttribute('class', 'reviewForm');
         reviewForm.appendChild(new_rating);
 
         //adds review for the addReview() function to use
@@ -173,19 +164,19 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_review.setAttribute('id', 'review');
         new_review.setAttribute('type', 'text');
         new_review.setAttribute('name', 'review');
-        new_review.setAttribute('class', 'reviewForm');
         reviewForm.appendChild(new_review);
 
         //adds submit button for the addReview() forms to use
         const new_submit = document.createElement('input');
         new_submit.setAttribute('id', 'addReview');
-        new_submit.setAttribute('type', 'submit');
+        new_submit.setAttribute('type', 'button');
         new_submit.setAttribute('name', 'addReview');
-        new_submit.setAttribute('class', 'reviewForm');
+        new_submit.setAttribute('value', 'Submit');
         reviewForm.appendChild(new_submit);
 
         timesFiredReview = timesFiredReview + 1;
 
+        document.getElementById('addReview').addEventListener('click', submitForm);
     } else {
         console.log("error you already have a review form in progress");
     }
@@ -196,16 +187,51 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
  * 
  */
 async function submitForm() {
-
     //gets the function addReview from the server.js file and runs it
     console.log("initiating recipe review");
-    let response = await fetch('/addReview?recipe_id=' + new_recID + "&amp;rating=" + new_rating + "&amp;review=" + new_review);
-    console.log("you have successfully reviewed this recipe");
-    search.removeChild(new_recID);
-    search.removeChild(new_rating);
-    search.removeChild(new_review);
-    search.removeChild(new_submit);
+    let recipe_id = document.getElementById('rev').className;
+    let rating = document.getElementById('rating').value;
+    let review = document.getElementById('review').value;
+    let response = fetch('/addReview?recipe_id=' + recipe_id + "&amp;rating=" + rating + "&amp;review=" + review);
+    alert("you have successfully reviewed this recipe");
+    reviewForm.removeChild(document.getElementById('rating'));
+    reviewForm.removeChild(document.getElementById('review'));
+    reviewForm.removeChild(document.getElementById('addReview'));
     timesFiredReview = timesFiredReview - 1;
+}
+
+/**
+ * Randomly selects 6 recipes to display when the page loads and then maps these images and associated recipe_id's to the html buttons.
+ *  
+ */
+async function imageRandomizer(){
+    //query server to add all images into array
+    let response = await fetch('/getRandomImages');
+    let data = await response.json();
+
+    updateButtons(data);
+}
+
+/**
+ * This function will update the buttons show on screen so that they match the recipes being searched for.
+ *
+ * @param {JSON[]} data The array of json given by formatting a fetch api request.
+ */
+function updateButtons(data){
+    let cycles = 0;
+    while(cycles &lt; 6){
+        let currentImage = document.getElementById('fI' + (cycles + 1));
+        if (data[cycles]){
+            currentImage.src = data[cycles].image_location;
+            currentImage.setAttribute('class', data[cycles].recipe_id);
+            cycles = cycles + 1;
+        }
+        else {
+            currentImage.src = '';
+            currentImage.setAttribute('class', '0');
+            cycles = cycles + 1;
+        }
+    }
 }
 
 
@@ -214,6 +240,7 @@ async function submitForm() {
  *
  */
 function init() {
+    imageRandomizer();
     if (document.getElementById("down")) {
         document.getElementById("down").addEventListener('click', svLcl);
     }
@@ -231,8 +258,9 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
-    if (document.getElementById("submit")) {
-        document.getElementById("submit").addEventListener('click', submitForm);
+    if (document.getElementById("addReview")) {
+        alert("I shouldn't be here");
+        document.getElementById("addReview").addEventListener('click', submitForm);
     }
     document.getElementById("showsaves").addEventListener('click', showSaves);
     document.getElementById("fI1").addEventListener('click', async() => {
@@ -270,7 +298,8 @@ if (typeof module !== 'undefined' &amp;&amp; module.exports) {
     exports.fave = fave;
     exports.submitForm = submitForm;
     exports.selectRecipe = selectRecipe;
-}</code></pre>
+}
+</code></pre>
         </article>
     </section>
 
@@ -280,13 +309,13 @@ if (typeof module !== 'undefined' &amp;&amp; module.exports) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeInfo">getRecipeInfo</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Mar 25 2020 20:45:32 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Mar 26 2020 12:49:33 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>
