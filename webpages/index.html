@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <link rel="shortcut icon" href="media/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="styleGrid.css">
-    <script type="text/javascript" src="index.js"></script>
+    <script src="index.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cooking Dumma</title>
@@ -16,11 +16,11 @@
 
         <nav id="navbar">
             <!-- Nav bar with buttons to options -->
-            <input class="button" id="down" type="image" src="media/print.png">
-            <input class="recipeId" id="rev" type="image" src="media/review.png">
-            <input class="button" id="fave" type="image" src="media/offStar.png">
-            <input class="button" id="load" type="image" src="media/save.png">
-            <input class="button" id="showsaves" type="image" src="media/Penne.jpg">
+            <input alt="print button" class="button" id="down" type="image" src="media/print.png">
+            <input alt="review button" class="recipeId" id="rev" type="image" src="media/review.png">
+            <input alt="favorite button" class="button" id="fave" type="image" src="media/offStar.png">
+            <input alt="load button" class="button" id="load" type="image" src="media/save.png">
+            <input alt="showsaves button" class="button" id="showsaves" type="image" src="media/Penne.jpg">
         </nav>
 
         <section id="search">
@@ -37,7 +37,6 @@
                 </select>
                 <select name="Category" id="category">
                     <option value="">--Categories--</option>
-                    <option value="Alphabetical">Alphabetical</option>
                     <option value="African">African</option>
                     <option value="Rice">Rice</option>
                     <option value="Chinese">Chinese</option>
@@ -53,17 +52,17 @@
             <!-- Action sends to /addReview - Needs to be changed to stop load of new page -->
             <!-- google this add event listener to not send to new page  -->
             <form id="reviewForm"></form>
-            <img class="6" id="fI1" type="image" src="">
-            <img class="4" id="fI2" type="image" src="">
-            <img class="1" id="fI3" type="image" src="">
-            <img class="5" id="fI4" type="image" src="">
-            <img class="3" id="fI5" type="image" src="">
-            <img class="2" id="fI6" type="image" src="">
-            <img id="logo" src="media/cookingDumma.png">
+            <img alt="chickenburrito" class="6" id="fI1" src="media/blank.png">
+            <img alt="battenburgcake" class="4" id="fI2" src="media/blank.png">
+            <img alt="jolofrice" class="1" id="fI3" src="media/blank.png">
+            <img alt="jamrolypoly" class="5" id="fI4" src="media/blank.png">
+            <img alt="fishandchips" class="3" id="fI5" src="media/blank.png">
+            <img alt="firecrackerprawns" class="2" id="fI6" src="media/blank.png">
+            <img alt="logo" id="logo" src="media/cookingDumma.png">
         </section>
 
         <section id="recipe">
-            <img id="recipeImg" type="image" src="media/Penne.jpg">
+            <img alt="recipeimage" id="recipeImg" src="media/blank.png">
             <div id="recipeTitle">FOOD</div>
             <div id="method">HOW</div>
             <div id="ingredients">INGREDIENTS</div>
