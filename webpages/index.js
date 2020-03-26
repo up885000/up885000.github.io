@@ -109,6 +109,7 @@ async function selectRecipe(name) {
     document.getElementById('cookingTime').innerHTML = "Cooking Time: " + data[0].cooking_time;
     document.getElementById('difficulty').innerHTML = "Difficulty: " + data[0].difficulty;
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
+    document.getElementById('rev').className = name;
 }
 
 let timesFiredReview = 0;
@@ -121,23 +122,15 @@ let timesFiredReview = 0;
  * @param {String} new_review A text review for the recipe.
  * @param {Button} new_submit A sumbit button.
  */
-function revBtn(new_rating, new_recID, new_review, new_submit) {
+function revBtn(new_rating, name, new_review, new_submit) {
     // setting up vaildation
     if (timesFiredReview < 1) {
-        //adds recipe_id for the addReview() function to use
-        const new_recID = document.createElement('input');
-        new_recID.setAttribute('id', 'recipe_id');
-        new_recID.setAttribute('type', 'text');
-        new_recID.setAttribute('name', 'recipe_id');
-        new_recID.setAttribute('class', 'reviewForm');
-        reviewForm.appendChild(new_recID);
 
         //adds rating for the addReview() function to use
         const new_rating = document.createElement('input');
         new_rating.setAttribute('id', 'rating');
         new_rating.setAttribute('type', 'text');
         new_rating.setAttribute('name', 'rating');
-        new_rating.setAttribute('class', 'reviewForm');
         reviewForm.appendChild(new_rating);
 
         //adds review for the addReview() function to use
@@ -145,19 +138,19 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
         new_review.setAttribute('id', 'review');
         new_review.setAttribute('type', 'text');
         new_review.setAttribute('name', 'review');
-        new_review.setAttribute('class', 'reviewForm');
         reviewForm.appendChild(new_review);
 
         //adds submit button for the addReview() forms to use
         const new_submit = document.createElement('input');
         new_submit.setAttribute('id', 'addReview');
-        new_submit.setAttribute('type', 'submit');
+        new_submit.setAttribute('type', 'button');
         new_submit.setAttribute('name', 'addReview');
-        new_submit.setAttribute('class', 'reviewForm');
+        new_submit.setAttribute('value', 'Submit');
         reviewForm.appendChild(new_submit);
 
         timesFiredReview = timesFiredReview + 1;
 
+        document.getElementById('addReview').addEventListener('click', submitForm);
     } else {
         console.log("error you already have a review form in progress");
     }
@@ -168,15 +161,16 @@ function revBtn(new_rating, new_recID, new_review, new_submit) {
  * 
  */
 async function submitForm() {
-
     //gets the function addReview from the server.js file and runs it
     console.log("initiating recipe review");
-    let response = await fetch('/addReview?recipe_id=' + new_recID + "&rating=" + new_rating + "&review=" + new_review);
-    console.log("you have successfully reviewed this recipe");
-    search.removeChild(new_recID);
-    search.removeChild(new_rating);
-    search.removeChild(new_review);
-    search.removeChild(new_submit);
+    let recipe_id = document.getElementById('rev').className;
+    let rating = document.getElementById('rating').value;
+    let review = document.getElementById('review').value;
+    let response = fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + rating + "&review=" + review);
+    alert("you have successfully reviewed this recipe");
+    reviewForm.removeChild(document.getElementById('rating'));
+    reviewForm.removeChild(document.getElementById('review'));
+    reviewForm.removeChild(document.getElementById('addReview'));
     timesFiredReview = timesFiredReview - 1;
 }
 
@@ -217,8 +211,9 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
-    if (document.getElementById("submit")) {
-        document.getElementById("submit").addEventListener('click', submitForm);
+    if (document.getElementById("addReview")) {
+        alert("I shouldn't be here");
+        document.getElementById("addReview").addEventListener('click', submitForm);
     }
     document.getElementById("showsaves").addEventListener('click', showSaves);
     document.getElementById("fI1").addEventListener('click', async() => {
