@@ -139,7 +139,7 @@ app.get('/', function(req, res) {});
 
 app.get('/getRecipe', getRecipeInfo);
 app.get('/getRecipeId', getRecipe);
-app.post('/addReview', addReview);
+app.get('/addReview', addReview);
 
 /**
  * This function will attempt to retrieve the recipe id, name, and image location from the database.
@@ -193,11 +193,10 @@ async function getRecipe(req, res) {
  * @returns {Boolean} True/False depending on success of the function.
  */
 async function addReview(req, res) {
-    console.log('it gets this far');
     let recipe_id = req.body.recipe_id;
     let rating = req.body.rating;
     let review = req.body.review;
-
+    console.log(recipe_id + rating + review);
     const Query = await mysqlInsert(
         'INSERT INTO reviews (recipe_id, rating, review) VALUES (?,?,?)', [recipe_id, rating, review]
     );
