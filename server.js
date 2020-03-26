@@ -139,8 +139,8 @@ app.get('/', function(req, res) {});
 
 app.get('/getRecipe', getRecipe);
 app.get('/getRecipeId', getRecipeId);
+app.get('/getRandomImages', getRandomImages);
 app.post('/addReview', addReview);
-app.post('/getRandomImages', getRandomImages);
 
 /**
  * This function will attempt to retrieve the recipe id, name, and image location from the database.
@@ -184,7 +184,7 @@ async function getRandomImages(req, res) {
  */
 async function getRecipeId(req, res) {
     try {
-        let id = req.query.name;
+        let id = req.query.id;
         console.log(id);
         const data = await mysqlSelect('select * from recipe where recipe_id = ?', [id]);
         console.log(data);

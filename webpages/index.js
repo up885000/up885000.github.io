@@ -96,7 +96,7 @@ async function findRecipe() {
 async function selectRecipe(id) {
     //async function to search for recipies needs to be given a proper function
     console.log(id);
-    let response = await fetch('/getRecipeId?name=' + id);
+    let response = await fetch('/getRecipeId?id=' + id);
     console.log(response);
     let data = await response.json();
     //data is the data outgoing from the sql database
@@ -174,13 +174,20 @@ async function submitForm() {
     timesFiredReview = timesFiredReview - 1;
 }
 
-function imageRandomizer(){
+/**
+ * Randomly selects 6 recipes to display when the page loads and then maps these images and associated recipe_id's to the html buttons.
+ *
+ */
+async function imageRandomizer(){
     //query server to add all images into array
+    let response = await fetch('/getRandomImages');
+    let data = await response.json();
+
     let cycles = 0;
     while(cycles < 6){
-        let currentImage = document.getElementById('fI' + cycles);
-        currentImage.src = data[cycle].image_location;
-        currentImage.setAttribute('class', data[cycle].recipe_ID);
+        let currentImage = document.getElementById('fI' + (cycles + 1));
+        currentImage.src = data[cycles].image_location;
+        currentImage.setAttribute('class', data[cycles].recipe_id);
         cycles = cycles + 1;
     }
 }
@@ -193,6 +200,7 @@ function imageRandomizer(){
  *
  */
 function init() {
+    imageRandomizer();
     if (document.getElementById("down")) {
         document.getElementById("down").addEventListener('click', svLcl);
     }
