@@ -80,9 +80,10 @@ async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
     let name = document.getElementById("recipeName").value;
     let sortMethod = document.getElementById('sortBy').value;
+    let category = document.getElementById('category').value;
     console.log(sortMethod);
     console.log(name);
-    let response = await fetch('/getRecipe?name=' + name);
+    let response = await fetch('/getRecipe?name=' + name + '&category=' + category);
     console.log(response);
     let data = await response.json();
     data.sort(sortByProperty(sortMethod));
@@ -230,7 +231,7 @@ function updateButtons(data) {
             currentImage.setAttribute('class', data[cycles].recipe_id);
             cycles = cycles + 1;
         } else {
-            currentImage.src = '';
+            currentImage.src = './webpages/media/blank.png';
             currentImage.setAttribute('class', '0');
             cycles = cycles + 1;
         }

@@ -154,8 +154,9 @@ app.post('/addReview', addReview);
 async function getRecipe(req, res) {
     try {
         let name = req.query.name;
+        let category = req.query.category;
         console.log(name);
-        const data = await mysqlSelect('select recipe_id, recipe_name, image_location, preparation_time, cooking_time from recipe where lower(recipe_name) like ?', ["%" + name + "%"]);
+        const data = await mysqlSelect('select r.recipe_id, r.recipe_name, r.image_location, r.preparation_time, r.cooking_time from recipe r  join recipe_category_line rc on (rc.recipe_id = r.recipe_id) join category c on (rc.category_id = c.category_id) where lower(recipe_name) like ?  and c.category_name like ? group by recipe_id', ["%" + name + "%", "%" + category + "%"]);
         console.log(data);
         res.send(data);
     } catch (error) {
