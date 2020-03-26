@@ -46,7 +46,7 @@ server.listen(port, () => {
  * Only called during testing as leaving the server open would cause a build to fail.
  *
  */
-function stopServer(){
+function stopServer() {
     server.close();
 }
 

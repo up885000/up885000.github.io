@@ -131,7 +131,6 @@ function revBtn(new_rating, name, new_review, new_submit) {
         new_rating.setAttribute('id', 'rating');
         new_rating.setAttribute('type', 'text');
         new_rating.setAttribute('name', 'rating');
-        new_rating.setAttribute('class', 'reviewForm');
         reviewForm.appendChild(new_rating);
 
         //adds review for the addReview() function to use
@@ -139,7 +138,6 @@ function revBtn(new_rating, name, new_review, new_submit) {
         new_review.setAttribute('id', 'review');
         new_review.setAttribute('type', 'text');
         new_review.setAttribute('name', 'review');
-        new_review.setAttribute('class', 'reviewForm');
         reviewForm.appendChild(new_review);
 
         //adds submit button for the addReview() forms to use
@@ -147,10 +145,11 @@ function revBtn(new_rating, name, new_review, new_submit) {
         new_submit.setAttribute('id', 'addReview');
         new_submit.setAttribute('type', 'submit');
         new_submit.setAttribute('name', 'addReview');
-        new_submit.setAttribute('class', 'reviewForm');
         reviewForm.appendChild(new_submit);
 
         timesFiredReview = timesFiredReview + 1;
+
+        document.getElementById("submit").addEventListener('click', submitForm);
 
     } else {
         console.log("error you already have a review form in progress");
@@ -166,9 +165,8 @@ async function submitForm() {
     //gets the function addReview from the server.js file and runs it
     console.log("initiating recipe review");
     let recipe_id = document.getElementById('fave').className;
-    let response = await fetch('/addReview?recipe_id=' + name + "&rating=" + new_rating + "&review=" + new_review);
+    let response = await fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + new_rating + "&review=" + new_review);
     console.log("you have successfully reviewed this recipe");
-
     search.removeChild(new_rating);
     search.removeChild(new_review);
     search.removeChild(new_submit);
@@ -198,9 +196,9 @@ function init() {
     if (document.getElementById("rev")) {
         document.getElementById("rev").addEventListener('click', revBtn);
     }
-    if (document.getElementById("submit")) {
-        document.getElementById("submit").addEventListener('click', submitForm);
-    }
+    // if (document.getElementById("submit")) {
+    //     document.getElementById("submit").addEventListener('click', submitForm);
+    // }
     document.getElementById("showsaves").addEventListener('click', showSaves);
     document.getElementById("fI1").addEventListener('click', async() => {
         selectRecipe(document.getElementById("fI1").className);
