@@ -19,7 +19,8 @@ function fave() {
     let favebutton = document.getElementById('fave');
     if (favebutton.src == "media/offstar.png") {
         currentvalue = false;
-    } else if (favebutton.src == "media/onstar.png") {
+    } 
+    else if (favebutton.src == "media/onstar.png") {
         currentvalue = true;
     }
     if (currentvalue == false) {
@@ -39,7 +40,7 @@ function fave() {
     else if (currentvalue == true) {
         currentvalue = false;
         //this is un-saveing
-        window.localStorage.removeItem(fileName);
+        window.localStorage.removeItem(title);
 
         // we need to edit the fave stars to be the same size and file format
         document.getElementById('fave').src = 'media/offStar.png';
@@ -54,18 +55,19 @@ function showSaves() {
         savefiles.push(localStorage.key(i));
     }
     window.alert(savefiles);
-    saveFiles = [];
+    savefiles = [];
 }
 
 
 function load() {
-    let fileName = prompt("FileName: ", "");
-    if (fileName == null || fileName == "" || fileName == " ") {
-        alert("Error: Invalid FileName");
-    } else {
-        const savefile = window.localStorage.getItem(fileName);
-        document.getElementById('recipe').innerHTML = savefile;
-        document.getElementById('fave').src = 'media/onStar.png';
+    let fileName = prompt("fileName: ", "");
+    if (localStorage.getItem(fileName) !== null){
+      const savefile = window.localStorage.getItem(fileName);
+      document.getElementById('recipe').innerHTML = savefile;
+      document.getElementById('fave').src = 'media/onStar.png';
+    }
+    else {
+      window.alert("Error: Invalid fileName");
     }
 }
 
