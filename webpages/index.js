@@ -163,8 +163,9 @@ async function submitForm() {
 
     //gets the function addReview from the server.js file and runs it
     console.log("initiating recipe review");
-    let recipe_id = document.getElementById('fave').className
-    let response = await fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + new_rating + "&review=" + new_review);
+    let response = await fetch('/addReview?recipe_id=' + document.getElementById('fave').className +
+        "&rating=" + document.getElementById('rating').value +
+        "&review=" + document.getElementById('review').value);
     console.log(response)
     console.log("you have successfully reviewed this recipe");
     search.removeChild(new_rating);
