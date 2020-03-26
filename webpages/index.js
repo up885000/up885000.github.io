@@ -79,11 +79,27 @@ function load() {
 async function findRecipe() {
     //async function to search for recipies needs to be given a proper function
     let name = document.getElementById("recipeName").value;
+    let sortMethod = document.getElementById('sortBy').value;
+    console.log(sortMethod);
     console.log(name);
     let response = await fetch('/getRecipe?name=' + name);
     console.log(response);
     let data = await response.json();
+    data.sort(sortByProperty(sortMethod));
+    console.log(data);
     updateButtons(data);
+}
+
+/**
+ * Generic array sorting
+ *
+ * @param property
+ * @returns {Function}
+ */
+function sortByProperty (property) {
+    return function (x, y) {
+        return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+    };
 }
 
 /**
