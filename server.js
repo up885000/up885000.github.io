@@ -139,6 +139,7 @@ app.get('/', function(req, res) {});
 
 app.get('/getRecipe', getRecipe);
 app.get('/getRecipeId', getRecipeId);
+app.get('/getIngredientsId', getIngredientsId);
 app.get('/getRandomImages', getRandomImages);
 app.post('/addReview', addReview);
 
@@ -187,6 +188,19 @@ async function getRecipeId(req, res) {
         let id = req.query.id;
         console.log(id);
         const data = await mysqlSelect('select * from recipe where recipe_id = ?', [id]);
+        console.log(data);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
+    }
+}
+
+async function getIngredientsId(req, res) {
+    try {
+        let id = req.query.id;
+        console.log(id);
+        const data = await mysqlSelect("SELECT ri.quantity, m.measurement_name, i.ingredients_name FROM recipe_ingredients ri JOIN ingredients i ON(i.ingredients_id = ri.ingredients_id) JOIN measurements m ON(m.measurement_id = ri.measurement_id) WHERE ri.recipe_id = ? and(ri.type = 'metric ' or ri.type = 'neutral ')", [id]);
         console.log(data);
         res.send(data);
     } catch (error) {
