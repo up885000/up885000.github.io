@@ -31,15 +31,6 @@ Now the server should be running locally with database built.
 
 Documentation can be found [here.](https://up885000.github.io/out/index.html)
 
-Testing can be found [here.](https://up885000.github.io/test/test.html) However, tests that require node to be running and so will show as false-negatives. To view the status of these tests please check the build log [here.](https://travis-ci.com/github/up885000/up885000.github.io)
+A test plan can be found [here](https://up885000.github.io/test/Test%20Plan.pdf) and automated testing can be found [here.](https://up885000.github.io/test/test.html) However, tests that require node to be running and so will show as false-negatives. To view the status of these tests please check the build log [here.](https://travis-ci.com/github/up885000/up885000.github.io)
 
 [![Build Status](https://travis-ci.com/up885000/up885000.github.io.svg?branch=master)](https://travis-ci.com/up885000/up885000.github.io)
-
-
-Change review form to replace search bar
-
-review needs prompt text
-
-load button image
-
-Scale change via increase column number on .wholepage
