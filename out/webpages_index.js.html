@@ -160,9 +160,9 @@ async function selectRecipe(id) {
     document.getElementById('cookingTime').innerHTML = "Cooking Time: " + data[0].cooking_time;
     document.getElementById('difficulty').innerHTML = "Difficulty: " + data[0].difficulty;
     document.getElementById('serving').innerHTML = "Serving Size: " + data[0].recipe_serving;
-    document.getElementById('rev').className = name;
     response = await fetch('/getIngredientsId?id=' + id);
 
+    selected_recipe = data[0].recipe_id;
     faveCheck(data[0].recipe_name); //checks if favourite star should be on
 
     data = await response.json();
@@ -177,6 +177,7 @@ async function selectRecipe(id) {
 }
 
 let timesFiredReview = 0;
+let selected_recipe = null;
 
 /**
  * This function creates the neccessary form to enter review information.
@@ -193,8 +194,11 @@ function revBtn(new_rating, name, new_review, new_submit) {
         //adds rating for the addReview() function to use
         const new_rating = document.createElement('input');
         new_rating.setAttribute('id', 'rating');
-        new_rating.setAttribute('type', 'text');
+        new_rating.setAttribute('type', 'number');
         new_rating.setAttribute('name', 'rating');
+        new_rating.setAttribute('placeholder', 'Rating');
+        new_rating.setAttribute('min', '0');
+        new_rating.setAttribute('max', '5');
         reviewForm.appendChild(new_rating);
 
         //adds review for the addReview() function to use
@@ -202,6 +206,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
         new_review.setAttribute('id', 'review');
         new_review.setAttribute('type', 'text');
         new_review.setAttribute('name', 'review');
+        new_review.setAttribute('placeholder', 'Review');
         reviewForm.appendChild(new_review);
 
         //adds submit button for the addReview() forms to use
@@ -232,16 +237,22 @@ function revBtn(new_rating, name, new_review, new_submit) {
  */
 async function submitForm() {
     //gets the function addReview from the server.js file and runs it
-    console.log("initiating recipe review");
-    let recipe_id = document.getElementById('rev').className;
+
+    let recipe_id = selected_recipe; //From selectRecipe()
     let rating = document.getElementById('rating').value;
     let review = document.getElementById('review').value;
-    let response = fetch('/addReview?recipe_id=' + recipe_id + "&amp;rating=" + rating + "&amp;review=" + review);
-    alert("you have successfully reviewed this recipe");
-    reviewForm.removeChild(document.getElementById('rating'));
-    reviewForm.removeChild(document.getElementById('review'));
-    reviewForm.removeChild(document.getElementById('addReview'));
-    timesFiredReview = timesFiredReview - 1;
+
+    if (rating > 5 || rating &lt; 0){
+        alert("Please enter a rating between 1 and 5");
+    } 
+    else {
+        let response = fetch('/addReview?recipe_id=' + recipe_id + "&amp;rating=" + rating + "&amp;review=" + review);
+        alert("Review has been submitted successfully.");
+        reviewForm.removeChild(document.getElementById('rating'));
+        reviewForm.removeChild(document.getElementById('review'));
+        reviewForm.removeChild(document.getElementById('addReview'));
+        timesFiredReview = timesFiredReview - 1;
+    }
 }
 
 /**
@@ -276,6 +287,30 @@ function updateButtons(data) {
             cycles = cycles + 1;
         }
     }
+}
+
+/**
+ * This function will display to the user the average rating a recipe ahs recieved and all of the reviews left for it.
+ *
+ */
+async function displayReviews(){
+    let reviewText = '';
+
+    let response = await fetch('/getRating?id=' + selected_recipe);
+    let data = await response.json();
+    console.log(data);
+    reviewText = 'Average rating: ' + data[0].average_rating;
+
+    response = await fetch('/getReview?id=' + selected_recipe);
+    data = await response.json();
+
+    var i;
+    for (i = 0; i &lt; data.length; i++) {
+        reviewText += "&lt;li>" + data[i].rating + " Stars - " +
+            data[i].review;
+    }
+
+    document.getElementById('method').innerHTML = reviewText;
 }
 
 
@@ -331,6 +366,9 @@ function init() {
     document.getElementById("fI6").addEventListener('click', async() => {
         selectRecipe(document.getElementById("fI6").className);
     });
+    document.getElementById("viewReviews").addEventListener('click', async() => {
+        displayReviews();
+    });
 }
 
 //add click listeners
@@ -359,13 +397,13 @@ if (typeof module !== 'undefined' &amp;&amp; module.exports) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#fave">fave</a></li><li><a href="global.html#faveCheck">faveCheck</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#sortByProperty">sortByProperty</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#displayReviews">displayReviews</a></li><li><a href="global.html#fave">fave</a></li><li><a href="global.html#faveCheck">faveCheck</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getIngredientsId">getIngredientsId</a></li><li><a href="global.html#getRating">getRating</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#getReview">getReview</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#sortByProperty">sortByProperty</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Mar 26 2020 20:33:13 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Mar 26 2020 23:57:52 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>

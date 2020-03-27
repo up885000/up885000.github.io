@@ -169,7 +169,9 @@ app.get('/getRecipe', getRecipe);
 app.get('/getRecipeId', getRecipeId);
 app.get('/getIngredientsId', getIngredientsId);
 app.get('/getRandomImages', getRandomImages);
-app.post('/addReview', addReview);
+app.get('/addReview', addReview);
+app.get('/getReview', getReview);
+app.get('/getRating', getRating);
 
 /**
  * This function will attempt to retrieve the recipe id, name, and image location from the database.
@@ -225,12 +227,58 @@ async function getRecipeId(req, res) {
     }
 }
 
+/**
+ * This function will attempt to retrieve all information about a recipe's ingredients from the database when provided with a recipe id.
+ * If the query is successful it will return the requested data to the client.
+ * If the query is unsuccessful it will log an error server side and return an error message to the client.
+ * 
+ * @param {Request} req The request from the client, this contains the necessary variables.
+ * @param {Response} res The response from the server, this contains a true/false response.
+ */
 async function getIngredientsId(req, res) {
     try {
         let id = req.query.id;
         console.log(id);
         const data = await mysqlSelect("SELECT ri.quantity, m.measurement_name, i.ingredients_name FROM recipe_ingredients ri JOIN ingredients i ON(i.ingredients_id = ri.ingredients_id) JOIN measurements m ON(m.measurement_id = ri.measurement_id) WHERE ri.recipe_id = ? and(ri.type = 'metric ' or ri.type = 'neutral ')", [id]);
         console.log(data);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
+    }
+}
+
+/**
+ * This function will attempt to retrieve ratings and reviews from the database when provided with a recipe id.
+ * If the query is successful it will return the requested data to the client.
+ * If the query is unsuccessful it will log an error server side and return an error message to the client.
+ * 
+ * @param {Request} req The request from the client, this contains the necessary variables.
+ * @param {Response} res The response from the server, this contains a true/false response.
+ */
+async function getReview(req, res){
+    try {
+        let id = req.query.id;
+        const data = await mysqlSelect("SELECT rating, review from reviews where recipe_id = ?", [id]);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
+    }
+}
+
+/**
+ * This function will attempt to retrieve the average of all reviews for a specific recipe id from the database.
+ * If the query is successful it will return the requested data to the client.
+ * If the query is unsuccessful it will log an error server side and return an error message to the client.
+ * 
+ * @param {Request} req The request from the client, this contains the necessary variables.
+ * @param {Response} res The response from the server, this contains a true/false response.
+ */
+async function getRating(req, res){
+    try {
+        let id = req.query.id;
+        const data = await mysqlSelect("SELECT AVG(rating) as average_rating from reviews where recipe_id = ?", [id]);
         res.send(data);
     } catch (error) {
         console.log("API Error: ", error);
@@ -252,9 +300,7 @@ async function addReview(req, res) {
     let rating = req.query.rating;
     let review = req.query.review;
     console.log(recipe_id + rating + review);
-    const Query = await mysqlInsert(
-        'INSERT INTO reviews (recipe_id, rating, review) VALUES (?,?,?)', [recipe_id, rating, review]
-    );
+    const Query = await mysqlInsert('INSERT INTO reviews (recipe_id, rating, review) VALUES (?,?,?)', [recipe_id, rating, review]);
     if (Query) { //If Query was successfull (if not then error has already been printed to console)
         console.log('Added review for: ', recipe_id);
         return true; //return true so that client can know review was added successfully
@@ -279,13 +325,13 @@ if (typeof module !== 'undefined' &amp;&amp; module.exports) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#fave">fave</a></li><li><a href="global.html#faveCheck">faveCheck</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#sortByProperty">sortByProperty</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#displayReviews">displayReviews</a></li><li><a href="global.html#fave">fave</a></li><li><a href="global.html#faveCheck">faveCheck</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getIngredientsId">getIngredientsId</a></li><li><a href="global.html#getRating">getRating</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#getReview">getReview</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#sortByProperty">sortByProperty</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Mar 26 2020 20:33:13 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Mar 26 2020 23:57:52 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>

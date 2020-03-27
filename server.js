@@ -142,6 +142,8 @@ app.get('/getRecipeId', getRecipeId);
 app.get('/getIngredientsId', getIngredientsId);
 app.get('/getRandomImages', getRandomImages);
 app.get('/addReview', addReview);
+app.get('/getReview', getReview);
+app.get('/getRating', getRating);
 
 /**
  * This function will attempt to retrieve the recipe id, name, and image location from the database.
@@ -197,12 +199,58 @@ async function getRecipeId(req, res) {
     }
 }
 
+/**
+ * This function will attempt to retrieve all information about a recipe's ingredients from the database when provided with a recipe id.
+ * If the query is successful it will return the requested data to the client.
+ * If the query is unsuccessful it will log an error server side and return an error message to the client.
+ * 
+ * @param {Request} req The request from the client, this contains the necessary variables.
+ * @param {Response} res The response from the server, this contains a true/false response.
+ */
 async function getIngredientsId(req, res) {
     try {
         let id = req.query.id;
         console.log(id);
         const data = await mysqlSelect("SELECT ri.quantity, m.measurement_name, i.ingredients_name FROM recipe_ingredients ri JOIN ingredients i ON(i.ingredients_id = ri.ingredients_id) JOIN measurements m ON(m.measurement_id = ri.measurement_id) WHERE ri.recipe_id = ? and(ri.type = 'metric ' or ri.type = 'neutral ')", [id]);
         console.log(data);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
+    }
+}
+
+/**
+ * This function will attempt to retrieve ratings and reviews from the database when provided with a recipe id.
+ * If the query is successful it will return the requested data to the client.
+ * If the query is unsuccessful it will log an error server side and return an error message to the client.
+ * 
+ * @param {Request} req The request from the client, this contains the necessary variables.
+ * @param {Response} res The response from the server, this contains a true/false response.
+ */
+async function getReview(req, res){
+    try {
+        let id = req.query.id;
+        const data = await mysqlSelect("SELECT rating, review from reviews where recipe_id = ?", [id]);
+        res.send(data);
+    } catch (error) {
+        console.log("API Error: ", error);
+        res.send("Server Error");
+    }
+}
+
+/**
+ * This function will attempt to retrieve the average of all reviews for a specific recipe id from the database.
+ * If the query is successful it will return the requested data to the client.
+ * If the query is unsuccessful it will log an error server side and return an error message to the client.
+ * 
+ * @param {Request} req The request from the client, this contains the necessary variables.
+ * @param {Response} res The response from the server, this contains a true/false response.
+ */
+async function getRating(req, res){
+    try {
+        let id = req.query.id;
+        const data = await mysqlSelect("SELECT AVG(rating) as average_rating from reviews where recipe_id = ?", [id]);
         res.send(data);
     } catch (error) {
         console.log("API Error: ", error);

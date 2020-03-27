@@ -166,9 +166,11 @@ function revBtn(new_rating, name, new_review, new_submit) {
         //adds rating for the addReview() function to use
         const new_rating = document.createElement('input');
         new_rating.setAttribute('id', 'rating');
-        new_rating.setAttribute('type', 'text');
+        new_rating.setAttribute('type', 'number');
         new_rating.setAttribute('name', 'rating');
         new_rating.setAttribute('placeholder', 'Rating');
+        new_rating.setAttribute('min', '0');
+        new_rating.setAttribute('max', '5');
         reviewForm.appendChild(new_rating);
 
         //adds review for the addReview() function to use
@@ -207,15 +209,22 @@ function revBtn(new_rating, name, new_review, new_submit) {
  */
 async function submitForm() {
     //gets the function addReview from the server.js file and runs it
+
     let recipe_id = selected_recipe; //From selectRecipe()
     let rating = document.getElementById('rating').value;
     let review = document.getElementById('review').value;
-    let response = fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + rating + "&review=" + review);
-    alert("Review has been submitted successfully.");
-    reviewForm.removeChild(document.getElementById('rating'));
-    reviewForm.removeChild(document.getElementById('review'));
-    reviewForm.removeChild(document.getElementById('addReview'));
-    timesFiredReview = timesFiredReview - 1;
+
+    if (rating > 5 || rating < 0){
+        alert("Please enter a rating between 1 and 5");
+    } 
+    else {
+        let response = fetch('/addReview?recipe_id=' + recipe_id + "&rating=" + rating + "&review=" + review);
+        alert("Review has been submitted successfully.");
+        reviewForm.removeChild(document.getElementById('rating'));
+        reviewForm.removeChild(document.getElementById('review'));
+        reviewForm.removeChild(document.getElementById('addReview'));
+        timesFiredReview = timesFiredReview - 1;
+    }
 }
 
 /**
@@ -250,6 +259,30 @@ function updateButtons(data) {
             cycles = cycles + 1;
         }
     }
+}
+
+/**
+ * This function will display to the user the average rating a recipe ahs recieved and all of the reviews left for it.
+ *
+ */
+async function displayReviews(){
+    let reviewText = '';
+
+    let response = await fetch('/getRating?id=' + selected_recipe);
+    let data = await response.json();
+    console.log(data);
+    reviewText = 'Average rating: ' + data[0].average_rating;
+
+    response = await fetch('/getReview?id=' + selected_recipe);
+    data = await response.json();
+
+    var i;
+    for (i = 0; i < data.length; i++) {
+        reviewText += "<li>" + data[i].rating + " Stars - " +
+            data[i].review;
+    }
+
+    document.getElementById('method').innerHTML = reviewText;
 }
 
 
@@ -304,6 +337,9 @@ function init() {
     });
     document.getElementById("fI6").addEventListener('click', async() => {
         selectRecipe(document.getElementById("fI6").className);
+    });
+    document.getElementById("viewReviews").addEventListener('click', async() => {
+        displayReviews();
     });
 }
 
