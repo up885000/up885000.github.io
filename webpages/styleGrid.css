@@ -56,6 +56,12 @@
         width: 80%;
     }
     
+    #settingsButton {
+        grid-row: 6;
+        margin: auto;
+        width: 80%;
+    }
+    
     nav>input {
         /* clickables in navbar */
         margin: 1rem;
@@ -173,7 +179,7 @@
         grid-row: 4/6;
         margin: auto;
     }
-
+    
     #viewReviews {
         border-radius: 15%;
         max-width: 10em;
