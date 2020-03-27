@@ -285,6 +285,19 @@ async function displayReviews(){
     document.getElementById('method').innerHTML = reviewText;
 }
 
+/**
+ * This function will change the size of relevant recipe text on the page.
+ *
+ * @param {Percentage} textSize A percentage that will change the text size relative to the original.
+ */
+function changeTextSize(){
+    let textSise = prompt('Enter a new text size: (e.g. 120%, 75%)');
+
+    document.getElementById("method").style.fontSize = textSise;
+    document.getElementById("ingredients").style.fontSize = textSise;
+    document.getElementById("info").style.fontSize = textSise;
+}
+
 
 /**
  * Initialises Javascript buttons, this function is called immideatly when the page loads.
@@ -340,6 +353,9 @@ function init() {
     });
     document.getElementById("viewReviews").addEventListener('click', async() => {
         displayReviews();
+    });
+    document.getElementById("settingsButton").addEventListener('click', async() => {
+        changeTextSize();
     });
 }
 

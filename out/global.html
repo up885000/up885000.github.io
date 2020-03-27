@@ -288,6 +288,143 @@ If the query is unsuccessful it will return false to the client.
     
 
     
+    <h4 class="name" id="changeTextSize"><span class="type-signature"></span>changeTextSize<span class="signature">(textSize)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    This function will change the size of relevant recipe text on the page.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>textSize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Percentage</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A percentage that will change the text size relative to the original.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="webpages_index.js.html">webpages/index.js</a>, <a href="webpages_index.js.html#line293">line 293</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
     <h4 class="name" id="displayReviews"><span class="type-signature">(async) </span>displayReviews<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
@@ -1738,7 +1875,7 @@ If the query is unsuccessful it will log an error server side and return an erro
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="webpages_index.js.html">webpages/index.js</a>, <a href="webpages_index.js.html#line293">line 293</a>
+        <a href="webpages_index.js.html">webpages/index.js</a>, <a href="webpages_index.js.html#line306">line 306</a>
     </li></ul></dd>
     
 
@@ -3326,13 +3463,13 @@ Only called during testing as leaving the server open would cause a build to fai
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#displayReviews">displayReviews</a></li><li><a href="global.html#fave">fave</a></li><li><a href="global.html#faveCheck">faveCheck</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getIngredientsId">getIngredientsId</a></li><li><a href="global.html#getRating">getRating</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#getReview">getReview</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#sortByProperty">sortByProperty</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addReview">addReview</a></li><li><a href="global.html#changeTextSize">changeTextSize</a></li><li><a href="global.html#displayReviews">displayReviews</a></li><li><a href="global.html#fave">fave</a></li><li><a href="global.html#faveCheck">faveCheck</a></li><li><a href="global.html#findRecipe">findRecipe</a></li><li><a href="global.html#getIngredientsId">getIngredientsId</a></li><li><a href="global.html#getRating">getRating</a></li><li><a href="global.html#getRecipe">getRecipe</a></li><li><a href="global.html#getRecipeId">getRecipeId</a></li><li><a href="global.html#getReview">getReview</a></li><li><a href="global.html#imageRandomizer">imageRandomizer</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#load">load</a></li><li><a href="global.html#mysqlConnection">mysqlConnection</a></li><li><a href="global.html#mysqlInsert">mysqlInsert</a></li><li><a href="global.html#mysqlSelect">mysqlSelect</a></li><li><a href="global.html#newMysqlConnection">newMysqlConnection</a></li><li><a href="global.html#revBtn">revBtn</a></li><li><a href="global.html#selectRecipe">selectRecipe</a></li><li><a href="global.html#sortByProperty">sortByProperty</a></li><li><a href="global.html#stopServer">stopServer</a></li><li><a href="global.html#submitForm">submitForm</a></li><li><a href="global.html#updateButtons">updateButtons</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Mar 26 2020 23:57:52 GMT+0000 (Greenwich Mean Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Mar 27 2020 00:26:21 GMT+0000 (Greenwich Mean Time)
 </footer>
 
 <script> prettyPrint(); </script>
