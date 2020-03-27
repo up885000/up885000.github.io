@@ -6,7 +6,7 @@
 // print Window function
 function svLcl() {
     window.print();
-    console.log("user has initiated a save");
+    console.log("User has initiated a save.");
 }
 
 /**
@@ -74,13 +74,10 @@ async function findRecipe() {
     let name = document.getElementById("recipeName").value;
     let sortMethod = document.getElementById('sortBy').value;
     let category = document.getElementById('category').value;
-    console.log(sortMethod);
-    console.log(name);
     let response = await fetch('/getRecipe?name=' + name + '&category=' + category);
-    console.log(response);
     let data = await response.json();
     data.sort(sortByProperty(sortMethod));
-    console.log(data);
+
     updateButtons(data);
 }
 
@@ -119,12 +116,9 @@ function faveCheck(fileName){
  */
 async function selectRecipe(id) {
     //async function to search for recipies needs to be given a proper function
-    console.log(id);
     let response = await fetch('/getRecipeId?id=' + id);
-    console.log(response);
     let data = await response.json();
     //data is the data outgoing from the sql database
-    console.log(data);
     document.getElementById('recipeTitle').innerHTML = data[0].recipe_name;
     document.getElementById('recipeImg').src = ".." + data[0].image_location;
     document.getElementById('method').innerHTML = data[0].recipe_description;
@@ -199,7 +193,7 @@ function revBtn(new_rating, name, new_review, new_submit) {
         });
 
     } else {
-        console.log("error you already have a review form in progress");
+        console.log("Error: You already have a review form in progress.");
     }
 }
 
@@ -270,16 +264,14 @@ async function displayReviews(){
 
     let response = await fetch('/getRating?id=' + selected_recipe);
     let data = await response.json();
-    console.log(data);
     reviewText = 'Average rating: ' + data[0].average_rating;
-
+    
     response = await fetch('/getReview?id=' + selected_recipe);
     data = await response.json();
 
     var i;
     for (i = 0; i < data.length; i++) {
-        reviewText += "<li>" + data[i].rating + " Stars - " +
-            data[i].review;
+        reviewText += "<li>" + data[i].rating + " Stars - " + data[i].review;
     }
 
     document.getElementById('method').innerHTML = reviewText;

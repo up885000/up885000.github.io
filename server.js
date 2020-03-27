@@ -157,9 +157,7 @@ async function getRecipe(req, res) {
     try {
         let name = req.query.name;
         let category = req.query.category;
-        console.log(name);
         const data = await mysqlSelect('select r.recipe_id, r.recipe_name, r.image_location, r.preparation_time, r.cooking_time from recipe r  join recipe_category_line rc on (rc.recipe_id = r.recipe_id) join category c on (rc.category_id = c.category_id) where lower(recipe_name) like ?  and c.category_name like ? group by recipe_id', ["%" + name + "%", "%" + category + "%"]);
-        console.log(data);
         res.send(data);
     } catch (error) {
         console.log("API Error: ", error);
@@ -170,7 +168,6 @@ async function getRecipe(req, res) {
 async function getRandomImages(req, res) {
     try {
         const data = await mysqlSelect('SELECT recipe_id, image_location FROM recipe ORDER BY RAND() LIMIT 0,6', []);
-        console.log(data);
         res.send(data);
     } catch (error) {
         console.log("API Error: ", error);
@@ -189,9 +186,7 @@ async function getRandomImages(req, res) {
 async function getRecipeId(req, res) {
     try {
         let id = req.query.id;
-        console.log(id);
         const data = await mysqlSelect('select * from recipe where recipe_id = ?', [id]);
-        console.log(data);
         res.send(data);
     } catch (error) {
         console.log("API Error: ", error);
@@ -210,9 +205,7 @@ async function getRecipeId(req, res) {
 async function getIngredientsId(req, res) {
     try {
         let id = req.query.id;
-        console.log(id);
         const data = await mysqlSelect("SELECT ri.quantity, m.measurement_name, i.ingredients_name FROM recipe_ingredients ri JOIN ingredients i ON(i.ingredients_id = ri.ingredients_id) JOIN measurements m ON(m.measurement_id = ri.measurement_id) WHERE ri.recipe_id = ? and(ri.type = 'metric ' or ri.type = 'neutral ')", [id]);
-        console.log(data);
         res.send(data);
     } catch (error) {
         console.log("API Error: ", error);
@@ -271,7 +264,6 @@ async function addReview(req, res) {
     let recipe_id = req.query.recipe_id;
     let rating = req.query.rating;
     let review = req.query.review;
-    console.log(recipe_id + rating + review);
     const Query = await mysqlInsert('INSERT INTO reviews (recipe_id, rating, review) VALUES (?,?,?)', [recipe_id, rating, review]);
     if (Query) { //If Query was successfull (if not then error has already been printed to console)
         console.log('Added review for: ', recipe_id);
